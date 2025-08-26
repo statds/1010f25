@@ -1,0 +1,132 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science and Society with R",
+    "section": "",
+    "text": "Preliminaries",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#adapting-to-rapid-skill-acquisition",
+    "href": "index.html#adapting-to-rapid-skill-acquisition",
+    "title": "Data Science and Society with R",
+    "section": "Adapting to Rapid Skill Acquisition",
+    "text": "Adapting to Rapid Skill Acquisition\nIn this course, students are expected to rapidly acquire new skills, a critical aspect of data science. To emphasize this, consider this insightful quote from VanderPlas (2016):\n\nWhen a technologically-minded person is asked to help a friend, family member, or colleague with a computer problem, most of the time it’s less a matter of knowing the answer as much as knowing how to quickly find an unknown answer. In data science it’s the same: searchable web resources such as online documentation, mailing-list threads, and StackOverflow answers contain a wealth of information, even (especially?) if it is a topic you’ve found yourself searching before. Being an effective practitioner of data science is less about memorizing the tool or command you should use for every possible situation, and more about learning to effectively find the information you don’t know, whether through a web search engine or another means.\n\nThis quote captures the essence of what we aim to develop in our students: the ability to swiftly navigate and utilize the vast resources available to solve complex problems in data science. Examples tasks are: install needed software (or even hardware); search and find solutions to encountered problems.",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#course-tools",
+    "href": "index.html#course-tools",
+    "title": "Data Science and Society with R",
+    "section": "Course tools",
+    "text": "Course tools\n\nR & RStudio for analysis\nQuarto for reproducible documents and dashboards\nGit & GitHub for version control and project management\nCommand line for automation and efficiency",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#policies-syllabus",
+    "href": "index.html#policies-syllabus",
+    "title": "Data Science and Society with R",
+    "section": "Policies & syllabus",
+    "text": "Policies & syllabus\nSee the course syllabus on HuskyCT.\nKey reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.\n\n\n\n\nVanderPlas, J. (2016). Python data science handbook: Essential tools for working with data. O’Reilly Media, Inc.",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "01-computing.html",
+    "href": "01-computing.html",
+    "title": "1  Know Your Computer",
+    "section": "",
+    "text": "1.1 Operating Systems\nMost students are familiar with Windows, but data science workflows often run on macOS or Linux. To keep everyone on the same page for command-line work, we will treat macOS and Linux as a single “Unix-like” family and help Windows users bridge to the same environment via WSL (Windows Subsystem for Linux).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#operating-systems",
+    "href": "01-computing.html#operating-systems",
+    "title": "1  Know Your Computer",
+    "section": "",
+    "text": "Note\n\n\n\nWhat is an Operating System?\nAn operating system (OS) manages your computer’s resources (CPU, memory, storage, files, and processes) and provides interfaces (GUI and terminal) for people and programs to interact with hardware.\n\n\n\n1.1.1 The big three\n\nWindows — Ubiquitous on personal laptops; historically less aligned with Unix tooling, but excellent with WSL.\nmacOS — Unix-based; ships with a terminal and many developer tools out of the box.\nLinux — Open-source family used on servers, clusters, and cloud VMs; many distributions (Ubuntu, Fedora, Debian) share common command-line tools.\n\n\n\n\n\n\n\nTip\n\n\n\nWhy this matters in data science\nReproducibility and collaboration require knowing your OS, versions, and paths. Most research servers and HPC clusters run Linux. Learning a command-line interface (CLI) gives you a common language across systems.\n\n\n\n\n1.1.2 Quick checks: what am I running?\nOpen a terminal and run one of the following:\n# macOS / Linux / WSL\nuname -a\n# Windows (PowerShell)\nver\nIf you see Linux details on a Windows laptop, you are inside WSL.\n\n\n1.1.3 File systems and paths\n\nUnix-like path style: /home/alex/project/data.csv\nWindows path style: C:\\\\Users\\\\Alex\\\\project\\\\data.csv\n\nOn macOS/Linux, your home is typically /Users/&lt;name&gt; (macOS) or /home/&lt;name&gt; (Linux). On Windows, it is usually C:\\\\Users\\\\&lt;name&gt;.\n\n\n\n\n\n\nImportant\n\n\n\nNaming habits that save you pain\nAvoid spaces in file and folder names. Prefer kebab-case or snake-case. Keep a project’s scripts, data, and reports together.\n\n\n\n\n1.1.4 Windows Subsystem for Linux (WSL)\nWSL lets you run a real Linux environment (e.g., Ubuntu) inside Windows, so your terminal commands match those of macOS/Linux users. This is the recommended setup for Windows in this course.\n\n1.1.4.1 Install WSL (Windows 11 or Windows 10 ≥ 2004)\n\nOpen PowerShell as Administrator.\n\nRun:\n\nwsl --install\n\nWhen prompted, choose Ubuntu and set a Linux username and password.\n\n(Optional) Ensure WSL2 is the default:\n\nwsl --set-default-version 2\n\nVerify:\n\nwsl --status\nwsl -l -v\nYou should see Ubuntu listed and version 2.\n\n\n1.1.4.2 Start using WSL\n\nLaunch the Ubuntu app (or run wsl in PowerShell).\n\nYou are now at a Linux shell (bash). Try:\n\npwd         # current directory in the Linux filesystem\nls          # list files\nwhoami      # your Linux username\n\n\n1.1.4.3 Sharing files between Windows and WSL\n\nWindows drives are mounted inside Linux at /mnt/c, /mnt/d, …\nExample: C:\\\\Users\\\\Alex\\\\project appears at /mnt/c/Users/Alex/project inside WSL.\n\nYour Linux home is separate (e.g., /home/alex).\n\n\n\n\n\n\n\nTip\n\n\n\nBest practice\nKeep course projects inside your Linux home (e.g., /home/&lt;name&gt;/dsda1010) to avoid path and permissions surprises.\n\n\n\n\n1.1.4.4 Line endings and Git on Windows/WSL\nConfigure Git once to avoid CRLF/LF confusion:\ngit config --global core.autocrlf input   # recommended in WSL/macOS/Linux\ngit config --global init.defaultBranch main\nAdd a .gitattributes to normalize endings:\n* text=auto\n*.qmd text eol=lf\n*.R   text eol=lf\n*.md  text eol=lf\n*.yml text eol=lf\n\n\n\n1.1.5 Terminal quickstart by OS\n\nmacOS: Open Terminal (or iTerm2). You are in a Unix shell. Commands from the book work as-is.\n\nLinux: Open your terminal (GNOME Terminal, Konsole, etc.). You are already in a Unix shell.\n\nWindows (WSL): Open the Ubuntu app (WSL). You are now in a Linux shell that matches macOS/Linux.\n\nTry these commands everywhere:\npwd           # show current path\nls -lah       # list with details and human-readable sizes\nmkdir lab     # make a folder\ncd lab        # enter it\ncurl --version\nR --version   # verify R once installed later\n\n\n1.1.6 Common pitfalls and fixes\n\n“Command not found” — The program is not installed, or your PATH does not include it.\nPermission denied — You may be in a protected folder; work in your home directory.\nStrange characters in filenames — Avoid spaces and punctuation; stick to letters, numbers, dashes.\nMixing Windows and WSL paths — Prefer working inside your WSL home. If you must access Windows files, use /mnt/c/....\n\n\n\n1.1.7 Hands-on check (to do now)\n\nOpen your terminal (macOS/Linux/WSL).\n\nConfirm your OS with uname -a (or ver in PowerShell).\n\nCreate a course folder and a notes file:\n\nmkdir -p ~/dsda1010/week1\ncd ~/dsda1010/week1\necho \"Week 1 notes\" &gt; notes.txt\nls -l",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#files-folders-and-paths",
+    "href": "01-computing.html#files-folders-and-paths",
+    "title": "1  Know Your Computer",
+    "section": "1.2 Files, folders, and paths",
+    "text": "1.2 Files, folders, and paths\n\nHome folder: Your personal workspace.\n\nAbsolute vs relative paths:\n\n# absolute (macOS/Linux)\n/Users/alex/projects/dsda1010\n\n# absolute (Windows)\nC:\\Users\\alex\\projects\\dsda1010\n\n# relative (from a project root)\n../data/nyc311.csv\n\nGood habits\n\nAvoid spaces in file/folder names (use-kebab-case).\nKeep project files together (R scripts, data, and reports).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#extensions-and-line-endings",
+    "href": "01-computing.html#extensions-and-line-endings",
+    "title": "1  Know Your Computer",
+    "section": "1.3 Extensions and line endings",
+    "text": "1.3 Extensions and line endings\n\nCommon types: .qmd, .R, .csv, .tsv, .parquet, .md.\nText vs binary: keep data in text formats when possible.\nLine endings: Git normalizes these; we set .gitattributes to help.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#terminals-and-shells",
+    "href": "01-computing.html#terminals-and-shells",
+    "title": "1  Know Your Computer",
+    "section": "1.4 Terminals and shells",
+    "text": "1.4 Terminals and shells\nOpen a terminal and try:\npwd        # print working directory\nls         # list files\ncd ..      # move up one directory\nmkdir lab  # make a folder\ncd lab       # go into the newly created folder\n\n\n\n\n\n\nTip\n\n\n\nUse Tab to autocomplete file and folder names.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#install-r-rstudio-and-quarto",
+    "href": "01-computing.html#install-r-rstudio-and-quarto",
+    "title": "1  Know Your Computer",
+    "section": "1.5 Install R, RStudio, and Quarto",
+    "text": "1.5 Install R, RStudio, and Quarto\n\nInstall R from CRAN.\n\nInstall RStudio Desktop.\n\nInstall Quarto.\n\nVerify:\n\nR --version\nquarto --version\nIn RStudio, create a new Quarto document and render it.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#your-first-quarto-project",
+    "href": "01-computing.html#your-first-quarto-project",
+    "title": "1  Know Your Computer",
+    "section": "1.6 Your first Quarto project",
+    "text": "1.6 Your first Quarto project\nFrom a terminal:\nmkdir dsda1010\ncd dsda1010\n# Edit hw-template.qmd\nquarto render hw-template.qmd\nOpen the folder in RStudio and inspect the generated files.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "01-computing.html#troubleshooting-checklist",
+    "href": "01-computing.html#troubleshooting-checklist",
+    "title": "1  Know Your Computer",
+    "section": "1.7 Troubleshooting checklist",
+    "text": "1.7 Troubleshooting checklist\n\nPATH issues: can the terminal find R and quarto?\n\nPermissions: can you write to your project folder?\n\nAntivirus or VPN blocking downloads?\n\n\n\n\n\n\n\nImportant\n\n\n\nIf your machine is shared or locked down, use the HPC workstations or RStudio Server if provided by the department. Ask the instructor for access details.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "VanderPlas, J. (2016). Python data science handbook:\nEssential tools for working with data. O’Reilly Media,\nInc.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
