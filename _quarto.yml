@@ -1,0 +1,39 @@
+project:
+  type: book
+
+book:
+  title: "Data Science and Society with R"
+  subtitle: "DSDA/STAT 1010 - Quarto Book"
+  author: "Jun Yan"
+  date: last-modified
+  repo-url: https://github.com/REPLACE-ME/dsda1010-book
+  repo-actions: [issue, source]
+  downloads: [pdf]
+  chapters:
+    - index.qmd
+    - 01-computing.qmd
+#    - 02-git.qmd
+    - references.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc-depth: 2
+    number-sections: true
+    code-fold: show
+    df-print: paged
+    anchor-sections: true
+  pdf:
+    documentclass: scrreprt
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+
+bibliography: references.bib
+csl: apa.csl
+
+metadata-files:
+  - _course.yml

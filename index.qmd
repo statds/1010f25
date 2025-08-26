@@ -1,0 +1,46 @@
+# Preliminaries {.unnumbered}
+
+
+::: callout-tip
+**Welcome!** This Quarto book hosts all lecture notes,
+in-class activities, and weekly reading for DSDA/STAT 1010.
+It is designed for first-year students with no prerequisites.
+:::
+
+## Adapting to Rapid Skill Acquisition
+
+In this course, students are expected to rapidly acquire new skills, a
+critical aspect of data science. To emphasize this, consider this
+insightful quote from @vanderplas2016python:
+
+> When a technologically-minded person is asked to help a friend, family member,
+> or colleague with a computer problem, most of the time it's less a matter of
+> knowing the answer as much as knowing how to quickly find an unknown
+> answer. In data science it's the same: searchable web resources such as online
+> documentation, mailing-list threads, and StackOverflow answers contain a
+> wealth of information, even (especially?) if it is a topic you've found
+> yourself searching before. Being an effective practitioner of data science is
+> less about memorizing the tool or command you should use for every possible
+> situation, and more about learning to effectively find the information you
+> don't know, whether through a web search engine or another means.
+
+This quote captures the essence of what we aim to develop in our
+students: the ability to swiftly navigate and utilize the vast
+resources available to solve complex problems in data science.
+Examples tasks are: install needed software (or even hardware);
+search and find solutions to encountered problems. 
+
+
+## Course tools
+
+- **R & RStudio** for analysis
+- **Quarto** for reproducible documents and dashboards
+- **Git & GitHub** for version control and project management
+- **Command line** for automation and efficiency
+
+## Policies & syllabus
+
+See the course syllabus on HuskyCT.
+
+Key reminders: academic integrity, no AI-generated text in
+graded submissions, and professional email etiquette.

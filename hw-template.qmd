@@ -1,0 +1,104 @@
+---
+title: "{{< var assignment_title >}}"
+author:
+  - name: "{{< var student_name >}}"
+    affiliation: "{{< var course_code >}} — {{< var course_title >}}"
+date: "{{< var submission_date >}}"
+format:
+  html: default
+  pdf: default
+
+# Student-editable variables (fill these in before rendering)
+# Tip: keep the curly braces intact; edit only the text on the right-hand side.
+# Example: student_name: "Avery Lee"
+student_name: "Your Name"
+student_id: "Your Student ID"
+assignment_title: "HW 01: Getting Started"
+submission_date: "2025-09-01"
+collaborators: "None"
+hours_spent: "2"
+# Optional assignment-specific variables
+due_date: "2025-09-03"
+honor_pledge_signed: "Yes"
+
+# Per-document options
+editor: visual
+toc: true
+number-sections: true
+---
+
+::: {.callout-note}
+**How to use this template**  
+1. Fill in the variables in the YAML header above (student name, ID, etc.).  
+2. Knit/render with **Quarto**: `quarto render` (HTML default; PDF if LaTeX is installed).  
+3. Submit the **rendered output** (`homework.html` or `homework.pdf`) and this source file `homework.qmd` unless told otherwise.
+:::
+
+## 1. Honor & Collaboration
+
+I affirm that this submission is my own work. I have listed any collaborators and external resources used.  
+**Honor pledge signed:** {{< var honor_pledge_signed >}}
+
+- **Collaborators:** {{< var collaborators >}}
+- **Hours spent:** {{< var hours_spent >}}
+
+## 2. Short Answers
+
+### 2.1
+Type your answer here. Use complete sentences.
+
+### 2.2
+You can typeset math like $\hat\beta=(X^\top X)^{-1}X^\top y$ using standard LaTeX.
+
+### 2.3 Citations
+Cite readings, websites, or datasets, e.g., @wickham2016r. Your references will appear at the end.
+
+## 3. R Code
+
+Below is a minimal R example. Run it, show outputs, and explain what you see.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+# This chunk can be used for package setup.
+# Example:
+# install.packages("tidyverse")  # (uncomment if needed)
+library(datasets)
+
+summary(iris)
+```
+
+Describe your results in words.
+
+### 3.1 A Plot
+
+```{r}
+#| fig-cap: "Sepal length vs sepal width"
+plot(iris$Sepal.Length, iris$Sepal.Width)
+```
+
+Briefly interpret the figure.
+
+## 4. (Optional) Python Code
+
+If you have Python set up in Quarto, you can also include Python chunks.
+
+```{python}
+sum([1, 2, 3, 4, 5])
+```
+
+## 5. Checklist (delete after use)
+
+- [ ] All YAML variables filled (name, ID, title, dates).
+- [ ] Every question answered in complete sentences.
+- [ ] Code runs top-to-bottom without errors.
+- [ ] Explanations accompany tables/figures.
+- [ ] Final render produced (HTML/PDF as requested).
+- [ ] File(s) named correctly per submission instructions.
+
+## 6. Appendix
+
+Add any additional notes, derivations, or extra credit here.
+
+## References

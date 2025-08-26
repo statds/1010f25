@@ -1,0 +1,277 @@
+---
+title: "Know Your Computer"
+description: "OS, files, folders, paths, terminals; installing R, RStudio, and Quarto."
+---
+
+::: callout-note
+**Learning goals**
+1) Recognize how files, folders, and paths work across macOS,
+Windows, and Linux.  
+2) Use a terminal to navigate and run simple commands.  
+3) Install R, RStudio, and Quarto; verify your setup.
+:::
+
+
+## Operating Systems
+
+Most students are familiar with **Windows**, but data science
+workflows often run on **macOS** or **Linux**. To keep everyone on
+the same page for command-line work, we will treat macOS and Linux
+as a single “Unix-like” family and help Windows users bridge to the
+same environment via WSL (Windows Subsystem for Linux).
+
+::: callout-note
+**What is an Operating System?**  
+An operating system (OS) manages your computer’s resources (CPU,
+memory, storage, files, and processes) and provides interfaces (GUI
+and terminal) for people and programs to interact with hardware.
+:::
+
+### The big three
+
+- **Windows** — Ubiquitous on personal laptops; historically less
+  aligned with Unix tooling, but excellent with WSL.
+- **macOS** — Unix-based; ships with a terminal and many developer
+  tools out of the box.
+- **Linux** — Open-source family used on servers, clusters, and
+  cloud VMs; many distributions (Ubuntu, Fedora, Debian) share
+  common command-line tools.
+
+::: callout-tip
+**Why this matters in data science**  
+Reproducibility and collaboration require knowing your OS,
+versions, and paths. Most research servers and HPC clusters run
+Linux. Learning a command-line interface (CLI) gives you a common
+language across systems.
+:::
+
+### Quick checks: what am I running?
+
+Open a terminal and run **one** of the following:
+
+```bash
+# macOS / Linux / WSL
+uname -a
+```
+
+```powershell
+# Windows (PowerShell)
+ver
+```
+
+If you see Linux details on a Windows laptop, you are inside WSL.
+
+### File systems and paths
+
+- **Unix-like path style**: `/home/alex/project/data.csv`
+- **Windows path style**: `C:\\Users\\Alex\\project\\data.csv`
+
+On macOS/Linux, your home is typically `/Users/<name>` (macOS) or
+`/home/<name>` (Linux). On Windows, it is usually
+`C:\\Users\\<name>`.
+
+::: callout-important
+**Naming habits that save you pain**  
+Avoid spaces in file and folder names. Prefer `kebab-case` or
+`snake-case`. Keep a project’s scripts, data, and reports together.
+:::
+
+### Windows Subsystem for Linux (WSL)
+
+WSL lets you run a real Linux environment (e.g., Ubuntu) inside
+Windows, so your terminal commands match those of macOS/Linux users.
+This is the recommended setup for Windows in this course.
+
+#### Install WSL (Windows 11 or Windows 10 ≥ 2004)
+
+1. Open **PowerShell as Administrator**.  
+2. Run:
+
+```powershell
+wsl --install
+```
+
+3. When prompted, choose **Ubuntu** and set a Linux username and
+   password.  
+4. (Optional) Ensure WSL2 is the default:
+
+```powershell
+wsl --set-default-version 2
+```
+
+5. Verify:
+
+```powershell
+wsl --status
+wsl -l -v
+```
+
+You should see `Ubuntu` listed and version `2`.
+
+#### Start using WSL
+
+- Launch the **Ubuntu** app (or run `wsl` in PowerShell).  
+- You are now at a Linux shell (bash). Try:
+
+```bash
+pwd         # current directory in the Linux filesystem
+ls          # list files
+whoami      # your Linux username
+```
+
+#### Sharing files between Windows and WSL
+
+- Windows drives are mounted inside Linux at `/mnt/c`, `/mnt/d`, …  
+  Example: `C:\\Users\\Alex\\project` appears at
+  `/mnt/c/Users/Alex/project` inside WSL.  
+- Your Linux home is separate (e.g., `/home/alex`).
+
+::: callout-tip
+**Best practice**  
+Keep course projects *inside your Linux home* (e.g.,
+`/home/<name>/dsda1010`) to avoid path and permissions surprises.
+:::
+
+#### Line endings and Git on Windows/WSL
+
+Configure Git once to avoid CRLF/LF confusion:
+
+```bash
+git config --global core.autocrlf input   # recommended in WSL/macOS/Linux
+git config --global init.defaultBranch main
+```
+
+Add a `.gitattributes` to normalize endings:
+
+```text
+* text=auto
+*.qmd text eol=lf
+*.R   text eol=lf
+*.md  text eol=lf
+*.yml text eol=lf
+```
+
+### Terminal quickstart by OS
+
+- **macOS**: Open **Terminal** (or **iTerm2**). You are in a Unix
+  shell. Commands from the book work as-is.  
+- **Linux**: Open your terminal (GNOME Terminal, Konsole, etc.).
+  You are already in a Unix shell.  
+- **Windows (WSL)**: Open the **Ubuntu** app (WSL). You are now in a
+  Linux shell that matches macOS/Linux.
+
+Try these commands everywhere:
+
+```bash
+pwd           # show current path
+ls -lah       # list with details and human-readable sizes
+mkdir lab     # make a folder
+cd lab        # enter it
+curl --version
+R --version   # verify R once installed later
+```
+
+### Common pitfalls and fixes
+
+- **“Command not found”** — The program is not installed, or your
+  PATH does not include it.
+- **Permission denied** — You may be in a protected folder; work in
+  your home directory.
+- **Strange characters in filenames** — Avoid spaces and punctuation;
+  stick to letters, numbers, dashes.
+- **Mixing Windows and WSL paths** — Prefer working inside your WSL
+  home. If you must access Windows files, use `/mnt/c/...`.
+
+### Hands-on check (to do now)
+
+1. Open your terminal (macOS/Linux/WSL).  
+2. Confirm your OS with `uname -a` (or `ver` in PowerShell).  
+3. Create a course folder and a notes file:
+
+```bash
+mkdir -p ~/dsda1010/week1
+cd ~/dsda1010/week1
+echo "Week 1 notes" > notes.txt
+ls -l
+```
+
+## Files, folders, and paths
+
+- **Home folder:** Your personal workspace.  
+- **Absolute vs relative paths:**
+
+```text
+# absolute (macOS/Linux)
+/Users/alex/projects/dsda1010
+
+# absolute (Windows)
+C:\Users\alex\projects\dsda1010
+
+# relative (from a project root)
+../data/nyc311.csv
+```
+
+- **Good habits**
+  - Avoid spaces in file/folder names (`use-kebab-case`).
+  - Keep project files together (R scripts, data, and reports).
+
+## Extensions and line endings
+
+- Common types: `.qmd`, `.R`, `.csv`, `.tsv`, `.parquet`, `.md`.
+- Text vs binary: keep data in text formats when possible.
+- Line endings: Git normalizes these; we set `.gitattributes` to help.
+
+## Terminals and shells
+
+Open a terminal and try:
+
+```bash
+pwd        # print working directory
+ls         # list files
+cd ..      # move up one directory
+mkdir lab  # make a folder
+cd lab       # go into the newly created folder
+```
+
+::: callout-tip
+Use <kbd>Tab</kbd> to autocomplete file and folder names.
+:::
+
+## Install R, RStudio, and Quarto
+
+1. Install **R** from CRAN.  
+2. Install **RStudio Desktop**.  
+3. Install **Quarto**.  
+4. Verify:
+
+```bash
+R --version
+quarto --version
+```
+
+In RStudio, create a new Quarto document and render it.
+
+## Your first Quarto project
+
+From a terminal:
+
+```bash
+mkdir dsda1010
+cd dsda1010
+# Edit hw-template.qmd
+quarto render hw-template.qmd
+```
+
+Open the folder in RStudio and inspect the generated files.
+
+## Troubleshooting checklist
+
+- PATH issues: can the terminal find `R` and `quarto`?  
+- Permissions: can you write to your project folder?  
+- Antivirus or VPN blocking downloads?
+
+::: callout-important
+If your machine is shared or locked down, use the **HPC
+workstations** or **RStudio Server** if provided by the department.
+Ask the instructor for access details.
+:::
