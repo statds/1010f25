@@ -4,7 +4,17 @@
     "href": "index.html",
     "title": "Data Science and Society with R",
     "section": "",
-    "text": "Preliminaries",
+    "text": "Preliminaries\nThe notes were developed with Quarto; for details about Quarto, visit https://quarto.org/docs/books.\nThis book is free and is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License.",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#sources-at-github",
+    "href": "index.html#sources-at-github",
+    "title": "Data Science and Society with R",
+    "section": "Sources at GitHub",
+    "text": "Sources at GitHub\nThese lecture notes for STAT/DSDA 1010 in Fall 2025 are developed by Professor Jun Yan, with help from generative AI and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our GitHub repository at https://github.com/statds/1010f25.\nStudents are welcome to contribute to the lecture notes by submitting pull requests to our GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.",
     "crumbs": [
       "Preliminaries"
     ]
@@ -42,81 +52,91 @@
   {
     "objectID": "01-computing.html",
     "href": "01-computing.html",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "",
     "text": "1.1 Operating Systems\nMost students are familiar with Windows, but data science workflows often run on macOS or Linux. To keep everyone on the same page for command-line work, we will treat macOS and Linux as a single “Unix-like” family and help Windows users bridge to the same environment via WSL (Windows Subsystem for Linux).",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#operating-systems",
     "href": "01-computing.html#operating-systems",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "",
     "text": "Note\n\n\n\nWhat is an Operating System?\nAn operating system (OS) manages your computer’s resources (CPU, memory, storage, files, and processes) and provides interfaces (GUI and terminal) for people and programs to interact with hardware.\n\n\n\n1.1.1 The big three\n\nWindows — Ubiquitous on personal laptops; historically less aligned with Unix tooling, but excellent with WSL.\nmacOS — Unix-based; ships with a terminal and many developer tools out of the box.\nLinux — Open-source family used on servers, clusters, and cloud VMs; many distributions (Ubuntu, Fedora, Debian) share common command-line tools.\n\n\n\n\n\n\n\nTip\n\n\n\nWhy this matters in data science\nReproducibility and collaboration require knowing your OS, versions, and paths. Most research servers and HPC clusters run Linux. Learning a command-line interface (CLI) gives you a common language across systems.\n\n\n\n\n1.1.2 Quick checks: what am I running?\nOpen a terminal and run one of the following:\n# macOS / Linux / WSL\nuname -a\n# Windows (PowerShell)\nver\nIf you see Linux details on a Windows laptop, you are inside WSL.\n\n\n1.1.3 File systems and paths\n\nUnix-like path style: /home/alex/project/data.csv\nWindows path style: C:\\\\Users\\\\Alex\\\\project\\\\data.csv\n\nOn macOS/Linux, your home is typically /Users/&lt;name&gt; (macOS) or /home/&lt;name&gt; (Linux). On Windows, it is usually C:\\\\Users\\\\&lt;name&gt;.\n\n\n\n\n\n\nImportant\n\n\n\nNaming habits that save you pain\nAvoid spaces in file and folder names. Prefer kebab-case or snake-case. Keep a project’s scripts, data, and reports together.\n\n\n\n\n1.1.4 Windows Subsystem for Linux (WSL)\nWSL lets you run a real Linux environment (e.g., Ubuntu) inside Windows, so your terminal commands match those of macOS/Linux users. This is the recommended setup for Windows in this course.\n\n1.1.4.1 Install WSL (Windows 11 or Windows 10 ≥ 2004)\n\nOpen PowerShell as Administrator.\n\nRun:\n\nwsl --install\n\nWhen prompted, choose Ubuntu and set a Linux username and password.\n\n(Optional) Ensure WSL2 is the default:\n\nwsl --set-default-version 2\n\nVerify:\n\nwsl --status\nwsl -l -v\nYou should see Ubuntu listed and version 2.\n\n\n1.1.4.2 Start using WSL\n\nLaunch the Ubuntu app (or run wsl in PowerShell).\n\nYou are now at a Linux shell (bash). Try:\n\npwd         # current directory in the Linux filesystem\nls          # list files\nwhoami      # your Linux username\n\n\n1.1.4.3 Sharing files between Windows and WSL\n\nWindows drives are mounted inside Linux at /mnt/c, /mnt/d, …\nExample: C:\\\\Users\\\\Alex\\\\project appears at /mnt/c/Users/Alex/project inside WSL.\n\nYour Linux home is separate (e.g., /home/alex).\n\n\n\n\n\n\n\nTip\n\n\n\nBest practice\nKeep course projects inside your Linux home (e.g., /home/&lt;name&gt;/dsda1010) to avoid path and permissions surprises.\n\n\n\n\n1.1.4.4 Line endings and Git on Windows/WSL\nConfigure Git once to avoid CRLF/LF confusion:\ngit config --global core.autocrlf input   # recommended in WSL/macOS/Linux\ngit config --global init.defaultBranch main\nAdd a .gitattributes to normalize endings:\n* text=auto\n*.qmd text eol=lf\n*.R   text eol=lf\n*.md  text eol=lf\n*.yml text eol=lf\n\n\n\n1.1.5 Terminal quickstart by OS\n\nmacOS: Open Terminal (or iTerm2). You are in a Unix shell. Commands from the book work as-is.\n\nLinux: Open your terminal (GNOME Terminal, Konsole, etc.). You are already in a Unix shell.\n\nWindows (WSL): Open the Ubuntu app (WSL). You are now in a Linux shell that matches macOS/Linux.\n\nTry these commands everywhere:\npwd           # show current path\nls -lah       # list with details and human-readable sizes\nmkdir lab     # make a folder\ncd lab        # enter it\ncurl --version\nR --version   # verify R once installed later\n\n\n1.1.6 Common pitfalls and fixes\n\n“Command not found” — The program is not installed, or your PATH does not include it.\nPermission denied — You may be in a protected folder; work in your home directory.\nStrange characters in filenames — Avoid spaces and punctuation; stick to letters, numbers, dashes.\nMixing Windows and WSL paths — Prefer working inside your WSL home. If you must access Windows files, use /mnt/c/....\n\n\n\n1.1.7 Hands-on check (to do now)\n\nOpen your terminal (macOS/Linux/WSL).\n\nConfirm your OS with uname -a (or ver in PowerShell).\n\nCreate a course folder and a notes file:\n\nmkdir -p ~/dsda1010/week1\ncd ~/dsda1010/week1\necho \"Week 1 notes\" &gt; notes.txt\nls -l",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#files-folders-and-paths",
     "href": "01-computing.html#files-folders-and-paths",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "1.2 Files, folders, and paths",
     "text": "1.2 Files, folders, and paths\n\nHome folder: Your personal workspace.\n\nAbsolute vs relative paths:\n\n# absolute (macOS/Linux)\n/Users/alex/projects/dsda1010\n\n# absolute (Windows)\nC:\\Users\\alex\\projects\\dsda1010\n\n# relative (from a project root)\n../data/nyc311.csv\n\nGood habits\n\nAvoid spaces in file/folder names (use-kebab-case).\nKeep project files together (R scripts, data, and reports).",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#extensions-and-line-endings",
     "href": "01-computing.html#extensions-and-line-endings",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "1.3 Extensions and line endings",
     "text": "1.3 Extensions and line endings\n\nCommon types: .qmd, .R, .csv, .tsv, .parquet, .md.\nText vs binary: keep data in text formats when possible.\nLine endings: Git normalizes these; we set .gitattributes to help.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#terminals-and-shells",
     "href": "01-computing.html#terminals-and-shells",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "1.4 Terminals and shells",
     "text": "1.4 Terminals and shells\nOpen a terminal and try:\npwd        # print working directory\nls         # list files\ncd ..      # move up one directory\nmkdir lab  # make a folder\ncd lab       # go into the newly created folder\n\n\n\n\n\n\nTip\n\n\n\nUse Tab to autocomplete file and folder names.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
-    "objectID": "01-computing.html#install-r-rstudio-and-quarto",
-    "href": "01-computing.html#install-r-rstudio-and-quarto",
-    "title": "1  Know Your Computer",
-    "section": "1.5 Install R, RStudio, and Quarto",
-    "text": "1.5 Install R, RStudio, and Quarto\n\nInstall R from CRAN.\n\nInstall RStudio Desktop.\n\nInstall Quarto.\n\nVerify:\n\nR --version\nquarto --version\nIn RStudio, create a new Quarto document and render it.",
+    "objectID": "01-computing.html#install-r-positron-or-rstudio-and-quarto",
+    "href": "01-computing.html#install-r-positron-or-rstudio-and-quarto",
+    "title": "1  Setting up Computing Environment",
+    "section": "1.5 Install R, Positron (or RStudio), and Quarto",
+    "text": "1.5 Install R, Positron (or RStudio), and Quarto\n\nInstall R from CRAN.\nInstall Positron or RStudio Desktop.\nInstall Quarto\nVerify:\n\nR --version\nquarto --version\nIn RStudio, create a new Quarto document and render it.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#your-first-quarto-project",
     "href": "01-computing.html#your-first-quarto-project",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "1.6 Your first Quarto project",
     "text": "1.6 Your first Quarto project\nFrom a terminal:\nmkdir dsda1010\ncd dsda1010\n# Edit hw-template.qmd\nquarto render hw-template.qmd\nOpen the folder in RStudio and inspect the generated files.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
     ]
   },
   {
     "objectID": "01-computing.html#troubleshooting-checklist",
     "href": "01-computing.html#troubleshooting-checklist",
-    "title": "1  Know Your Computer",
+    "title": "1  Setting up Computing Environment",
     "section": "1.7 Troubleshooting checklist",
-    "text": "1.7 Troubleshooting checklist\n\nPATH issues: can the terminal find R and quarto?\n\nPermissions: can you write to your project folder?\n\nAntivirus or VPN blocking downloads?\n\n\n\n\n\n\n\nImportant\n\n\n\nIf your machine is shared or locked down, use the HPC workstations or RStudio Server if provided by the department. Ask the instructor for access details.",
+    "text": "1.7 Troubleshooting checklist\n\nPATH issues: can the terminal find R and quarto?\n\nPermissions: can you write to your project folder?\n\nAntivirus or VPN blocking downloads?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Know Your Computer</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Setting up Computing Environment</span>"
+    ]
+  },
+  {
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "2  Exercises",
+    "section": "",
+    "text": "Setting up the computing environment Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.\n\nInstall R.\nInstall Positron or RStudio.\nInstall Quarto.\nSet up SSH authentication between your computer and your GitHub account.\nRender your homework into an HTML file.\nPrint the HTML file into a pdf file and put it into the repository of this homework assignment.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exercises</span>"
     ]
   },
   {

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jun Yan">
-<meta name="dcterms.date" content="2025-08-28">
 
-<title>Data Science and Society with R</title>
+<title>2&nbsp; Exercises – Data Science and Society with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-computing.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./01-computing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preliminaries</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +113,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preliminaries</span></a>
   </div>
 </li>
@@ -146,7 +125,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercises.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
@@ -161,47 +140,22 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries">Preliminaries</a>
-  <ul class="collapse">
-  <li><a href="#sources-at-github" id="toc-sources-at-github" class="nav-link" data-scroll-target="#sources-at-github">Sources at GitHub</a></li>
-  <li><a href="#adapting-to-rapid-skill-acquisition" id="toc-adapting-to-rapid-skill-acquisition" class="nav-link" data-scroll-target="#adapting-to-rapid-skill-acquisition">Adapting to Rapid Skill Acquisition</a></li>
-  <li><a href="#course-tools" id="toc-course-tools" class="nav-link" data-scroll-target="#course-tools">Course tools</a></li>
-  <li><a href="#policies-syllabus" id="toc-policies-syllabus" class="nav-link" data-scroll-target="#policies-syllabus">Policies &amp; syllabus</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/REPLACE-ME/dsda1010-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/REPLACE-ME/dsda1010-book/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science and Society with R</h1>
-<p class="subtitle lead">DSDA/STAT 1010 - Quarto Book</p>
+<h1 class="title"><span id="sec-ex" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exercises</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jun Yan </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 28, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -211,58 +165,19 @@ div.csl-indent {
 </header>
 
 
-<section id="preliminaries" class="level1 unnumbered">
-<h1 class="unnumbered">Preliminaries</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Welcome!</strong> This Quarto book hosts all lecture notes, in-class activities, and weekly reading for DSDA/STAT 1010. It is designed for first-year students with no prerequisites.</p>
-</div>
-</div>
-<p>The notes were developed with Quarto; for details about Quarto, visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-<p>This book is free and is licensed under a <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License</a>.</p>
-<section id="sources-at-github" class="level2">
-<h2 class="anchored" data-anchor-id="sources-at-github">Sources at GitHub</h2>
-<p>These lecture notes for STAT/DSDA 1010 in Fall 2025 are developed by Professor Jun Yan, with help from generative AI and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our GitHub repository at <a href="https://github.com/statds/1010f25" class="uri">https://github.com/statds/1010f25</a>.</p>
-<p>Students are welcome to contribute to the lecture notes by submitting pull requests to our GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
-</section>
-<section id="adapting-to-rapid-skill-acquisition" class="level2">
-<h2 class="anchored" data-anchor-id="adapting-to-rapid-skill-acquisition">Adapting to Rapid Skill Acquisition</h2>
-<p>In this course, students are expected to rapidly acquire new skills, a critical aspect of data science. To emphasize this, consider this insightful quote from <span class="citation" data-cites="vanderplas2016python">VanderPlas (<a href="references.html#ref-vanderplas2016python" role="doc-biblioref">2016</a>)</span>:</p>
-<blockquote class="blockquote">
-<p>When a technologically-minded person is asked to help a friend, family member, or colleague with a computer problem, most of the time it’s less a matter of knowing the answer as much as knowing how to quickly find an unknown answer. In data science it’s the same: searchable web resources such as online documentation, mailing-list threads, and StackOverflow answers contain a wealth of information, even (especially?) if it is a topic you’ve found yourself searching before. Being an effective practitioner of data science is less about memorizing the tool or command you should use for every possible situation, and more about learning to effectively find the information you don’t know, whether through a web search engine or another means.</p>
-</blockquote>
-<p>This quote captures the essence of what we aim to develop in our students: the ability to swiftly navigate and utilize the vast resources available to solve complex problems in data science. Examples tasks are: install needed software (or even hardware); search and find solutions to encountered problems.</p>
-</section>
-<section id="course-tools" class="level2">
-<h2 class="anchored" data-anchor-id="course-tools">Course tools</h2>
-<ul>
-<li><strong>R &amp; RStudio</strong> for analysis</li>
-<li><strong>Quarto</strong> for reproducible documents and dashboards</li>
-<li><strong>Git &amp; GitHub</strong> for version control and project management</li>
-<li><strong>Command line</strong> for automation and efficiency</li>
-</ul>
-</section>
-<section id="policies-syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="policies-syllabus">Policies &amp; syllabus</h2>
-<p>See the course syllabus on HuskyCT.</p>
-<p>Key reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.</p>
+<ol type="1">
+<li><strong>Setting up the computing environment</strong> Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.
+<ol type="a">
+<li>Install R.</li>
+<li>Install Positron or RStudio.</li>
+<li>Install Quarto.</li>
+<li>Set up SSH authentication between your computer and your GitHub account.</li>
+<li>Render your homework into an HTML file.</li>
+<li>Print the HTML file into a pdf file and put it into the repository of this homework assignment.</li>
+</ol></li>
+</ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-vanderplas2016python" class="csl-entry" role="listitem">
-VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential tools for working with data</em>. O’Reilly Media, Inc.
-</div>
-</div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -666,10 +581,13 @@ VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./01-computing.html" class="pagination-link" aria-label="Setting up Computing Environment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-computing.html" class="pagination-link" aria-label="Setting up Computing Environment">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -678,4 +596,4 @@ VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/REPLACE-ME/dsda1010-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/REPLACE-ME/dsda1010-book/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/REPLACE-ME/dsda1010-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/REPLACE-ME/dsda1010-book/blob/main/exercises.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
