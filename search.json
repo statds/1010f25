@@ -130,13 +130,93 @@
     ]
   },
   {
+    "objectID": "02-git.html",
+    "href": "02-git.html",
+    "title": "2  Project Management with Git",
+    "section": "",
+    "text": "2.1 Install and configure Git",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#install-and-configure-git",
+    "href": "02-git.html#install-and-configure-git",
+    "title": "2  Project Management with Git",
+    "section": "",
+    "text": "2.1.1 Install Git\n\nmacOS: Install the Command Line Tools or use Homebrew.\n\n# Option A: Trigger Apple CLT install when you first run git\nxcode-select --install\n\n# Option B: Homebrew (preferred if you use brew)\nbrew install git\n\nWindows: Use Git for Windows (includes Git Bash) or enable WSL and install Git inside Ubuntu.\n\n# WSL (Ubuntu) inside Windows\nsudo apt update && sudo apt install -y git\n\nLinux:\n\nsudo apt update && sudo apt install -y git   # Debian/Ubuntu\n# or\nsudo dnf install -y git                       # Fedora\n\n\n2.1.2 Identify yourself to Git\nSet your name and email (must match the email used on GitHub for a clean history):\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"netid@uconn.edu\"\nOptional but recommended:\n# Show colored output and a friendlier log\ngit config --global color.ui auto\ngit config --global init.defaultBranch main\n\n# Better default editor (choose one you actually use)\n# git config --global core.editor \"code --wait\"   # VS Code\n\n\n2.1.3 Connect to GitHub: HTTPS vs SSH\n\nHTTPS + Personal Access Token (PAT): simplest to start; you paste a token when Git asks for a password.\n\nSSH keys: more convenient long-term (no token prompts). Recommended if you frequently push/pull.\n\n\n2.1.3.1 Create and add an SSH key\n# Generate a modern Ed25519 key\nssh-keygen -t ed25519 -C \"netid@uconn.edu\"\n# Press Enter to accept default path; set a passphrase when prompted\n\n# Start the agent and add your key\neval \"$(ssh-agent -s)\"\nssh-add ~/.ssh/id_ed25519\n\n# Print the public key and copy it\ncat ~/.ssh/id_ed25519.pub\nIn GitHub: Settings → SSH and GPG keys → New SSH key → paste the public key.\nTest the connection:\nssh -T git@github.com\n# Expect: \"Hi &lt;username&gt;! You've successfully authenticated...\"",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#github-classroom-homework-workflow",
+    "href": "02-git.html#github-classroom-homework-workflow",
+    "title": "2  Project Management with Git",
+    "section": "2.2 GitHub Classroom: homework workflow",
+    "text": "2.2 GitHub Classroom: homework workflow\nYour instructor will share a GitHub Classroom invitation link. The link automatically creates a private repository for you.\n\n2.2.1 Accept and clone the repository\n\nOpen the invitation link and accept the assignment.\n\nAfter a minute, click into your created repo (e.g., dsda1010-hw01-&lt;username&gt;).\n\nClone it once to your computer:\n\n# Using SSH (recommended)\ngit clone git@github.com:course-org/dsda1010-hw01-&lt;username&gt;.git\n\n# or using HTTPS (you will use a PAT when prompted)\n# git clone https://github.com/course-org/dsda1010-hw01-&lt;username&gt;.git\nEnter the folder, inspect starter files:\ncd dsda1010-hw01-&lt;username&gt;\nls -la\nCopy the homework template to this folder and start working on it. Make commits at appropriate stops.\n\n\n\n\n\n\nTip\n\n\n\nPro tip: If the repo includes a Quarto project, you can render it locally with quarto render before committing.\n\n\n\n\n2.2.2 Make changes, commit, and push\n# Check the current status\ngit status\n\n# Stage a specific file, or use `.` to stage all changes\ngit add README.md\n\n# Write a clear, imperative commit message\ngit commit -m \"Complete Q1 and add explanation\"\n\n# Push your work to GitHub\ngit push origin main\nRepeat the edit → add → commit → push loop as you progress. Your latest push before the deadline is your submission.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#core-git-operations-you-will-use-often",
+    "href": "02-git.html#core-git-operations-you-will-use-often",
+    "title": "2  Project Management with Git",
+    "section": "2.3 Core Git operations you will use often",
+    "text": "2.3 Core Git operations you will use often\n\n2.3.1 Create or initialize a repository\n# Start a new repo in an existing folder\ngit init\n\n# Connect it to a new remote repository on GitHub\ngit remote add origin git@github.com:&lt;user&gt;/&lt;repo&gt;.git\n\n# First commit and push\ngit add .\ngit commit -m \"Initial commit\"\ngit push -u origin main\n\n\n2.3.2 Inspect history and changes\ngit status\n\n# What changed since the last commit?\ngit diff\n\n# What changed in staged files?\ngit diff --staged\n\n# View history (pretty)\ngit log --oneline --graph --decorate --all\n\n\n2.3.3 Branching\n# Create and switch to a new branch\ngit switch -c feature/q2-solution\n\n# List branches\ngit branch -vv\n\n# Switch back\ngit switch main\n\n\n2.3.4 Merging and fast-forwards\n# On main, merge your feature branch\ngit switch main\ngit merge feature/q2-solution\n\n# Delete the merged branch\ngit branch -d feature/q2-solution\n\n\n2.3.5 Rebasing (optional, but good to know)\n# Rebase your work on top of updated main\ngit fetch origin\ngit rebase origin/main\n\n\n2.3.6 Fixing mistakes\n# Unstage a file you just added\ngit restore --staged path/to/file\n\n# Discard local changes in a file (careful: destructive)\ngit restore path/to/file\n\n# Amend the last commit message (if not yet pushed)\ngit commit --amend -m \"Better message\"\n\n# Revert a bad commit by creating a new inverse commit\ngit revert &lt;commit-sha&gt;\n\n\n2.3.7 Handling merge conflicts (quick recipe)\n# After a merge or rebase reports conflicts\ngit status            # see which files conflict\n\n# Open conflicted files, look for &lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;\n# Edit to the desired final content, then:\ngit add path/to/conflicted-file\n\ngit commit            # completes a merge\n# or if rebasing:\ngit rebase --continue\n\n\n2.3.8 .gitignore essentials\nCreate a .gitignore in the project root:\n# Editors & OS\n.DS_Store\n.vscode/\n.Rproj.user/\n\n# Build outputs\n*_cache/\n*.html\n*.pdf\n\n# Dependencies\n.Rhistory\n.venv/\n__pycache__/\n.ipynb_checkpoints/",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#command-line-operations-you-should-know",
+    "href": "02-git.html#command-line-operations-you-should-know",
+    "title": "2  Project Management with Git",
+    "section": "2.4 Command-line operations you should know",
+    "text": "2.4 Command-line operations you should know\n\nUse these across macOS, Linux, and WSL. On Windows Git Bash, equivalents mostly work too.\n\n\n2.4.1 Navigation & inspection\npwd            # print working directory\nls -la         # list all files with details\ncd path/dir    # change directory\ncat file.txt   # print file contents\nhead -n 20 f   # first 20 lines\ntail -n 20 f   # last 20 lines\n\n\n2.4.2 Files & folders\nmkdir data figures scripts\nmv oldname.txt newname.txt\ncp src.txt backup/src.txt\nrm -i unwanted.tmp      # -i asks before deleting\n\n# Create a new file quickly\necho \"Title\" &gt; README.md\n\n# Edit with a CLI editor (choose one you like)\nnano README.md\n# or\nvim README.md\n\n\n2.4.3 Search & find\ngrep -n \"pattern\" file.txt        # search within a file\nrg -n \"pattern\" .                  # ripgrep (if installed) across project\nfind . -name \"*.qmd\"              # find matching files\n\n\n2.4.4 Environment & tooling\n# Check versions\npython --version\nR --version\ngit --version\nquarto --version\n\n# (Optional) create a Python virtual environment\npython -m venv .venv\nsource .venv/bin/activate     # Windows: .venv\\Scripts\\activate\npip install -r requirements.txt",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#end-to-end-demo-script-copypaste",
+    "href": "02-git.html#end-to-end-demo-script-copypaste",
+    "title": "2  Project Management with Git",
+    "section": "2.5 End-to-end demo script (copy/paste)",
+    "text": "2.5 End-to-end demo script (copy/paste)\n# 0) Accept GitHub Classroom invite, then clone your repo\ncd ~/courses/dsda1010\ngit clone git@github.com:course-org/dsda1010-hw01-&lt;user&gt;.git\ncd dsda1010-hw01-&lt;user&gt;\n\n# 1) Create a working branch\ngit switch -c work/q1\n\n# 2) Edit files (use your editor), then stage & commit\necho \"My answer to Q1\" &gt; answers/q1.md\ngit add answers/q1.md\ngit commit -m \"Answer Q1\"\n\n# 3) Merge into main and push\ngit switch main\ngit merge work/q1\ngit push -u origin main\n\n# 4) Pull in any upstream updates (if configured)\ngit fetch upstream\n# Merge or rebase as instructed\ngit merge upstream/main\n\n# 5) Verify on GitHub: files, commits, and CI checks (if any)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#troubleshooting-faq",
+    "href": "02-git.html#troubleshooting-faq",
+    "title": "2  Project Management with Git",
+    "section": "2.6 Troubleshooting FAQ",
+    "text": "2.6 Troubleshooting FAQ\nGit asks for a password on HTTPS and rejects it\nCreate a Personal Access Token on GitHub and use that instead of a password, or switch to SSH.\n“Permission denied (publickey)” when using SSH\nYour key is not added or not uploaded. Run ssh-add ~/.ssh/id_ed25519 then add the public key to GitHub Settings.\n“fatal: not a git repository”\nRun commands inside a folder that contains a .git directory, or run git init to create one.\nLine endings (Windows vs Unix)\nSet git config --global core.autocrlf input (macOS/Linux) or true (Windows) to avoid noisy diffs.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
+    "objectID": "02-git.html#quick-reference-cheat-sheet",
+    "href": "02-git.html#quick-reference-cheat-sheet",
+    "title": "2  Project Management with Git",
+    "section": "2.7 Quick reference (cheat sheet)",
+    "text": "2.7 Quick reference (cheat sheet)\nstatus   → what changed\nadd      → stage changes\ncommit   → record staged snapshot\npush     → upload to remote\npull     → fetch + merge\nfetch    → download without merging\nswitch   → move between branches\nmerge    → combine histories\nrebase   → replay commits on a new base\nlog      → show history\nrestore  → discard or unstage changes\nrevert   → make an inverse commit\n\n\n\n\n\n\nImportant\n\n\n\nSubmission rule of thumb: If it is not pushed to GitHub by the deadline, it is not submitted.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management with Git</span>"
+    ]
+  },
+  {
     "objectID": "exercises.html",
     "href": "exercises.html",
-    "title": "2  Exercises",
+    "title": "3  Exercises",
     "section": "",
     "text": "Setting up the computing environment Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.\n\nInstall R.\nInstall Positron or RStudio.\nInstall Quarto.\nSet up SSH authentication between your computer and your GitHub account.\nRender your homework into an HTML file.\nPrint the HTML file into a pdf file and put it into the repository of this homework assignment.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exercises</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exercises</span>"
     ]
   },
   {
