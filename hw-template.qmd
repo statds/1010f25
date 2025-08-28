@@ -1,104 +1,133 @@
 ---
-title: "{{< var assignment_title >}}"
-author:
-  - name: "{{< var student_name >}}"
-    affiliation: "{{< var course_code >}} — {{< var course_title >}}"
-date: "{{< var submission_date >}}"
+title: "Data Science and Society using R: Homework Template"
+author: "[Your Name]"
+date: "`r Sys.Date()`"
 format:
-  html: default
-  pdf: default
-
-# Student-editable variables (fill these in before rendering)
-# Tip: keep the curly braces intact; edit only the text on the right-hand side.
-# Example: student_name: "Avery Lee"
-student_name: "Your Name"
-student_id: "Your Student ID"
-assignment_title: "HW 01: Getting Started"
-submission_date: "2025-09-01"
-collaborators: "None"
-hours_spent: "2"
-# Optional assignment-specific variables
-due_date: "2025-09-03"
-honor_pledge_signed: "Yes"
-
-# Per-document options
-editor: visual
-toc: true
-number-sections: true
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    code-fold: true
+    theme: cosmo
 ---
 
-::: {.callout-note}
-**How to use this template**  
-1. Fill in the variables in the YAML header above (student name, ID, etc.).  
-2. Knit/render with **Quarto**: `quarto render` (HTML default; PDF if LaTeX is installed).  
-3. Submit the **rendered output** (`homework.html` or `homework.pdf`) and this source file `homework.qmd` unless told otherwise.
-:::
+## Instructions
 
-## 1. Honor & Collaboration
+This is a template for your homework assignments in the *Data Science
+and Society using R* course. Please follow the structure below to
+complete your assignment. Replace placeholder text (e.g., "[Your
+answer here]") with your responses. Ensure all R code is executable
+and produces the expected output. Submit your work as a single `.html`
+file rendered from this `.qmd` file.
 
-I affirm that this submission is my own work. I have listed any collaborators and external resources used.  
-**Honor pledge signed:** {{< var honor_pledge_signed >}}
 
-- **Collaborators:** {{< var collaborators >}}
-- **Hours spent:** {{< var hours_spent >}}
+### Submission Guidelines
+1. **Complete the Assignment**: Fill in all sections with your
+   answers, R code, and explanations.
+2. **Render to HTML**: Use Quarto to render this `.qmd` file to
+   HTML. In RStudio, click the "Render" button or run `quarto render
+   <filename>.qmd` in the terminal.
+3. **Check Output**: Ensure the rendered HTML file includes all text,
+   code outputs, and visualizations. If there are things to fix, fix
+   them in the source and go to Step 2.   
+4. **Submit**: Print the HTML output to a PDF file and put it into a
+release.
 
-## 2. Short Answers
+If you encounter issues, consult the
+[Quarto documentation](https://quarto.org) or ask around for help.
 
-### 2.1
-Type your answer here. Use complete sentences.
 
-### 2.2
-You can typeset math like $\hat\beta=(X^\top X)^{-1}X^\top y$ using standard LaTeX.
+## Problem 1: Data Exploration
 
-### 2.3 Citations
-Cite readings, websites, or datasets, e.g., @wickham2016r. Your references will appear at the end.
+### Question
+Load a dataset and provide a summary of its structure and key statistics.
 
-## 3. R Code
-
-Below is a minimal R example. Run it, show outputs, and explain what you see.
-
-```{r}
-#| label: setup
-#| message: false
-#| warning: false
-# This chunk can be used for package setup.
-# Example:
-# install.packages("tidyverse")  # (uncomment if needed)
-library(datasets)
-
-summary(iris)
-```
-
-Describe your results in words.
-
-### 3.1 A Plot
+### Example
+Below is an example using the built-in `mtcars` dataset in R.
 
 ```{r}
-#| fig-cap: "Sepal length vs sepal width"
-plot(iris$Sepal.Length, iris$Sepal.Width)
+# Load dataset
+data(mtcars)
+
+# Display structure
+str(mtcars)
+
+# Summary statistics
+summary(mtcars)
 ```
 
-Briefly interpret the figure.
+### Your Answer
+[Load your assigned dataset and provide its structure and summary
+statistics here. Include a brief narrative explaining what the dataset
+contains and highlight one interesting finding from the summary.]
 
-## 4. (Optional) Python Code
 
-If you have Python set up in Quarto, you can also include Python chunks.
+## Problem 2: Data Visualization
 
-```{python}
-sum([1, 2, 3, 4, 5])
+### Question
+Create a visualization to explore a relationship between two variables in the dataset.
+
+### Example
+Here’s an example of a scatterplot using `ggplot2` to explore the
+relationship between `mpg` (miles per gallon) and `hp` (horsepower) in
+the `mtcars` dataset.
+
+
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Create scatterplot
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  labs(title = "Scatterplot of MPG vs Horsepower",
+       x = "Horsepower (hp)",
+       y = "Miles per Gallon (mpg)") +
+  theme_minimal()
 ```
 
-## 5. Checklist (delete after use)
+### Your Answer
+[Create a visualization for your dataset. Include R code and a brief
+explanation of what the plot shows and why you chose this
+visualization.]
 
-- [ ] All YAML variables filled (name, ID, title, dates).
-- [ ] Every question answered in complete sentences.
-- [ ] Code runs top-to-bottom without errors.
-- [ ] Explanations accompany tables/figures.
-- [ ] Final render produced (HTML/PDF as requested).
-- [ ] File(s) named correctly per submission instructions.
 
-## 6. Appendix
+## Problem 3: Analysis and Interpretation
 
-Add any additional notes, derivations, or extra credit here.
+### Question
+Perform a simple analysis (e.g., correlation, regression, or summary
+statistics) and interpret the results in the context of data science
+and society.
 
-## References
+
+### Example
+Here’s an example of calculating the correlation between `mpg` and
+`hp` and interpreting it.
+
+```{r}
+# Calculate correlation
+cor.test(mtcars$mpg, mtcars$hp)
+```
+
+**Interpretation**: The correlation coefficient indicates a negative
+relationship between horsepower and miles per gallon, suggesting that
+cars with higher horsepower tend to have lower fuel efficiency. This
+has societal implications, as fuel efficiency impacts environmental
+sustainability and consumer costs.
+
+
+### Your Answer
+[Perform your analysis here. Include R code and a narrative
+interpreting the results, connecting them to societal or ethical
+considerations relevant to the course.]
+
+
+## Additional Notes
+- Ensure all R packages used are installed (e.g.,
+  `install.packages("ggplot2")` if needed).
+- Comment your R code to explain your steps.
+- Use clear, concise writing for narrative sections.
+- If you include external data, provide a brief description of its
+  source and ensure it’s accessible (e.g., built-in datasets or data
+  provided by the instructor).
+
