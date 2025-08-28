@@ -1,6 +1,6 @@
 ---
-title: "Know Your Computer"
-description: "OS, files, folders, paths, terminals; installing R, RStudio, and Quarto."
+title: "Setting up Computing Environment"
+description: "OS, files, folders, paths, terminals; installing R, Positron/RStudio, and Quarto."
 ---
 
 ::: callout-note
@@ -237,11 +237,11 @@ cd lab       # go into the newly created folder
 Use <kbd>Tab</kbd> to autocomplete file and folder names.
 :::
 
-## Install R, RStudio, and Quarto
+## Install R, Positron (or RStudio), and Quarto
 
-1. Install **R** from CRAN.  
-2. Install **RStudio Desktop**.  
-3. Install **Quarto**.  
+1. Install R from [CRAN](https://CRAN.R-project.org). 
+2. Install [Positron](https://positron.posit.co) or [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
+3. Install [Quarto](https://quarto.org/docs/get-started/)
 4. Verify:
 
 ```bash
@@ -270,8 +270,3 @@ Open the folder in RStudio and inspect the generated files.
 - Permissions: can you write to your project folder?  
 - Antivirus or VPN blocking downloads?
 
-::: callout-important
-If your machine is shared or locked down, use the **HPC
-workstations** or **RStudio Server** if provided by the department.
-Ask the instructor for access details.
-:::
