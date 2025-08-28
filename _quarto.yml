@@ -12,7 +12,8 @@ book:
   chapters:
     - index.qmd
     - 01-computing.qmd
-#    - 02-git.qmd
+    - 02-git.qmd
+    - exercises.qmd
     - references.qmd
 
 format:
@@ -23,8 +24,8 @@ format:
     code-fold: show
     df-print: paged
     anchor-sections: true
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 execute:
   echo: true
