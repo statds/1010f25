@@ -1,0 +1,411 @@
+---
+title: "Project Management with Git"
+description: "Setup Git/GitHub, GitHub Classroom workflow, common git
+  and shell operations"
+---
+
+> **Learning goals**  
+> By the end, you will be able to:
+>
+> - Configure Git on your computer and connect to GitHub securely.  
+> - Complete and submit an assignment via GitHub Classroom.  
+> - Use essential Git commands for day-to-day coursework.  
+> - Use common command-line operations to manage files and projects.
+
+::: callout-note
+## Prerequisites
+- You can use a terminal on your system. On Windows, I recommend
+  **Git Bash** or **WSL** (Ubuntu).
+- You have a GitHub account.
+:::
+
+## Install and configure Git
+
+### Install Git
+
+- **macOS**: Install the Command Line Tools or use Homebrew.
+
+```bash
+# Option A: Trigger Apple CLT install when you first run git
+xcode-select --install
+
+# Option B: Homebrew (preferred if you use brew)
+brew install git
+```
+
+- **Windows**: Use **Git for Windows** (includes Git Bash) or enable
+  **WSL** and install Git inside Ubuntu.
+
+```bash
+# WSL (Ubuntu) inside Windows
+sudo apt update && sudo apt install -y git
+```
+
+- **Linux**:
+
+```bash
+sudo apt update && sudo apt install -y git   # Debian/Ubuntu
+# or
+sudo dnf install -y git                       # Fedora
+```
+
+### Identify yourself to Git
+
+Set your name and email (must match the email used on GitHub for a
+clean history):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "netid@uconn.edu"
+```
+
+Optional but recommended:
+
+```bash
+# Show colored output and a friendlier log
+git config --global color.ui auto
+git config --global init.defaultBranch main
+
+# Better default editor (choose one you actually use)
+# git config --global core.editor "code --wait"   # VS Code
+```
+
+### Connect to GitHub: HTTPS vs SSH
+
+- **HTTPS + Personal Access Token (PAT)**: simplest to start; you paste
+  a token when Git asks for a password.  
+- **SSH keys**: more convenient long-term (no token prompts). Recommended
+  if you frequently push/pull.
+
+#### Create and add an SSH key
+
+```bash
+# Generate a modern Ed25519 key
+ssh-keygen -t ed25519 -C "netid@uconn.edu"
+# Press Enter to accept default path; set a passphrase when prompted
+
+# Start the agent and add your key
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# Print the public key and copy it
+cat ~/.ssh/id_ed25519.pub
+```
+
+In GitHub: **Settings → SSH and GPG keys → New SSH key** → paste the
+public key.
+
+Test the connection:
+
+```bash
+ssh -T git@github.com
+# Expect: "Hi <username>! You've successfully authenticated..."
+```
+
+## GitHub Classroom: homework workflow
+
+Your instructor will share a **GitHub Classroom invitation link**. The
+link automatically creates a private repository for you.
+
+### Accept and clone the repository
+
+1. Open the invitation link and accept the assignment.  
+2. After a minute, click into your created repo (e.g.,
+   `dsda1010-hw01-<username>`).  
+3. Clone it **once** to your computer:
+
+```bash
+# Using SSH (recommended)
+git clone git@github.com:course-org/dsda1010-hw01-<username>.git
+
+# or using HTTPS (you will use a PAT when prompted)
+# git clone https://github.com/course-org/dsda1010-hw01-<username>.git
+```
+
+Enter the folder, inspect starter files:
+
+```bash
+cd dsda1010-hw01-<username>
+ls -la
+```
+
+Copy the homework template to this folder and start working on it.
+Make commits at appropriate stops.
+
+::: callout-tip
+**Pro tip**: If the repo includes a Quarto project, you can render it
+locally with `quarto render` before committing.
+:::
+
+### Make changes, commit, and push
+
+```bash
+# Check the current status
+git status
+
+# Stage a specific file, or use `.` to stage all changes
+git add README.md
+
+# Write a clear, imperative commit message
+git commit -m "Complete Q1 and add explanation"
+
+# Push your work to GitHub
+git push origin main
+```
+
+Repeat the edit → add → commit → push loop as you progress. Your latest
+push before the deadline is your submission.
+
+
+## Core Git operations you will use often
+
+### Create or initialize a repository
+
+```bash
+# Start a new repo in an existing folder
+git init
+
+# Connect it to a new remote repository on GitHub
+git remote add origin git@github.com:<user>/<repo>.git
+
+# First commit and push
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+```
+
+### Inspect history and changes
+
+```bash
+git status
+
+# What changed since the last commit?
+git diff
+
+# What changed in staged files?
+git diff --staged
+
+# View history (pretty)
+git log --oneline --graph --decorate --all
+```
+
+### Branching
+
+```bash
+# Create and switch to a new branch
+git switch -c feature/q2-solution
+
+# List branches
+git branch -vv
+
+# Switch back
+git switch main
+```
+
+### Merging and fast-forwards
+
+```bash
+# On main, merge your feature branch
+git switch main
+git merge feature/q2-solution
+
+# Delete the merged branch
+git branch -d feature/q2-solution
+```
+
+### Rebasing (optional, but good to know)
+
+```bash
+# Rebase your work on top of updated main
+git fetch origin
+git rebase origin/main
+```
+
+### Fixing mistakes
+
+```bash
+# Unstage a file you just added
+git restore --staged path/to/file
+
+# Discard local changes in a file (careful: destructive)
+git restore path/to/file
+
+# Amend the last commit message (if not yet pushed)
+git commit --amend -m "Better message"
+
+# Revert a bad commit by creating a new inverse commit
+git revert <commit-sha>
+```
+
+### Handling merge conflicts (quick recipe)
+
+```bash
+# After a merge or rebase reports conflicts
+git status            # see which files conflict
+
+# Open conflicted files, look for <<<<<<<, =======, >>>>>>>
+# Edit to the desired final content, then:
+git add path/to/conflicted-file
+
+git commit            # completes a merge
+# or if rebasing:
+git rebase --continue
+```
+
+### .gitignore essentials
+
+Create a `.gitignore` in the project root:
+
+```
+# Editors & OS
+.DS_Store
+.vscode/
+.Rproj.user/
+
+# Build outputs
+*_cache/
+*.html
+*.pdf
+
+# Dependencies
+.Rhistory
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+```
+
+## Command-line operations you should know
+
+> Use these across macOS, Linux, and WSL. On Windows Git Bash,
+> equivalents mostly work too.
+
+### Navigation & inspection
+
+```bash
+pwd            # print working directory
+ls -la         # list all files with details
+cd path/dir    # change directory
+cat file.txt   # print file contents
+head -n 20 f   # first 20 lines
+tail -n 20 f   # last 20 lines
+```
+
+### Files & folders
+
+```bash
+mkdir data figures scripts
+mv oldname.txt newname.txt
+cp src.txt backup/src.txt
+rm -i unwanted.tmp      # -i asks before deleting
+
+# Create a new file quickly
+echo "Title" > README.md
+
+# Edit with a CLI editor (choose one you like)
+nano README.md
+# or
+vim README.md
+```
+
+### Search & find
+
+```bash
+grep -n "pattern" file.txt        # search within a file
+rg -n "pattern" .                  # ripgrep (if installed) across project
+find . -name "*.qmd"              # find matching files
+```
+
+### Environment & tooling
+
+```bash
+# Check versions
+python --version
+R --version
+git --version
+quarto --version
+
+# (Optional) create a Python virtual environment
+python -m venv .venv
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## End-to-end demo script (copy/paste)
+
+```bash
+# 0) Accept GitHub Classroom invite, then clone your repo
+cd ~/courses/dsda1010
+git clone git@github.com:course-org/dsda1010-hw01-<user>.git
+cd dsda1010-hw01-<user>
+
+# 1) Create a working branch
+git switch -c work/q1
+
+# 2) Edit files (use your editor), then stage & commit
+echo "My answer to Q1" > answers/q1.md
+git add answers/q1.md
+git commit -m "Answer Q1"
+
+# 3) Merge into main and push
+git switch main
+git merge work/q1
+git push -u origin main
+
+# 4) Pull in any upstream updates (if configured)
+git fetch upstream
+# Merge or rebase as instructed
+git merge upstream/main
+
+# 5) Verify on GitHub: files, commits, and CI checks (if any)
+```
+
+<!-- ## Assessment rubric (suggested) -->
+
+<!-- - **Repository hygiene (20%)**: clear README, sensible commits, -->
+<!--   `.gitignore` present.   -->
+<!-- - **Completion (40%)**: all tasks answered, compiles/renders if -->
+<!--   applicable.   -->
+<!-- - **Git workflow (30%)**: uses branches, commits early/often, resolves -->
+<!--   conflicts properly.   -->
+<!-- - **Reproducibility (10%)**: instructions to run; optional environment -->
+<!--   file. -->
+
+## Troubleshooting FAQ
+
+**Git asks for a password on HTTPS and rejects it**  
+Create a **Personal Access Token** on GitHub and use that instead of a
+password, or switch to SSH.
+
+**"Permission denied (publickey)" when using SSH**  
+Your key is not added or not uploaded. Run `ssh-add ~/.ssh/id_ed25519`
+then add the public key to GitHub Settings.
+
+**"fatal: not a git repository"**  
+Run commands inside a folder that contains a `.git` directory, or run
+`git init` to create one.
+
+**Line endings (Windows vs Unix)**  
+Set `git config --global core.autocrlf input` (macOS/Linux) or `true`
+(Windows) to avoid noisy diffs.
+
+## Quick reference (cheat sheet)
+
+```text
+status   → what changed
+add      → stage changes
+commit   → record staged snapshot
+push     → upload to remote
+pull     → fetch + merge
+fetch    → download without merging
+switch   → move between branches
+merge    → combine histories
+rebase   → replay commits on a new base
+log      → show history
+restore  → discard or unstage changes
+revert   → make an inverse commit
+```
+
+::: callout-important
+**Submission rule of thumb**: If it is not pushed to GitHub by the
+deadline, it is not submitted.
+:::

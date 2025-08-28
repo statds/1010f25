@@ -1,0 +1,21 @@
+# Exercises {#sec-ex}
+
+
+1. **Setting up the computing environment**
+  Using the right computing tools and environment is a prerequisite
+  of data science projects. Set up your computer for this course
+  with the following steps. For each step, document what you did,
+  the obstacles you encountered, and how you overcame them. If you
+  used AI, document your prompts. Note that the steps you take may
+  depend on your computer's operating system.Think of this as a user
+  manual for students who are new to this. Use the command line
+  interface.
+    a.  Install R.
+    a.  Install Positron or RStudio.
+    a.  Install Quarto.
+    a.  Set up SSH authentication between your computer and your
+	  GitHub account.
+    a.  Render your homework into an HTML file.
+    a.  Print the HTML file into a pdf file and put it into the
+      release of this homework assignment.
+
