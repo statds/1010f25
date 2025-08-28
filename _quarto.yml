@@ -6,7 +6,7 @@ book:
   subtitle: "DSDA/STAT 1010 - Quarto Book"
   author: "Jun Yan"
   date: last-modified
-  repo-url: https://github.com/REPLACE-ME/dsda1010-book
+  repo-url: https://github.com/statds/1010f25
   repo-actions: [issue, source]
   downloads: [pdf]
   chapters:
