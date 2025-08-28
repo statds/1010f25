@@ -1,6 +1,6 @@
 ---
 title: "Data Science and Society using R: Homework Template"
-author: "[Your Name]"
+author: "Jun Yan]"
 date: "`r Sys.Date()`"
 format:
   html:
