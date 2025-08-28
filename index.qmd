@@ -7,6 +7,30 @@ in-class activities, and weekly reading for DSDA/STAT 1010.
 It is designed for first-year students with no prerequisites.
 :::
 
+
+The notes were developed with Quarto; for details about Quarto, visit
+<https://quarto.org/docs/books>.
+
+
+This book is free and is licensed under a [Creative Commons
+Attribution-NonCommercial-NoDerivs 3.0 United States License](http://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+
+## Sources at GitHub
+These lecture notes for STAT/DSDA 1010 in Fall 2025 are developed 
+by Professor Jun Yan, with help from generative AI and the students 
+enrolled in the course. This cooperative approach to education was
+facilitated through the use of GitHub, a platform that encourages
+collaborative coding and content development. To view
+these contributions and the lecture notes in their entirety, please
+visit our GitHub repository at <https://github.com/statds/1010f25>.
+
+
+Students are welcome to contribute to the lecture notes by submitting
+pull requests
+to our GitHub repository. This method not only enriched the
+course material but also provided students with practical experience
+in collaborative software development and version control. 
+
 ## Adapting to Rapid Skill Acquisition
 
 In this course, students are expected to rapidly acquire new skills, a
