@@ -55,16 +55,26 @@ Examples tasks are: install needed software (or even hardware);
 search and find solutions to encountered problems. 
 
 
-## Course tools
+## Course Tools
 
 - **R & RStudio** for analysis
 - **Quarto** for reproducible documents and dashboards
 - **Git & GitHub** for version control and project management
 - **Command line** for automation and efficiency
 
-## Policies & syllabus
+## Policies & Syllabus
 
 See the course syllabus on HuskyCT.
 
 Key reminders: academic integrity, no AI-generated text in
 graded submissions, and professional email etiquette.
+
+## Schedule and Readings
+
+1. Computing environment
+    + R4DS Ch 28-29
+    + HGR Ch 20-23
+1. Jump start with R
+    + R4DS Ch 4-8, 20-24
+	
+	
