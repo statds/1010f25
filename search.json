@@ -33,8 +33,8 @@
     "objectID": "index.html#course-tools",
     "href": "index.html#course-tools",
     "title": "Data Science and Society with R",
-    "section": "Course tools",
-    "text": "Course tools\n\nR & RStudio for analysis\nQuarto for reproducible documents and dashboards\nGit & GitHub for version control and project management\nCommand line for automation and efficiency",
+    "section": "Course Tools",
+    "text": "Course Tools\n\nR & RStudio for analysis\nQuarto for reproducible documents and dashboards\nGit & GitHub for version control and project management\nCommand line for automation and efficiency",
     "crumbs": [
       "Preliminaries"
     ]
@@ -43,8 +43,18 @@
     "objectID": "index.html#policies-syllabus",
     "href": "index.html#policies-syllabus",
     "title": "Data Science and Society with R",
-    "section": "Policies & syllabus",
-    "text": "Policies & syllabus\nSee the course syllabus on HuskyCT.\nKey reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.\n\n\n\n\nVanderPlas, J. (2016). Python data science handbook: Essential tools for working with data. O’Reilly Media, Inc.",
+    "section": "Policies & Syllabus",
+    "text": "Policies & Syllabus\nSee the course syllabus on HuskyCT.\nKey reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#schedule-and-readings",
+    "href": "index.html#schedule-and-readings",
+    "title": "Data Science and Society with R",
+    "section": "Schedule and Readings",
+    "text": "Schedule and Readings\n\nComputing environment\n\nR4DS Ch 28-29\nHGR Ch 20-23\n\nJump start with R\n\nR4DS Ch 4-8, 20-24\n\n\n\n\n\n\nVanderPlas, J. (2016). Python data science handbook: Essential tools for working with data. O’Reilly Media, Inc.",
     "crumbs": [
       "Preliminaries"
     ]
@@ -210,13 +220,123 @@
     ]
   },
   {
+    "objectID": "03-R.html",
+    "href": "03-R.html",
+    "title": "3  Jump Start with R/Positron",
+    "section": "",
+    "text": "3.1 Positron Interface\nThis chapter gives you the minimum essentials to start using R comfortably. It assumes no prior knowledge and emphasizes good habits from the very beginning. We will cover how to start and quit R, get help, understand different object types, create and subset objects, use control structures, manage your working directory, and write clean code.\nPositron is organized into panes and a sidebar. Knowing where things live helps students focus on code, not clicks.\nWorking in a project\nRunning code\nPanels and layout",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#positron-interface",
+    "href": "03-R.html#positron-interface",
+    "title": "3  Jump Start with R/Positron",
+    "section": "",
+    "text": "Editor pane: main area for .R and .qmd files. Multiple tabs are supported.\nConsole: interactive R prompt. Use it for quick tests.\nTerminal: a shell for system commands (e.g., git, Rscript).\nFiles: browse, create, rename, and delete files and folders.\nEnvironment: lists objects in memory; clear with care.\nSource control: stage, commit, and view diffs if a git repo is opened.\nCommand palette: Ctrl-Shift-P (Win/Linux) or Cmd-Shift-P (Mac) to search commands (new file, open folder, run code, toggle panels).\nStatus bar: shows project folder and basic status.\n\n\n\nOpen a folder to make it a project root. Paths in code should be relative to this folder.\nKeep data in a data/ subfolder and scripts in R/ or src/.\n\n\n\nIn the editor, run the current line or selection with Ctrl-Enter (Win/Linux) or Cmd-Enter (Mac).\nIn the console, press Enter to execute a complete line.\n\n\n\nShow or hide the sidebar from the View menu or with the command palette.\nResize panes by dragging their borders.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#starting-and-quitting-r",
+    "href": "03-R.html#starting-and-quitting-r",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.2 Starting and Quitting R",
+    "text": "3.2 Starting and Quitting R\n\nStart Positron, create a new R script (.R) or Quarto document (.qmd), and use the console to run code.\nRun code by typing in the console directly, or by highlighting lines in a script and pressing Ctrl + Enter (Windows/Linux) or Cmd + Enter (Mac).\nQuit with:\nq()\nor by closing Positron.\nWhen asked to save your workspace on exit, choose No. It is better to rely on scripts for reproducibility.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#getting-help",
+    "href": "03-R.html#getting-help",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.3 Getting Help",
+    "text": "3.3 Getting Help\nR has built-in help for every function.\n\nDocumentation:\n?mean\nhelp(mean)\nView arguments:\nargs(mean)\nRun examples:\nexample(mean)\nSearch help system:\nhelp.search(\"linear model\")\n\nPractice: Find out how sd() handles missing values.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#objects-in-r",
+    "href": "03-R.html#objects-in-r",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.4 Objects in R",
+    "text": "3.4 Objects in R\nR provides several basic object types. Understanding them is essential for data analysis.\n\nNumeric: numbers with or without decimals.\nx &lt;- 3.14\nInteger: whole numbers.\ny &lt;- 2L\nCharacter: text strings.\nname &lt;- \"Ann\"\nLogical: truth values.\nflag &lt;- TRUE\nVector: ordered collection of elements of the same type.\nv &lt;- c(1, 2, 3)\nMatrix: 2D array with elements of the same type.\nm &lt;- matrix(1:6, nrow = 2)\nList: ordered collection of objects of different types.\nl &lt;- list(name = \"Bob\", age = 25)\nData frame: table-like structure where each column can have a different type.\ndf &lt;- data.frame(name = c(\"Ann\", \"Bob\"),\n                 age = c(20, 25))\nFunction: an object that performs a computation.\nf &lt;- function(x) x^2\nf(4)\n\nTo inspect objects, use:\nclass(df)     # shows the class\nstr(df)       # shows the structure\nExercise: Create one object of each type above and check it using class() and str().",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#objects-and-subsetting",
+    "href": "03-R.html#objects-and-subsetting",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.5 Objects and Subsetting",
+    "text": "3.5 Objects and Subsetting\nEverything in R is an object. Use &lt;- to assign values.\n\n3.5.1 Vectors\nx &lt;- c(2, 4, 6, 8)\nx[2]        # second element\nx[1:3]      # first three elements\nx[x &gt; 5]    # conditional selection\n\n\n3.5.2 Matrices\nm &lt;- matrix(1:9, nrow = 3)\nm[2, 3]     # element at row 2, column 3\nm[, 1]      # first column\n\n\n3.5.3 Data Frames\ndf &lt;- data.frame(name = c(\"Ann\", \"Bob\"),\n                 age = c(20, 25))\n\ndf$age          # column by name\ndf[1, ]         # first row\ndf[, \"name\"]    # column by string",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#control-structures",
+    "href": "03-R.html#control-structures",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.6 Control Structures",
+    "text": "3.6 Control Structures\nR includes standard programming tools such as conditionals and loops.\n\n3.6.1 If statement\nx &lt;- -999\nif (x == -999) {\n  x &lt;- NA\n}\nprint(x)\nComparison with numbers that have decimal expansions can be tricky.\n0.1 == 0.3 / 3\nThis returns FALSE because of floating-point precision. Computers cannot represent most decimals exactly, so calculations like 0.3 / 3 produce a number very close to, but not exactly, 0.1. To compare numbers safely, use a tolerance with all.equal():\nall.equal(0.1, 0.3 / 3)\n```r\nx &lt;- 10\nif (x &gt; 5) {\n  print(\"x is greater than 5\")\n} else {\n  print(\"x is not greater than 5\")\n}\n\n\n3.6.2 For loop\nfor (i in 1:3) {\n  print(i^2)\n}\n\n\n3.6.3 While loop\ncount &lt;- 1\nwhile (count &lt;= 3) {\n  print(count)\n  count &lt;- count + 1\n}\nExercise: Write a loop that sums the numbers from 1 to 10, and use an if-statement to check if the sum is greater than 50.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#workflow-basics",
+    "href": "03-R.html#workflow-basics",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.7 Workflow Basics",
+    "text": "3.7 Workflow Basics\n\nWorking directory:\ngetwd()                # check where you are\nsetwd(\"path/to/folder\")   # set directory if needed\nIn Positron, confirm directory in the file browser.\nUse console for quick tests; save work in scripts for reproducibility.\nRun highlighted code with Ctrl/Cmd + Enter.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#good-style",
+    "href": "03-R.html#good-style",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.8 Good Style",
+    "text": "3.8 Good Style\nAdopt consistent style early. Follow the tidyverse style guide or a similar reference.\n\nUse &lt;- for assignment.\nPlace spaces around operators:\nx &lt;- 1\nnot x&lt;-1.\nChoose meaningful variable names: height, not h.\nAdd comments with #.\nStart each script with a header:\n# Your Name\n# Date\n# Purpose of this script",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#tips-and-pitfalls",
+    "href": "03-R.html#tips-and-pitfalls",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.9 Tips and Pitfalls",
+    "text": "3.9 Tips and Pitfalls\n\nCase sensitivity: x and X are different.\nPaths: Use forward slashes /, even on Windows.\nAlways know your working directory.\nSave code in scripts, not in the workspace.\nUse simple, safe file names: letters, numbers, underscores.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#wrap-up-checklist",
+    "href": "03-R.html#wrap-up-checklist",
+    "title": "3  Jump Start with R/Positron",
+    "section": "3.10 Wrap-Up Checklist",
+    "text": "3.10 Wrap-Up Checklist\nYou should now be able to:\n\nStart and quit R in Positron.\nGet help with functions.\nRecognize different types of objects, including functions.\nUse class() and str() to inspect objects.\nSubset vectors, matrices, and data frames.\nUse conditionals and loops in basic programs.\nManage your working directory.\nWrite clean code following style guidance.\nAvoid pitfalls such as case sensitivity and hidden workspaces.\n\n\nNext chapter: Functions and packages, the building blocks for analysis.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+    ]
+  },
+  {
     "objectID": "exercises.html",
     "href": "exercises.html",
-    "title": "3  Exercises",
+    "title": "4  Exercises",
     "section": "",
     "text": "Setting up the computing environment Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.\n\nInstall R.\nInstall Positron or RStudio.\nInstall Quarto.\nSet up SSH authentication between your computer and your GitHub account.\nRender your homework into an HTML file.\nPrint the HTML file into a pdf file and put it into the release of this homework assignment.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Exercises</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Exercises</span>"
     ]
   },
   {
