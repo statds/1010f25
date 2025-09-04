@@ -5,7 +5,7 @@ book:
   title: "Data Science and Society with R"
   subtitle: "DSDA/STAT 1010 - Quarto Book"
   author: "Jun Yan"
-  date: last-modified
+#  date: last-modified
   repo-url: https://github.com/statds/1010f25
   repo-actions: [issue, source]
   downloads: [pdf]
@@ -13,6 +13,7 @@ book:
     - index.qmd
     - 01-computing.qmd
     - 02-git.qmd
+    - 03-R.qmd
     - exercises.qmd
     - references.qmd
 

@@ -69,6 +69,32 @@ See the course syllabus on HuskyCT.
 Key reminders: academic integrity, no AI-generated text in
 graded submissions, and professional email etiquette.
 
+
+### Grading Rubics
+
+**Baseline (C level work)**
+
+- Your `.qmd` file knits to HTML without errors.
+- You answer questions correctly but do not use complete sentences.
+- There are typos and 'junk code' throughout the document.
+- You do not put much thought or effort into the reflection answers.
+- You do not follow the good styles in using R, Quarto, and Git.
+
+**Average (B level work)**
+
+- You use complete sentences to answer questions.
+- You attempt every exercise/question.
+
+**Advanced (A level work)**
+
+- Your code is simple and concise.
+- Unnecessary messages from R are hidden from being displayed in the HTML.
+- Your document is typo-free.
+- You practice all the good styles of using R, Quarto, and Git.
+- At the discretion of the instructor, you give exceptionally
+  thoughtful or insightful responses.
+
+
 ## Schedule and Readings
 
 1. Computing environment

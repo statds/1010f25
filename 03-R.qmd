@@ -1,0 +1,375 @@
+# Jump Start with R
+
+This chapter gives you the minimum essentials to start using R
+comfortably. It assumes no prior knowledge and emphasizes good
+habits from the very beginning. We cover how to start and quit R,
+get help, understand core object types, subset objects, use basic
+control structures, manage your working directory, and write clean
+code.
+
+::: {.callout-important}
+**Rendering note.** All code chunks use Quarto syntax and can be
+run via `quarto render`.
+:::
+
+
+## Starting and Quitting R
+
+- Start Positron, open a folder as a project, and create a new
+  script (`.R`) or Quarto document (`.qmd`).
+- Run code by highlighting lines in the editor and pressing
+  `Ctrl-Enter` (Win/Linux) or `Cmd-Enter` (Mac). The console runs
+  one complete line at a time.
+- Quit with:
+
+```{r}
+#| eval: false
+## End your R session programmatically
+q()
+```
+
+- When asked to save the workspace, choose No. Rely on scripts
+  for reproducibility.
+
+
+
+## Positron Interface
+
+Positron is organized into panes and a sidebar.
+
+- Editor pane: main area for `.R` and `.qmd` files; supports tabs.
+- Console: interactive R prompt for quick tests.
+- Terminal: a shell for system commands (e.g., git, Rscript).
+- Files: browse, create, rename, and delete items.
+- Environment: lists objects in memory; clear with care.
+- Source control: stage, commit, and view diffs in git repos.
+- Command palette: `Ctrl-Shift-P` or `Cmd-Shift-P` to search
+  commands.
+- Status bar: shows project folder and basic status.
+
+Working in a project
+
+- Open a folder as the project root. Use relative paths from
+  this root.
+- Keep data in `data/` and scripts in `R/` or `src/`.
+
+Running code
+
+- Run the current line or selection with `Ctrl/Cmd-Enter`.
+- Execute a full cell in a `.qmd` with the Run Cell button.
+
+::: {.callout-tip}
+Keep the **Files** and **Console** visible. Beginners benefit
+from constant feedback on where they are and what ran.
+:::
+
+
+
+## Getting Help
+
+R has built‑in help for every function. Every call or command you type
+is calling a function.
+
+
+Search the help system on a topic:
+```r
+help.search("linear model")
+```
+
+Get the documentation of a function with known name:
+```r
+?mean
+help(mean)
+```
+
+Inspect arguments quickly for a function
+```{r}
+args(mean)
+```
+
+Run examples in the documentation (man page)
+```r
+example(mean)
+```
+
+Practice: find how `sd()` handles missing values.
+
+
+
+## Objects in R
+
+Everything you store is a **vector** or built from vectors.
+Length‑one values are still vectors.
+
+Atomic vector types (all of fixed type):
+
+```{r}
+## Atomic vectors (length one shown; still vectors)
+num <- 3.14      ## double (numeric)
+int <- 2L        ## integer
+chr <- "Ann"     ## character
+lgc <- TRUE      ## logical
+
+## A longer vector (same type throughout)
+v <- c(1, 2, 3)
+```
+
+Higher‑level structures built from vectors:
+
+```{r}
+## Matrix/array: same type, 2D or more
+m <- matrix(1:6, nrow = 2)
+
+## List: heterogenous elements
+lst <- list(name = "Bob", age = 25, scores = c(90, 88))
+
+## Data frame: list of equal‑length columns
+## (columns can be different atomic types)
+df <- data.frame(name = c("Ann", "Bob"), age = c(20, 25))
+
+## Function: also an object
+sq <- function(x) x^2
+```
+
+Inspect objects:
+
+```{r}
+## Class and structure
+class(df)
+str(df)
+```
+
+::: {.callout-tip}
+Prefer `str(x)` for a compact view of what an object contains,
+its type, and its sizes.
+:::
+
+**Exercise.** Create one example of each object above and check
+with `class()` and `str()`.
+
+
+
+## Subsetting
+
+Use bracket notation consistently.
+
+```{r}
+## Vectors
+x <- c(2, 4, 6, 8)
+x[2]             ## second element
+x[1:3]           ## slice
+x[x > 5]         ## logical filter
+
+## Matrices
+m <- matrix(1:9, nrow = 3)
+m[2, 3]          ## row 2, col 3
+m[, 1]           ## first column
+
+## Data frames
+people <- data.frame(name = c("Ann", "Bob"), age = c(20, 25))
+people$age       ## column by name
+people[1, ]      ## first row
+people[, "name"] ## column by string
+```
+
+
+
+## Control Structures
+
+### If statement (missing‑value cleaning)
+
+```{r}
+## Replace sentinel values with NA
+x <- -999
+if (x == -999) {
+  x <- NA
+}
+print(x)
+```
+
+### For loop (column‑wise cleaning and summary)
+
+Useful when applying a simple rule across columns.
+
+```{r}
+## Make a toy data frame with a sentinel value
+scores <- data.frame(
+  math = c(95, -999, 88, 91),
+  eng  = c(87, 90, -999, 85),
+  sci  = c(92, 88, 94, -999)
+)
+
+## Replace -999 with NA, then compute column means
+for (col in names(scores)) {
+  ## clean
+  bad <- scores[[col]] == -999
+  scores[[col]][bad] <- NA
+  ## summarize
+  m <- mean(scores[[col]], na.rm = TRUE)
+  cat(col, "mean:", m, "\n")
+}
+```
+
+### While loop (simulation until tolerance met)
+
+Stop when an estimate is precise enough.
+
+```{r}
+## Estimate P(X > 1.96) for N(0,1) via Monte Carlo
+## Stop when stderr < 0.002
+set.seed(1)
+count <- 0
+n <- 0
+se <- Inf
+
+while (se > 0.002) {
+  ## simulate in small batches for responsiveness
+  z <- rnorm(1000)
+  n <- n + length(z)
+  count <- count + sum(z > 1.96)
+  p_hat <- count / n
+  se <- sqrt(p_hat * (1 - p_hat) / n)
+}
+
+cat("p_hat:", p_hat, "n:", n, "se:", se, "\n")
+```
+
+**Exercise.** Write a loop that, for each numeric column in a
+frame, replaces `-999` with `NA`, then reports the fraction of
+missing values.
+
+::: {.callout-warning}
+Loops are fine for clarity. Later you will see vectorized and
+apply‑family solutions that are faster and shorter.
+:::
+
+
+
+## Workflow Basics
+
+```{r}
+## Working directory
+getwd()                  ## where am I
+## setwd("path/to/folder")   ## set if necessary
+```
+
+- In Positron, confirm the directory in the Files pane.
+- Use the console for quick tests; save work in scripts or `.qmd`.
+- Run highlighted code with `Ctrl/Cmd-Enter`.
+
+::: {.callout-tip}
+Use project‑relative paths and `file.path()` to build paths.
+This keeps code portable across operating systems.
+:::
+
+
+## Importing Data
+
+R can load data from text files and many other formats.
+
+### Base R functions
+
+```{r}
+#| eval: false
+## Read a CSV file (comma-separated)
+cars <- read.csv("data/india.csv")
+
+## Read a general table with custom separators
+survey <- read.table("data/survey.txt", header = TRUE, sep = " ")
+```
+
+Arguments to know:
+- `header = TRUE` tells R the first row has column names.
+- `sep` controls the separator ("," for CSV, " " for tab‑delimited).
+
+::: {.callout-tip}
+Check the imported object with `str()` or `head()` immediately to
+ensure it loaded as expected.
+:::
+
+### Other formats
+
+The **foreign** package imports legacy statistical software formats
+(SAS, SPSS, Stata):
+
+```{r}
+#| eval: false
+library(foreign)
+data_spss <- read.spss("data/study.sav", to.data.frame = TRUE)
+data_stata <- read.dta("data/study.dta")
+```
+
+More modern workflows often use the **haven** package (part of
+the tidyverse) for these formats, but `foreign` is available in
+base R distributions.
+
+
+
+## Good Style
+
+Adopt consistent style early. Follow the tidyverse guide:
+https://style.tidyverse.org/
+
+- Use `<-` for assignment.
+- Place spaces around operators and after commas.
+- Choose meaningful names; avoid one‑letter names for data.
+- Begin scripts with a header block.
+
+```{r}
+## Your Name
+## 2025-09-02
+## Purpose: demonstrate basic R style
+x <- 1  # inline note uses a single 
+```
+
+::: {.callout-note}
+**Comment convention.** Start‑of‑line comments use at least two
+hashes (`##`). Reserve a single `#` for end‑of‑line notes.
+:::
+
+
+
+## Tips and Pitfalls
+
+- Case sensitivity: `x` and `X` are different.
+- Paths: forward slashes `/` work on all platforms in R.
+
+```{r}
+## Portable path building
+file.path("data", "mtcars.csv")
+```
+
+- Numerical precision:
+
+```{r}
+## Floating‑point comparison
+0.1 == 0.3 / 3
+all.equal(0.1, 0.3 / 3)
+
+## Reveal stored value with extra digits
+print(0.1, digits = 20)
+sprintf("%.17f", 0.1)
+```
+
+::: {.callout-tip}
+Use `all.equal()` (or an absolute/relative tolerance) rather
+than `==` for real‑number comparisons.
+:::
+
+- Save code in scripts, not the workspace.
+- Use simple file names: letters, numbers, underscores.
+
+
+
+## Wrap‑Up Checklist
+
+You should now be able to:
+
+- Start and quit R in Positron.
+- Get help with functions.
+- Recognize and inspect core objects with `class()` and `str()`.
+- Subset vectors, matrices, and data frames.
+- Use `if`, `for`, and `while` in useful contexts.
+- Manage your working directory and paths.
+- Write clean, consistent code and comments.
+
