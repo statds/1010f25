@@ -44,7 +44,7 @@
     "href": "index.html#policies-syllabus",
     "title": "Data Science and Society with R",
     "section": "Policies & Syllabus",
-    "text": "Policies & Syllabus\nSee the course syllabus on HuskyCT.\nKey reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.",
+    "text": "Policies & Syllabus\nSee the course syllabus on HuskyCT.\nKey reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.\n\nGrading Rubics\nBaseline (C level work)\n\nYour .qmd file knits to HTML without errors.\nYou answer questions correctly but do not use complete sentences.\nThere are typos and ‘junk code’ throughout the document.\nYou do not put much thought or effort into the reflection answers.\nYou do not follow the good styles in using R, Quarto, and Git.\n\nAverage (B level work)\n\nYou use complete sentences to answer questions.\nYou attempt every exercise/question.\n\nAdvanced (A level work)\n\nYour code is simple and concise.\nUnnecessary messages from R are hidden from being displayed in the HTML.\nYour document is typo-free.\nYou practice all the good styles of using R, Quarto, and Git.\nAt the discretion of the instructor, you give exceptionally thoughtful or insightful responses.",
     "crumbs": [
       "Preliminaries"
     ]
@@ -222,111 +222,121 @@
   {
     "objectID": "03-R.html",
     "href": "03-R.html",
-    "title": "3  Jump Start with R/Positron",
+    "title": "3  Jump Start with R",
     "section": "",
-    "text": "3.1 Positron Interface\nThis chapter gives you the minimum essentials to start using R comfortably. It assumes no prior knowledge and emphasizes good habits from the very beginning. We will cover how to start and quit R, get help, understand different object types, create and subset objects, use control structures, manage your working directory, and write clean code.\nPositron is organized into panes and a sidebar. Knowing where things live helps students focus on code, not clicks.\nWorking in a project\nRunning code\nPanels and layout",
+    "text": "3.1 Starting and Quitting R\nThis chapter gives you the minimum essentials to start using R comfortably. It assumes no prior knowledge and emphasizes good habits from the very beginning. We cover how to start and quit R, get help, understand core object types, subset objects, use basic control structures, manage your working directory, and write clean code.\nCode\n## End your R session programmatically\nq()",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
-    ]
-  },
-  {
-    "objectID": "03-R.html#positron-interface",
-    "href": "03-R.html#positron-interface",
-    "title": "3  Jump Start with R/Positron",
-    "section": "",
-    "text": "Editor pane: main area for .R and .qmd files. Multiple tabs are supported.\nConsole: interactive R prompt. Use it for quick tests.\nTerminal: a shell for system commands (e.g., git, Rscript).\nFiles: browse, create, rename, and delete files and folders.\nEnvironment: lists objects in memory; clear with care.\nSource control: stage, commit, and view diffs if a git repo is opened.\nCommand palette: Ctrl-Shift-P (Win/Linux) or Cmd-Shift-P (Mac) to search commands (new file, open folder, run code, toggle panels).\nStatus bar: shows project folder and basic status.\n\n\n\nOpen a folder to make it a project root. Paths in code should be relative to this folder.\nKeep data in a data/ subfolder and scripts in R/ or src/.\n\n\n\nIn the editor, run the current line or selection with Ctrl-Enter (Win/Linux) or Cmd-Enter (Mac).\nIn the console, press Enter to execute a complete line.\n\n\n\nShow or hide the sidebar from the View menu or with the command palette.\nResize panes by dragging their borders.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#starting-and-quitting-r",
     "href": "03-R.html#starting-and-quitting-r",
-    "title": "3  Jump Start with R/Positron",
-    "section": "3.2 Starting and Quitting R",
-    "text": "3.2 Starting and Quitting R\n\nStart Positron, create a new R script (.R) or Quarto document (.qmd), and use the console to run code.\nRun code by typing in the console directly, or by highlighting lines in a script and pressing Ctrl + Enter (Windows/Linux) or Cmd + Enter (Mac).\nQuit with:\nq()\nor by closing Positron.\nWhen asked to save your workspace on exit, choose No. It is better to rely on scripts for reproducibility.",
+    "title": "3  Jump Start with R",
+    "section": "",
+    "text": "Start Positron, open a folder as a project, and create a new script (.R) or Quarto document (.qmd).\nRun code by highlighting lines in the editor and pressing Ctrl-Enter (Win/Linux) or Cmd-Enter (Mac). The console runs one complete line at a time.\nQuit with:\n\n\n\nWhen asked to save the workspace, choose No. Rely on scripts for reproducibility.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#positron-interface",
+    "href": "03-R.html#positron-interface",
+    "title": "3  Jump Start with R",
+    "section": "3.2 Positron Interface",
+    "text": "3.2 Positron Interface\nPositron is organized into panes and a sidebar.\n\nEditor pane: main area for .R and .qmd files; supports tabs.\nConsole: interactive R prompt for quick tests.\nTerminal: a shell for system commands (e.g., git, Rscript).\nFiles: browse, create, rename, and delete items.\nEnvironment: lists objects in memory; clear with care.\nSource control: stage, commit, and view diffs in git repos.\nCommand palette: Ctrl-Shift-P or Cmd-Shift-P to search commands.\nStatus bar: shows project folder and basic status.\n\nWorking in a project\n\nOpen a folder as the project root. Use relative paths from this root.\nKeep data in data/ and scripts in R/ or src/.\n\nRunning code\n\nRun the current line or selection with Ctrl/Cmd-Enter.\nExecute a full cell in a .qmd with the Run Cell button.\n\n\n\n\n\n\n\nTip\n\n\n\nKeep the Files and Console visible. Beginners benefit from constant feedback on where they are and what ran.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#getting-help",
     "href": "03-R.html#getting-help",
-    "title": "3  Jump Start with R/Positron",
+    "title": "3  Jump Start with R",
     "section": "3.3 Getting Help",
-    "text": "3.3 Getting Help\nR has built-in help for every function.\n\nDocumentation:\n?mean\nhelp(mean)\nView arguments:\nargs(mean)\nRun examples:\nexample(mean)\nSearch help system:\nhelp.search(\"linear model\")\n\nPractice: Find out how sd() handles missing values.",
+    "text": "3.3 Getting Help\nR has built‑in help for every function. Every call or command you type is calling a function.\nSearch the help system on a topic:\nhelp.search(\"linear model\")\nGet the documentation of a function with known name:\n?mean\nhelp(mean)\nInspect arguments quickly for a function\n\n\nCode\nargs(mean)\n\n\nfunction (x, ...) \nNULL\n\n\nRun examples in the documentation (man page)\nexample(mean)\nPractice: find how sd() handles missing values.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#objects-in-r",
     "href": "03-R.html#objects-in-r",
-    "title": "3  Jump Start with R/Positron",
+    "title": "3  Jump Start with R",
     "section": "3.4 Objects in R",
-    "text": "3.4 Objects in R\nR provides several basic object types. Understanding them is essential for data analysis.\n\nNumeric: numbers with or without decimals.\nx &lt;- 3.14\nInteger: whole numbers.\ny &lt;- 2L\nCharacter: text strings.\nname &lt;- \"Ann\"\nLogical: truth values.\nflag &lt;- TRUE\nVector: ordered collection of elements of the same type.\nv &lt;- c(1, 2, 3)\nMatrix: 2D array with elements of the same type.\nm &lt;- matrix(1:6, nrow = 2)\nList: ordered collection of objects of different types.\nl &lt;- list(name = \"Bob\", age = 25)\nData frame: table-like structure where each column can have a different type.\ndf &lt;- data.frame(name = c(\"Ann\", \"Bob\"),\n                 age = c(20, 25))\nFunction: an object that performs a computation.\nf &lt;- function(x) x^2\nf(4)\n\nTo inspect objects, use:\nclass(df)     # shows the class\nstr(df)       # shows the structure\nExercise: Create one object of each type above and check it using class() and str().",
+    "text": "3.4 Objects in R\nEverything you store is a vector or built from vectors. Length‑one values are still vectors.\nAtomic vector types (all of fixed type):\n\n\nCode\n## Atomic vectors (length one shown; still vectors)\nnum &lt;- 3.14      ## double (numeric)\nint &lt;- 2L        ## integer\nchr &lt;- \"Ann\"     ## character\nlgc &lt;- TRUE      ## logical\n\n## A longer vector (same type throughout)\nv &lt;- c(1, 2, 3)\n\n\nHigher‑level structures built from vectors:\n\n\nCode\n## Matrix/array: same type, 2D or more\nm &lt;- matrix(1:6, nrow = 2)\n\n## List: heterogenous elements\nlst &lt;- list(name = \"Bob\", age = 25, scores = c(90, 88))\n\n## Data frame: list of equal‑length columns\n## (columns can be different atomic types)\ndf &lt;- data.frame(name = c(\"Ann\", \"Bob\"), age = c(20, 25))\n\n## Function: also an object\nsq &lt;- function(x) x^2\n\n\nInspect objects:\n\n\nCode\n## Class and structure\nclass(df)\n\n\n[1] \"data.frame\"\n\n\nCode\nstr(df)\n\n\n'data.frame':   2 obs. of  2 variables:\n $ name: chr  \"Ann\" \"Bob\"\n $ age : num  20 25\n\n\n\n\n\n\n\n\nTip\n\n\n\nPrefer str(x) for a compact view of what an object contains, its type, and its sizes.\n\n\nExercise. Create one example of each object above and check with class() and str().",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
-    "objectID": "03-R.html#objects-and-subsetting",
-    "href": "03-R.html#objects-and-subsetting",
-    "title": "3  Jump Start with R/Positron",
-    "section": "3.5 Objects and Subsetting",
-    "text": "3.5 Objects and Subsetting\nEverything in R is an object. Use &lt;- to assign values.\n\n3.5.1 Vectors\nx &lt;- c(2, 4, 6, 8)\nx[2]        # second element\nx[1:3]      # first three elements\nx[x &gt; 5]    # conditional selection\n\n\n3.5.2 Matrices\nm &lt;- matrix(1:9, nrow = 3)\nm[2, 3]     # element at row 2, column 3\nm[, 1]      # first column\n\n\n3.5.3 Data Frames\ndf &lt;- data.frame(name = c(\"Ann\", \"Bob\"),\n                 age = c(20, 25))\n\ndf$age          # column by name\ndf[1, ]         # first row\ndf[, \"name\"]    # column by string",
+    "objectID": "03-R.html#subsetting",
+    "href": "03-R.html#subsetting",
+    "title": "3  Jump Start with R",
+    "section": "3.5 Subsetting",
+    "text": "3.5 Subsetting\nUse bracket notation consistently.\n\n\nCode\n## Vectors\nx &lt;- c(2, 4, 6, 8)\nx[2]             ## second element\n\n\n[1] 4\n\n\nCode\nx[1:3]           ## slice\n\n\n[1] 2 4 6\n\n\nCode\nx[x &gt; 5]         ## logical filter\n\n\n[1] 6 8\n\n\nCode\n## Matrices\nm &lt;- matrix(1:9, nrow = 3)\nm[2, 3]          ## row 2, col 3\n\n\n[1] 8\n\n\nCode\nm[, 1]           ## first column\n\n\n[1] 1 2 3\n\n\nCode\n## Data frames\npeople &lt;- data.frame(name = c(\"Ann\", \"Bob\"), age = c(20, 25))\npeople$age       ## column by name\n\n\n[1] 20 25\n\n\nCode\npeople[1, ]      ## first row\n\n\n\n  \n\n\n\nCode\npeople[, \"name\"] ## column by string\n\n\n[1] \"Ann\" \"Bob\"",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#control-structures",
     "href": "03-R.html#control-structures",
-    "title": "3  Jump Start with R/Positron",
+    "title": "3  Jump Start with R",
     "section": "3.6 Control Structures",
-    "text": "3.6 Control Structures\nR includes standard programming tools such as conditionals and loops.\n\n3.6.1 If statement\nx &lt;- -999\nif (x == -999) {\n  x &lt;- NA\n}\nprint(x)\nComparison with numbers that have decimal expansions can be tricky.\n0.1 == 0.3 / 3\nThis returns FALSE because of floating-point precision. Computers cannot represent most decimals exactly, so calculations like 0.3 / 3 produce a number very close to, but not exactly, 0.1. To compare numbers safely, use a tolerance with all.equal():\nall.equal(0.1, 0.3 / 3)\n```r\nx &lt;- 10\nif (x &gt; 5) {\n  print(\"x is greater than 5\")\n} else {\n  print(\"x is not greater than 5\")\n}\n\n\n3.6.2 For loop\nfor (i in 1:3) {\n  print(i^2)\n}\n\n\n3.6.3 While loop\ncount &lt;- 1\nwhile (count &lt;= 3) {\n  print(count)\n  count &lt;- count + 1\n}\nExercise: Write a loop that sums the numbers from 1 to 10, and use an if-statement to check if the sum is greater than 50.",
+    "text": "3.6 Control Structures\n\n3.6.1 If statement (missing‑value cleaning)\n\n\nCode\n## Replace sentinel values with NA\nx &lt;- -999\nif (x == -999) {\n  x &lt;- NA\n}\nprint(x)\n\n\n[1] NA\n\n\n\n\n3.6.2 For loop (column‑wise cleaning and summary)\nUseful when applying a simple rule across columns.\n\n\nCode\n## Make a toy data frame with a sentinel value\nscores &lt;- data.frame(\n  math = c(95, -999, 88, 91),\n  eng  = c(87, 90, -999, 85),\n  sci  = c(92, 88, 94, -999)\n)\n\n## Replace -999 with NA, then compute column means\nfor (col in names(scores)) {\n  ## clean\n  bad &lt;- scores[[col]] == -999\n  scores[[col]][bad] &lt;- NA\n  ## summarize\n  m &lt;- mean(scores[[col]], na.rm = TRUE)\n  cat(col, \"mean:\", m, \"\\n\")\n}\n\n\nmath mean: 91.33333 \neng mean: 87.33333 \nsci mean: 91.33333 \n\n\n\n\n3.6.3 While loop (simulation until tolerance met)\nStop when an estimate is precise enough.\n\n\nCode\n## Estimate P(X &gt; 1.96) for N(0,1) via Monte Carlo\n## Stop when stderr &lt; 0.002\nset.seed(1)\ncount &lt;- 0\nn &lt;- 0\nse &lt;- Inf\n\nwhile (se &gt; 0.002) {\n  ## simulate in small batches for responsiveness\n  z &lt;- rnorm(1000)\n  n &lt;- n + length(z)\n  count &lt;- count + sum(z &gt; 1.96)\n  p_hat &lt;- count / n\n  se &lt;- sqrt(p_hat * (1 - p_hat) / n)\n}\n\ncat(\"p_hat:\", p_hat, \"n:\", n, \"se:\", se, \"\\n\")\n\n\np_hat: 0.0285 n: 8000 se: 0.001860368 \n\n\nExercise. Write a loop that, for each numeric column in a frame, replaces -999 with NA, then reports the fraction of missing values.\n\n\n\n\n\n\nWarning\n\n\n\nLoops are fine for clarity. Later you will see vectorized and apply‑family solutions that are faster and shorter.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#workflow-basics",
     "href": "03-R.html#workflow-basics",
-    "title": "3  Jump Start with R/Positron",
+    "title": "3  Jump Start with R",
     "section": "3.7 Workflow Basics",
-    "text": "3.7 Workflow Basics\n\nWorking directory:\ngetwd()                # check where you are\nsetwd(\"path/to/folder\")   # set directory if needed\nIn Positron, confirm directory in the file browser.\nUse console for quick tests; save work in scripts for reproducibility.\nRun highlighted code with Ctrl/Cmd + Enter.",
+    "text": "3.7 Workflow Basics\n\n\nCode\n## Working directory\ngetwd()                  ## where am I\n\n\n[1] \"/Users/junyan/work/teaching/1010-f25/1010f25\"\n\n\nCode\n## setwd(\"path/to/folder\")   ## set if necessary\n\n\n\nIn Positron, confirm the directory in the Files pane.\nUse the console for quick tests; save work in scripts or .qmd.\nRun highlighted code with Ctrl/Cmd-Enter.\n\n\n\n\n\n\n\nTip\n\n\n\nUse project‑relative paths and file.path() to build paths. This keeps code portable across operating systems.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
+    ]
+  },
+  {
+    "objectID": "03-R.html#importing-data",
+    "href": "03-R.html#importing-data",
+    "title": "3  Jump Start with R",
+    "section": "3.8 Importing Data",
+    "text": "3.8 Importing Data\nR can load data from text files and many other formats.\n\n3.8.1 Base R functions\n\n\nCode\n## Read a CSV file (comma-separated)\ncars &lt;- read.csv(\"data/india.csv\")\n\n## Read a general table with custom separators\nsurvey &lt;- read.table(\"data/survey.txt\", header = TRUE, sep = \" \")\n\n\nArguments to know: - header = TRUE tells R the first row has column names. - sep controls the separator (“,” for CSV, ” ” for tab‑delimited).\n\n\n\n\n\n\nTip\n\n\n\nCheck the imported object with str() or head() immediately to ensure it loaded as expected.\n\n\n\n\n3.8.2 Other formats\nThe foreign package imports legacy statistical software formats (SAS, SPSS, Stata):\n\n\nCode\nlibrary(foreign)\ndata_spss &lt;- read.spss(\"data/study.sav\", to.data.frame = TRUE)\ndata_stata &lt;- read.dta(\"data/study.dta\")\n\n\nMore modern workflows often use the haven package (part of the tidyverse) for these formats, but foreign is available in base R distributions.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#good-style",
     "href": "03-R.html#good-style",
-    "title": "3  Jump Start with R/Positron",
-    "section": "3.8 Good Style",
-    "text": "3.8 Good Style\nAdopt consistent style early. Follow the tidyverse style guide or a similar reference.\n\nUse &lt;- for assignment.\nPlace spaces around operators:\nx &lt;- 1\nnot x&lt;-1.\nChoose meaningful variable names: height, not h.\nAdd comments with #.\nStart each script with a header:\n# Your Name\n# Date\n# Purpose of this script",
+    "title": "3  Jump Start with R",
+    "section": "3.9 Good Style",
+    "text": "3.9 Good Style\nAdopt consistent style early. Follow the tidyverse guide: https://style.tidyverse.org/\n\nUse &lt;- for assignment.\nPlace spaces around operators and after commas.\nChoose meaningful names; avoid one‑letter names for data.\nBegin scripts with a header block.\n\n\n\nCode\n## Your Name\n## 2025-09-02\n## Purpose: demonstrate basic R style\nx &lt;- 1  # inline note uses a single \n\n\n\n\n\n\n\n\nNote\n\n\n\nComment convention. Start‑of‑line comments use at least two hashes (##). Reserve a single # for end‑of‑line notes.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
     "objectID": "03-R.html#tips-and-pitfalls",
     "href": "03-R.html#tips-and-pitfalls",
-    "title": "3  Jump Start with R/Positron",
-    "section": "3.9 Tips and Pitfalls",
-    "text": "3.9 Tips and Pitfalls\n\nCase sensitivity: x and X are different.\nPaths: Use forward slashes /, even on Windows.\nAlways know your working directory.\nSave code in scripts, not in the workspace.\nUse simple, safe file names: letters, numbers, underscores.",
+    "title": "3  Jump Start with R",
+    "section": "3.10 Tips and Pitfalls",
+    "text": "3.10 Tips and Pitfalls\n\nCase sensitivity: x and X are different.\nPaths: forward slashes / work on all platforms in R.\n\n\n\nCode\n## Portable path building\nfile.path(\"data\", \"mtcars.csv\")\n\n\n[1] \"data/mtcars.csv\"\n\n\n\nNumerical precision:\n\n\n\nCode\n## Floating‑point comparison\n0.1 == 0.3 / 3\n\n\n[1] FALSE\n\n\nCode\nall.equal(0.1, 0.3 / 3)\n\n\n[1] TRUE\n\n\nCode\n## Reveal stored value with extra digits\nprint(0.1, digits = 20)\n\n\n[1] 0.10000000000000000555\n\n\nCode\nsprintf(\"%.17f\", 0.1)\n\n\n[1] \"0.10000000000000001\"\n\n\n\n\n\n\n\n\nTip\n\n\n\nUse all.equal() (or an absolute/relative tolerance) rather than == for real‑number comparisons.\n\n\n\nSave code in scripts, not the workspace.\nUse simple file names: letters, numbers, underscores.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
-    "objectID": "03-R.html#wrap-up-checklist",
-    "href": "03-R.html#wrap-up-checklist",
-    "title": "3  Jump Start with R/Positron",
-    "section": "3.10 Wrap-Up Checklist",
-    "text": "3.10 Wrap-Up Checklist\nYou should now be able to:\n\nStart and quit R in Positron.\nGet help with functions.\nRecognize different types of objects, including functions.\nUse class() and str() to inspect objects.\nSubset vectors, matrices, and data frames.\nUse conditionals and loops in basic programs.\nManage your working directory.\nWrite clean code following style guidance.\nAvoid pitfalls such as case sensitivity and hidden workspaces.\n\n\nNext chapter: Functions and packages, the building blocks for analysis.",
+    "objectID": "03-R.html#wrapup-checklist",
+    "href": "03-R.html#wrapup-checklist",
+    "title": "3  Jump Start with R",
+    "section": "3.11 Wrap‑Up Checklist",
+    "text": "3.11 Wrap‑Up Checklist\nYou should now be able to:\n\nStart and quit R in Positron.\nGet help with functions.\nRecognize and inspect core objects with class() and str().\nSubset vectors, matrices, and data frames.\nUse if, for, and while in useful contexts.\nManage your working directory and paths.\nWrite clean, consistent code and comments.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R/Positron</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Jump Start with R</span>"
     ]
   },
   {
@@ -334,7 +344,7 @@
     "href": "exercises.html",
     "title": "4  Exercises",
     "section": "",
-    "text": "Setting up the computing environment Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.\n\nInstall R.\nInstall Positron or RStudio.\nInstall Quarto.\nSet up SSH authentication between your computer and your GitHub account.\nRender your homework into an HTML file.\nPrint the HTML file into a pdf file and put it into the release of this homework assignment.",
+    "text": "Setting up the computing environment Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.\n\nInstall R.\nInstall Positron or RStudio.\nInstall Quarto.\nSet up SSH authentication between your computer and your GitHub account.\nRender your homework into an HTML file.\nPrint the HTML file into a pdf file and put it into the release of this homework assignment.\n\nGetting familiar with command line interface The command line interface (CLI) is widely used among computing professionals, even though graphical user interfaces (GUI) are more common for everyday users. Be clear and concise in your explanations. Provide short examples if you think they will help illustrate your points.\n\nResearch and explain why many professionals prefer using the CLI over a GUI. Consider aspects such as efficiency, automation, reproducibility, or remote access.\nIdentify your top five favorite commands in the Unix/Linux shell. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.\nIdentify your top five favorite Git commands. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.\n\nDo women promote different policies than men? (Based on Raghabendra Chattopadhyay and Esther Duflo. 2004. “Women as Policy Makers: Evidence from a Randomized Policy Experiment in India.” Econometrica, 72 (5): 1409–43.) We will analyze data from an experiment conducted in India, where villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in Table 4.1, the dataset contains four variables.\n\n\n\nTable 4.1: Variables in india.csv\n\n\n\n\n\n\n\n\n\nvariable\ndescription\n\n\n\n\nvillage\nvillage identifier (“Gram Panchayat number _ village number”)\n\n\nfemale\nwhether village was assigned a female politician: 1 = yes, 0 = no\n\n\nwater\nnumber of new (or repaired) drinking water facilities in the village\n\n\n\nsince random assignment\n\n\nirrigation\nnumber of new (or repaired) irrigation facilities in the village\n\n\n\nsince random assignment\n\n\n\n\n\n\n\nUsing the correct R code, set your working directory.\nLoad the tidyverse package.\nLoad the data as a data.frame and assign the name india to it.\nUtilizing either head() or glimpse() view the first few rows of the dataset. Substantively describe what these functions do.\nWhat does each observation in this dataset represent?\nSubstantively interpret the first observation in the dataset.\nFor each variable in the dataset, identify the type of variable (character vs. numeric binary vs. numeric non-binary).\nHow many observations are in the dataset? In other words, how many villages were part of this experiment? Additionally, provide a substantive answer.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Exercises</span>"
     ]

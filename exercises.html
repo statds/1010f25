@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R/Positron</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <ol type="1">
-<li><strong>Setting up the computing environment</strong> Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.
+<li><p><strong>Setting up the computing environment</strong> Using the right computing tools and environment is a prerequisite of data science projects. Set up your computer for this course with the following steps. For each step, document what you did, the obstacles you encountered, and how you overcame them. If you used AI, document your prompts. Note that the steps you take may depend on your computer’s operating system.Think of this as a user manual for students who are new to this. Use the command line interface.</p>
 <ol type="a">
 <li>Install R.</li>
 <li>Install Positron or RStudio.</li>
@@ -186,6 +186,70 @@ ul.task-list li input[type="checkbox"] {
 <li>Set up SSH authentication between your computer and your GitHub account.</li>
 <li>Render your homework into an HTML file.</li>
 <li>Print the HTML file into a pdf file and put it into the release of this homework assignment.</li>
+</ol></li>
+<li><p><strong>Getting familiar with command line interface</strong> The command line interface (CLI) is widely used among computing professionals, even though graphical user interfaces (GUI) are more common for everyday users. Be clear and concise in your explanations. Provide short examples if you think they will help illustrate your points.</p>
+<ol type="a">
+<li>Research and explain why many professionals prefer using the CLI over a GUI. Consider aspects such as efficiency, automation, reproducibility, or remote access.</li>
+<li>Identify your top five favorite commands in the Unix/Linux shell. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
+<li>Identify your top five favorite Git commands. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
+</ol></li>
+<li><p><strong>Do women promote different policies than men?</strong> (Based on Raghabendra Chattopadhyay and Esther Duflo. 2004. “Women as Policy Makers: Evidence from a Randomized Policy Experiment in India.” Econometrica, 72 (5): 1409–43.) We will analyze data from an experiment conducted in India, where villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in <a href="#tbl-india" class="quarto-xref">Table&nbsp;<span>4.1</span></a>, the dataset contains four variables.</p>
+<div id="tbl-india" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Variables in <code>india.csv</code>
+</figcaption>
+<div aria-describedby="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>village</em></td>
+<td>village identifier (“Gram Panchayat number _ village number”)</td>
+</tr>
+<tr class="even">
+<td><em>female</em></td>
+<td>whether village was assigned a female politician: 1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td><em>water</em></td>
+<td>number of new (or repaired) drinking water facilities in the village</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>since random assignment</td>
+</tr>
+<tr class="odd">
+<td><em>irrigation</em></td>
+<td>number of new (or repaired) irrigation facilities in the village</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>since random assignment</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="a">
+<li>Using the correct R code, set your working directory.</li>
+<li>Load the <code>tidyverse</code> package.</li>
+<li>Load the data as a <code>data.frame</code> and assign the name <code>india</code> to it.</li>
+<li>Utilizing either <code>head()</code> or <code>glimpse()</code> view the first few rows of the dataset. Substantively describe what these functions do.</li>
+<li>What does each observation in this dataset represent?</li>
+<li>Substantively interpret the first observation in the dataset.</li>
+<li>For each variable in the dataset, identify the type of variable (character vs.&nbsp;numeric binary vs.&nbsp;numeric non-binary).</li>
+<li>How many observations are in the dataset? In other words, how many villages were part of this experiment? Additionally, provide a substantive answer.</li>
 </ol></li>
 </ol>
 
@@ -593,8 +657,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-R.html" class="pagination-link" aria-label="Jump Start with R/Positron">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R/Positron</span></span>
+      <a href="./03-R.html" class="pagination-link" aria-label="Jump Start with R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
