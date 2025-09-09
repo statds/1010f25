@@ -160,16 +160,18 @@ Add a `.gitattributes` to normalize endings:
 - **Windows (WSL)**: Open the **Ubuntu** app (WSL). You are now in a
   Linux shell that matches macOS/Linux.
 
-Try these commands everywhere:
 
-```bash
-pwd           # show current path
-ls -lah       # list with details and human-readable sizes
-mkdir lab     # make a folder
-cd lab        # enter it
-curl --version
-R --version   # verify R once installed later
-```
+Here are several commonly used shell commands:
+
++ `cd`: change directory; `..` means parent directory.
++ `pwd`: present working directory.
++ `ls`: list the content of a folder; `-l` long version;
+   `-a` show hidden files; `-t` ordered by modification time.
++ `mkdir`: create a new directory.
++ `cp`: copy file/folder from a source to a target.
++ `mv`: move file/folder from a source to a target.
++ `rm`: remove a file a folder.
+
 
 ### Common pitfalls and fixes
 
