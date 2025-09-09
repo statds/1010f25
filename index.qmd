@@ -97,10 +97,13 @@ graded submissions, and professional email etiquette.
 
 ## Schedule and Readings
 
+
 1. Computing environment
     + R4DS Ch 28-29
     + HGR Ch 20-23
 1. Jump start with R
-    + R4DS Ch 4-8, 20-24
-	
+    + R4DS Ch 4-8; Ch 20-24
+1. Visualization
+    + R4DS Ch 1; Ch 9; Ch 11
+    + [Data visualization in R](https://www.data-to-viz.com/)
 	
