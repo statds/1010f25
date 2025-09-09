@@ -1,0 +1,49 @@
+Variable,Explanation
+cz,Commuting Zone code (geographic identifier)
+cz_name,Commuting Zone name
+state,State abbreviation
+region,U.S. Census region
+division,U.S. Census division
+pop_2000,Population in 2000
+top_100,Indicator if in top 100 largest CZs
+urban,Urban or rural classification
+rel_mobility,Relative mobility (rank-rank slope)
+abs_mobility,Absolute mobility (child income rank at 25th percentile of parents)
+prob_q1q5,Probability of moving from bottom quintile to top quintile
+frac_black,Fraction of population that is Black
+racial_seg,Index of racial segregation
+income_seg,Index of income segregation
+poverty_seg,Segregation of poverty measure
+affluence_seg,Segregation of affluence measure
+frac_commute_under15,Fraction commuting under 15 minutes
+hhi_percap,Herfindahl-Hirschman Index per capita (industry concentration)
+gini,Gini coefficient of income inequality
+top1inc_share,Income share of top 1%
+gini_bottom99,Gini coefficient excluding top 1%
+frac_p25top75,Fraction of households in 25th–75th income percentiles
+taxrate,Average local tax rate
+gov_exp,Per capita government expenditure
+inctax_progressive,Index of income tax progressivity
+eitc,Earned Income Tax Credit generosity
+sch_exp,Public school expenditure per student
+tchr_ratio,Student-teacher ratio
+test_pctile,Average test score percentile
+hs_dropout,High school dropout rate
+colleges_percap,Number of colleges per capita
+college_tuition,Average college tuition
+college_gradrate,Average college graduation rate
+labor_participation,Labor force participation rate
+manufacturing,Employment share in manufacturing
+growth_imports,Growth in imports (exposure to trade shocks)
+teen_lfp,Teen labor force participation
+migration_in,Fraction of population migrating into CZ
+migration_out,Fraction of population migrating out of CZ
+foreign_born,Fraction of population foreign-born
+social_capital,Social capital index
+frac_religious,Fraction of population religious
+crime_rate,Crime rate
+frac_single_mothers,Fraction of households with single mothers
+frac_divorced,Fraction divorced
+frac_married,Fraction married
+inc_growth,Income growth rate
+Urban or Rural,Urban/rural flag (appears corrupted as #REF! in your file)
