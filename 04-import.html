@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="OS, files, folders, paths, terminals; installing R, Positron/RStudio, and Quarto.">
 
-<title>1&nbsp; Setting up Computing Environment – Data Science and Society with R</title>
+<title>4&nbsp; First Impression with Data – Data Science and Society with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-git.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./exercises.html" rel="next">
+<link href="./03-R.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -105,6 +104,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -118,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-computing.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-computing.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01-computing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></span></a>
   </div>
 </li>
@@ -173,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-import.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-import.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></span></a>
   </div>
 </li>
@@ -199,22 +200,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#operating-systems" id="toc-operating-systems" class="nav-link active" data-scroll-target="#operating-systems"><span class="header-section-number">1.1</span> Operating Systems</a></li>
-  <li><a href="#files-folders-and-paths" id="toc-files-folders-and-paths" class="nav-link" data-scroll-target="#files-folders-and-paths"><span class="header-section-number">1.2</span> Files, folders, and paths</a></li>
-  <li><a href="#extensions-and-line-endings" id="toc-extensions-and-line-endings" class="nav-link" data-scroll-target="#extensions-and-line-endings"><span class="header-section-number">1.3</span> Extensions and line endings</a></li>
-  <li><a href="#terminals-and-shells" id="toc-terminals-and-shells" class="nav-link" data-scroll-target="#terminals-and-shells"><span class="header-section-number">1.4</span> Terminals and shells</a></li>
-  <li><a href="#install-r-positron-or-rstudio-and-quarto" id="toc-install-r-positron-or-rstudio-and-quarto" class="nav-link" data-scroll-target="#install-r-positron-or-rstudio-and-quarto"><span class="header-section-number">1.5</span> Install R, Positron (or RStudio), and Quarto</a></li>
-  <li><a href="#your-first-quarto-project" id="toc-your-first-quarto-project" class="nav-link" data-scroll-target="#your-first-quarto-project"><span class="header-section-number">1.6</span> Your first Quarto project</a></li>
-  <li><a href="#troubleshooting-checklist" id="toc-troubleshooting-checklist" class="nav-link" data-scroll-target="#troubleshooting-checklist"><span class="header-section-number">1.7</span> Troubleshooting checklist</a></li>
+  <li><a href="#r-packages-and-data" id="toc-r-packages-and-data" class="nav-link active" data-scroll-target="#r-packages-and-data"><span class="header-section-number">4.1</span> R Packages and Data</a></li>
+  <li><a href="#exploring-data-frames-in-r" id="toc-exploring-data-frames-in-r" class="nav-link" data-scroll-target="#exploring-data-frames-in-r"><span class="header-section-number">4.2</span> Exploring Data Frames in R</a></li>
+  <li><a href="#variable-types" id="toc-variable-types" class="nav-link" data-scroll-target="#variable-types"><span class="header-section-number">4.3</span> Variable Types</a></li>
+  <li><a href="#messy-data" id="toc-messy-data" class="nav-link" data-scroll-target="#messy-data"><span class="header-section-number">4.4</span> Messy Data</a></li>
+  <li><a href="#putting-it-together" id="toc-putting-it-together" class="nav-link" data-scroll-target="#putting-it-together"><span class="header-section-number">4.5</span> Putting It Together</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/01-computing.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/04-import.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></h1>
 </div>
 
 
@@ -231,286 +230,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="r-packages-and-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="r-packages-and-data"><span class="header-section-number">4.1</span> R Packages and Data</h2>
+<p>R is an open-source language, widely used in data science. One of its greatest strengths is the ecosystem of packages developed by the community. These packages make it easier to perform tasks such as importing data, cleaning it, and creating visualizations.</p>
+<p>Two sets of packages will be central for us. Package <strong>tidyverse</strong> provides a coherent framework for data wrangling and visualization. The <strong>gapminder</strong> package offers a dataset on life expectancy, GDP per capita, and population across countries and years, which will serve as a running example in our practice.</p>
+<p>If packages are not already installed, we can add them to our system with <code>install.packages()</code>. Installation is needed only once, but packages must be loaded every time we start a new R session.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<p>Once installed, packages are made available in a session by loading them with <code>library()</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>After loading a dataset, it is good practice to examine its structure. Functions such as <code>str()</code> and <code>summary()</code> provide a quick overview of variable types, sample values, and ranges.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)
+ $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ year     : int [1:1704] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+ $ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...
+ $ pop      : int [1:1704] 8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+ $ gdpPercap: num [1:1704] 779 821 853 836 740 ...</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        country        continent        year         lifeExp     
+ Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+ Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+ Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+ Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+ Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+ Australia  :  12                  Max.   :2007   Max.   :82.60  
+ (Other)    :1632                                                
+      pop              gdpPercap       
+ Min.   :6.001e+04   Min.   :   241.2  
+ 1st Qu.:2.794e+06   1st Qu.:  1202.1  
+ Median :7.024e+06   Median :  3531.8  
+ Mean   :2.960e+07   Mean   :  7215.3  
+ 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  
+ Max.   :1.319e+09   Max.   :113523.1  
+                                       </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Learning goals</strong> 1) Recognize how files, folders, and paths work across macOS, Windows, and Linux.<br>
-2) Use a terminal to navigate and run simple commands.<br>
-3) Install R, RStudio, and Quarto; verify your setup.</p>
-</div>
-</div>
-<section id="operating-systems" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="operating-systems"><span class="header-section-number">1.1</span> Operating Systems</h2>
-<p>Most students are familiar with <strong>Windows</strong>, but data science workflows often run on <strong>macOS</strong> or <strong>Linux</strong>. To keep everyone on the same page for command-line work, we will treat macOS and Linux as a single “Unix-like” family and help Windows users bridge to the same environment via WSL (Windows Subsystem for Linux).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>What is an Operating System?</strong><br>
-An operating system (OS) manages your computer’s resources (CPU, memory, storage, files, and processes) and provides interfaces (GUI and terminal) for people and programs to interact with hardware.</p>
-</div>
-</div>
-<section id="the-big-three" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="the-big-three"><span class="header-section-number">1.1.1</span> The big three</h3>
+</section>
+<section id="exploring-data-frames-in-r" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="exploring-data-frames-in-r"><span class="header-section-number">4.2</span> Exploring Data Frames in R</h2>
+<p>Once data are loaded, the next step is to <strong>explore and understand the dataset</strong>. A data frame (or tibble, in tidyverse) is the standard format for rectangular data. R provides many built-in functions to examine, summarize, and manipulate data frames.</p>
+<section id="structure-and-dimensions" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="structure-and-dimensions"><span class="header-section-number">4.2.1</span> Structure and dimensions</h3>
 <ul>
-<li><strong>Windows</strong> — Ubiquitous on personal laptops; historically less aligned with Unix tooling, but excellent with WSL.</li>
-<li><strong>macOS</strong> — Unix-based; ships with a terminal and many developer tools out of the box.</li>
-<li><strong>Linux</strong> — Open-source family used on servers, clusters, and cloud VMs; many distributions (Ubuntu, Fedora, Debian) share common command-line tools.</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Why this matters in data science</strong><br>
-Reproducibility and collaboration require knowing your OS, versions, and paths. Most research servers and HPC clusters run Linux. Learning a command-line interface (CLI) gives you a common language across systems.</p>
-</div>
-</div>
-</section>
-<section id="quick-checks-what-am-i-running" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="quick-checks-what-am-i-running"><span class="header-section-number">1.1.2</span> Quick checks: what am I running?</h3>
-<p>Open a terminal and run <strong>one</strong> of the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux / WSL</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (PowerShell)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ver</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you see Linux details on a Windows laptop, you are inside WSL.</p>
-</section>
-<section id="file-systems-and-paths" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="file-systems-and-paths"><span class="header-section-number">1.1.3</span> File systems and paths</h3>
-<ul>
-<li><strong>Unix-like path style</strong>: <code>/home/alex/project/data.csv</code></li>
-<li><strong>Windows path style</strong>: <code>C:\\Users\\Alex\\project\\data.csv</code></li>
-</ul>
-<p>On macOS/Linux, your home is typically <code>/Users/&lt;name&gt;</code> (macOS) or <code>/home/&lt;name&gt;</code> (Linux). On Windows, it is usually <code>C:\\Users\\&lt;name&gt;</code>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Naming habits that save you pain</strong><br>
-Avoid spaces in file and folder names. Prefer <code>kebab-case</code> or <code>snake-case</code>. Keep a project’s scripts, data, and reports together.</p>
-</div>
-</div>
-</section>
-<section id="windows-subsystem-for-linux-wsl" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="windows-subsystem-for-linux-wsl"><span class="header-section-number">1.1.4</span> Windows Subsystem for Linux (WSL)</h3>
-<p>WSL lets you run a real Linux environment (e.g., Ubuntu) inside Windows, so your terminal commands match those of macOS/Linux users. This is the recommended setup for Windows in this course.</p>
-<section id="install-wsl-windows-11-or-windows-10-2004" class="level4" data-number="1.1.4.1">
-<h4 data-number="1.1.4.1" class="anchored" data-anchor-id="install-wsl-windows-11-or-windows-10-2004"><span class="header-section-number">1.1.4.1</span> Install WSL (Windows 11 or Windows 10 ≥ 2004)</h4>
-<ol type="1">
-<li>Open <strong>PowerShell as Administrator</strong>.<br>
+<li><code>dim(df)</code> – number of rows and columns<br>
 </li>
-<li>Run:</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>When prompted, choose <strong>Ubuntu</strong> and set a Linux username and password.<br>
+<li><code>nrow(df)</code>, <code>ncol(df)</code> – number of rows or columns separately<br>
 </li>
-<li>(Optional) Ensure WSL2 is the default:</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>set-default-version <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="5" type="1">
-<li>Verify:</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>status</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">-</span>l <span class="op">-</span>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should see <code>Ubuntu</code> listed and version <code>2</code>.</p>
-</section>
-<section id="start-using-wsl" class="level4" data-number="1.1.4.2">
-<h4 data-number="1.1.4.2" class="anchored" data-anchor-id="start-using-wsl"><span class="header-section-number">1.1.4.2</span> Start using WSL</h4>
-<ul>
-<li>Launch the <strong>Ubuntu</strong> app (or run <code>wsl</code> in PowerShell).<br>
+<li><code>str(df)</code> – internal structure (types, first few values)<br>
 </li>
-<li>You are now at a Linux shell (bash). Try:</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>         <span class="co"># current directory in the Linux filesystem</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>          <span class="co"># list files</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">whoami</span>      <span class="co"># your Linux username</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="sharing-files-between-windows-and-wsl" class="level4" data-number="1.1.4.3">
-<h4 data-number="1.1.4.3" class="anchored" data-anchor-id="sharing-files-between-windows-and-wsl"><span class="header-section-number">1.1.4.3</span> Sharing files between Windows and WSL</h4>
-<ul>
-<li>Windows drives are mounted inside Linux at <code>/mnt/c</code>, <code>/mnt/d</code>, …<br>
-Example: <code>C:\\Users\\Alex\\project</code> appears at <code>/mnt/c/Users/Alex/project</code> inside WSL.<br>
-</li>
-<li>Your Linux home is separate (e.g., <code>/home/alex</code>).</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Best practice</strong><br>
-Keep course projects <em>inside your Linux home</em> (e.g., <code>/home/&lt;name&gt;/dsda1010</code>) to avoid path and permissions surprises.</p>
-</div>
-</div>
-</section>
-<section id="line-endings-and-git-on-windowswsl" class="level4" data-number="1.1.4.4">
-<h4 data-number="1.1.4.4" class="anchored" data-anchor-id="line-endings-and-git-on-windowswsl"><span class="header-section-number">1.1.4.4</span> Line endings and Git on Windows/WSL</h4>
-<p>Configure Git once to avoid CRLF/LF confusion:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.autocrlf input   <span class="co"># recommended in WSL/macOS/Linux</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Add a <code>.gitattributes</code> to normalize endings:</p>
-<pre class="text"><code>* text=auto
-*.qmd text eol=lf
-*.R   text eol=lf
-*.md  text eol=lf
-*.yml text eol=lf</code></pre>
-</section>
-</section>
-<section id="terminal-quickstart-by-os" class="level3" data-number="1.1.5">
-<h3 data-number="1.1.5" class="anchored" data-anchor-id="terminal-quickstart-by-os"><span class="header-section-number">1.1.5</span> Terminal quickstart by OS</h3>
-<ul>
-<li><strong>macOS</strong>: Open <strong>Terminal</strong> (or <strong>iTerm2</strong>). You are in a Unix shell. Commands from the book work as-is.<br>
-</li>
-<li><strong>Linux</strong>: Open your terminal (GNOME Terminal, Konsole, etc.). You are already in a Unix shell.<br>
-</li>
-<li><strong>Windows (WSL)</strong>: Open the <strong>Ubuntu</strong> app (WSL). You are now in a Linux shell that matches macOS/Linux.</li>
-</ul>
-<p>Try these commands everywhere:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>           <span class="co"># show current path</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lah</span>       <span class="co"># list with details and human-readable sizes</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> lab     <span class="co"># make a folder</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> lab        <span class="co"># enter it</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--version</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span>   <span class="co"># verify R once installed later</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="common-pitfalls-and-fixes" class="level3" data-number="1.1.6">
-<h3 data-number="1.1.6" class="anchored" data-anchor-id="common-pitfalls-and-fixes"><span class="header-section-number">1.1.6</span> Common pitfalls and fixes</h3>
-<ul>
-<li><strong>“Command not found”</strong> — The program is not installed, or your PATH does not include it.</li>
-<li><strong>Permission denied</strong> — You may be in a protected folder; work in your home directory.</li>
-<li><strong>Strange characters in filenames</strong> — Avoid spaces and punctuation; stick to letters, numbers, dashes.</li>
-<li><strong>Mixing Windows and WSL paths</strong> — Prefer working inside your WSL home. If you must access Windows files, use <code>/mnt/c/...</code>.</li>
+<li><code>glimpse(df)</code> (from dplyr) – a cleaner version of <code>str</code></li>
 </ul>
 </section>
-<section id="hands-on-check-to-do-now" class="level3" data-number="1.1.7">
-<h3 data-number="1.1.7" class="anchored" data-anchor-id="hands-on-check-to-do-now"><span class="header-section-number">1.1.7</span> Hands-on check (to do now)</h3>
-<ol type="1">
-<li>Open your terminal (macOS/Linux/WSL).<br>
-</li>
-<li>Confirm your OS with <code>uname -a</code> (or <code>ver</code> in PowerShell).<br>
-</li>
-<li>Create a course folder and a notes file:</li>
-</ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/dsda1010/week1</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/dsda1010/week1</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Week 1 notes"</span> <span class="op">&gt;</span> notes.txt</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="files-folders-and-paths" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="files-folders-and-paths"><span class="header-section-number">1.2</span> Files, folders, and paths</h2>
+<section id="column-names-and-metadata" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="column-names-and-metadata"><span class="header-section-number">4.2.2</span> Column names and metadata</h3>
 <ul>
-<li><strong>Home folder:</strong> Your personal workspace.<br>
+<li><code>names(df)</code> or <code>colnames(df)</code> – list column names<br>
 </li>
-<li><strong>Absolute vs relative paths:</strong></li>
-</ul>
-<pre class="text"><code># absolute (macOS/Linux)
-/Users/alex/projects/dsda1010
-
-# absolute (Windows)
-C:\Users\alex\projects\dsda1010
-
-# relative (from a project root)
-../data/nyc311.csv</code></pre>
-<ul>
-<li><strong>Good habits</strong>
-<ul>
-<li>Avoid spaces in file/folder names (<code>use-kebab-case</code>).</li>
-<li>Keep project files together (R scripts, data, and reports).</li>
-</ul></li>
+<li><code>rownames(df)</code> – list row names (rarely used in tidy data)</li>
 </ul>
 </section>
-<section id="extensions-and-line-endings" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="extensions-and-line-endings"><span class="header-section-number">1.3</span> Extensions and line endings</h2>
+<section id="first-and-last-rows" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="first-and-last-rows"><span class="header-section-number">4.2.3</span> First and last rows</h3>
 <ul>
-<li>Common types: <code>.qmd</code>, <code>.R</code>, <code>.csv</code>, <code>.tsv</code>, <code>.parquet</code>, <code>.md</code>.</li>
-<li>Text vs binary: keep data in text formats when possible.</li>
-<li>Line endings: Git normalizes these; we set <code>.gitattributes</code> to help.</li>
+<li><code>head(df)</code> – first six rows<br>
+</li>
+<li><code>tail(df)</code> – last six rows</li>
 </ul>
 </section>
-<section id="terminals-and-shells" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="terminals-and-shells"><span class="header-section-number">1.4</span> Terminals and shells</h2>
-<p>Open a terminal and try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>        <span class="co"># print working directory</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>         <span class="co"># list files</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..      <span class="co"># move up one directory</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> lab  <span class="co"># make a folder</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> lab       <span class="co"># go into the newly created folder</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use <kbd>Tab</kbd> to autocomplete file and folder names.</p>
-</div>
-</div>
-</section>
-<section id="install-r-positron-or-rstudio-and-quarto" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="install-r-positron-or-rstudio-and-quarto"><span class="header-section-number">1.5</span> Install R, Positron (or RStudio), and Quarto</h2>
-<ol type="1">
-<li>Install R from <a href="https://CRAN.R-project.org">CRAN</a>.</li>
-<li>Install <a href="https://positron.posit.co">Positron</a> or <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a>.</li>
-<li>Install <a href="https://quarto.org/docs/get-started/">Quarto</a></li>
-<li>Verify:</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In RStudio, create a new Quarto document and render it.</p>
-</section>
-<section id="your-first-quarto-project" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="your-first-quarto-project"><span class="header-section-number">1.6</span> Your first Quarto project</h2>
-<p>From a terminal:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> dsda1010</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dsda1010</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit hw-template.qmd</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render hw-template.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Open the folder in RStudio and inspect the generated files.</p>
-</section>
-<section id="troubleshooting-checklist" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="troubleshooting-checklist"><span class="header-section-number">1.7</span> Troubleshooting checklist</h2>
+<section id="summaries" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="summaries"><span class="header-section-number">4.2.4</span> Summaries</h3>
 <ul>
-<li>PATH issues: can the terminal find <code>R</code> and <code>quarto</code>?<br>
+<li><code>summary(df)</code> – variable-by-variable summaries<br>
 </li>
-<li>Permissions: can you write to your project folder?<br>
+<li><code>sapply(df, class)</code> – variable types<br>
 </li>
-<li>Antivirus or VPN blocking downloads?</li>
+<li><code>sapply(df, function)</code> – apply any function to each column (e.g., mean, min, max)</li>
 </ul>
+</section>
+<section id="accessing-columns-and-rows" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="accessing-columns-and-rows"><span class="header-section-number">4.2.5</span> Accessing columns and rows</h3>
+<ul>
+<li><code>df$var</code> – access a column by name<br>
+</li>
+<li><code>df[ , "var"]</code> – same as above, but more general<br>
+</li>
+<li><code>df[1:5, ]</code> – first five rows<br>
+</li>
+<li><code>df[ , 1:3]</code> – first three columns</li>
+</ul>
+</section>
+<section id="subsetting-and-filtering" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="subsetting-and-filtering"><span class="header-section-number">4.2.6</span> Subsetting and filtering</h3>
+<ul>
+<li><code>subset(df, condition)</code> – filter rows by condition<br>
+</li>
+<li>With tidyverse: <code>filter(df, condition)</code>, <code>select(df, cols)</code></li>
+</ul>
+</section>
+<section id="checking-contents" class="level3" data-number="4.2.7">
+<h3 data-number="4.2.7" class="anchored" data-anchor-id="checking-contents"><span class="header-section-number">4.2.7</span> Checking contents</h3>
+<ul>
+<li><code>unique(df$var)</code> – unique values in a column<br>
+</li>
+<li><code>table(df$var)</code> – frequency counts<br>
+</li>
+<li><code>is.na(df)</code> – identify missing values</li>
+</ul>
+<p>Together, these functions give a toolkit for becoming familiar with any new dataset.</p>
+</section>
+</section>
+<section id="variable-types" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="variable-types"><span class="header-section-number">4.3</span> Variable Types</h2>
+<p>A crucial step in working with data is recognizing the types of variables. Variable types determine how we visualize, summarize, and analyze data.</p>
+<p>Variables are broadly divided into <strong>numerical</strong> and <strong>categorical</strong>. Numerical variables can be <em>continuous</em>, such as income or life expectancy, or <em>discrete</em>, such as the number of siblings or a graduation year. Categorical variables can be <em>nominal</em>, with no inherent order (for example, country or gender), or <em>ordinal</em>, with an order that matters (such as education levels or rankings). R also provides support for <strong>logical</strong> variables, representing true/false values, and <strong>date</strong> variables, with built-in functions for handling time information.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variables.png" class="img-fluid figure-img"></p>
+<figcaption>Variable types</figcaption>
+</figure>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: variable types in gapminder</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+</div>
+<p>Understanding variable types is not just theoretical. The type guides decisions about visualization, statistical summaries, and models. For instance, the mean is meaningful for a numerical variable but not for a nominal one.</p>
+</section>
+<section id="messy-data" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="messy-data"><span class="header-section-number">4.4</span> Messy Data</h2>
+<p>Real-world datasets are rarely clean. Messiness can arise from missing values, inconsistent formats, poorly named variables, or categories coded in multiple ways. Dates might appear in different styles, proper nouns might be inconsistently capitalized, and numeric values might be stored as text.</p>
+<p>Cleaning data involves identifying and fixing these problems. R provides many tools for this work. Missing values can be detected with <code>is.na()</code> and handled using functions such as <code>na.omit()</code>. Variable names can be adjusted with <code>rename()</code>. The <code>mutate()</code> function can change types or create new variables, and joins such as <code>left_join()</code> allow information from multiple tables to be combined.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: identify missing values in gapminder</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(gapminder))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>The tidyverse philosophy emphasizes keeping data in a “tidy” format, where each variable is a column, each observation is a row, and each type of observation forms its own table. Working toward tidy data makes later analysis and visualization much easier.</p>
+</section>
+<section id="putting-it-together" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="putting-it-together"><span class="header-section-number">4.5</span> Putting It Together</h2>
+<p>To see these ideas in practice, consider analyzing life expectancy in African countries. We might start by filtering the data to include only Africa, checking for missing values, and confirming variable types. Once the data are tidy, we can compute summaries and produce visualizations that reveal patterns over time.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>africa <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Africa"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(africa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Algeria","2":"Africa","3":"1952","4":"43.077","5":"9279525","6":"2449.008"},{"1":"Algeria","2":"Africa","3":"1957","4":"45.685","5":"10270856","6":"3013.976"},{"1":"Algeria","2":"Africa","3":"1962","4":"48.303","5":"11000948","6":"2550.817"},{"1":"Algeria","2":"Africa","3":"1967","4":"51.407","5":"12760499","6":"3246.992"},{"1":"Algeria","2":"Africa","3":"1972","4":"54.518","5":"14760787","6":"4182.664"},{"1":"Algeria","2":"Africa","3":"1977","4":"58.014","5":"17152804","6":"4910.417"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This example illustrates the general workflow: install and load packages, import data, understand variable types, clean messy data, and prepare the dataset for analysis.</p>
 
 
 </section>
@@ -917,13 +831,13 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preliminaries">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preliminaries</span>
+      <a href="./03-R.html" class="pagination-link" aria-label="Jump Start with R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-git.html" class="pagination-link" aria-label="Project Management with Git">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Project Management with Git</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -932,4 +846,4 @@ Tip
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/01-computing.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/04-import.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

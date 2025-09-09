@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Exercises – Data Science and Society with R</title>
+<title>5&nbsp; Exercises – Data Science and Society with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./03-R.html" rel="prev">
+<link href="./04-import.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,8 +157,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -160,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ex" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercises</span></span></h1>
+<h1 class="title"><span id="sec-ex" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></h1>
 </div>
 
 
@@ -193,11 +219,11 @@ ul.task-list li input[type="checkbox"] {
 <li>Identify your top five favorite commands in the Unix/Linux shell. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
 <li>Identify your top five favorite Git commands. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
 </ol></li>
-<li><p><strong>Do women promote different policies than men?</strong> (Based on Raghabendra Chattopadhyay and Esther Duflo. 2004. “Women as Policy Makers: Evidence from a Randomized Policy Experiment in India.” Econometrica, 72 (5): 1409–43.) We will analyze data from an experiment conducted in India, where villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in <a href="#tbl-india" class="quarto-xref">Table&nbsp;<span>4.1</span></a>, the dataset contains four variables.</p>
+<li><p><strong>Do women promote different policies than men?</strong> (Based on Raghabendra Chattopadhyay and Esther Duflo. 2004. “Women as Policy Makers: Evidence from a Randomized Policy Experiment in India.” Econometrica, 72 (5): 1409–43.) We will analyze data from an experiment conducted in India, where villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in <a href="#tbl-india" class="quarto-xref">Table&nbsp;<span>5.1</span></a>, the dataset contains four variables.</p>
 <div id="tbl-india" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4.1: Variables in <code>india.csv</code>
+Table&nbsp;5.1: Variables in <code>india.csv</code>
 </figcaption>
 <div aria-describedby="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -251,9 +277,29 @@ Table&nbsp;4.1: Variables in <code>india.csv</code>
 <li>For each variable in the dataset, identify the type of variable (character vs.&nbsp;numeric binary vs.&nbsp;numeric non-binary).</li>
 <li>How many observations are in the dataset? In other words, how many villages were part of this experiment? Additionally, provide a substantive answer.</li>
 </ol></li>
+<li><p><strong>Land of Opportunity in the US</strong> <span class="citation" data-cites="chetty2014where">Chetty et al. (<a href="references.html#ref-chetty2014where" role="doc-biblioref">2014</a>)</span> show that children’s chances of rising out of poverty in the U.S. vary sharply across commuting zones, with higher mobility in areas with less segregation, less inequality, stronger schools, more two-parent families, and greater social capital. The data and its variable dictionary are available as <code>data/Chetty_2014.csv</code> and <code>data/Chetty_2014_dict.csv</code>. Here we look into a subset of the data, exploring the relationship between economic mobility and CZ characteristics: household income per capita (<code>hhi_percap</code>). The mobility measure that you will use in this analysis captures the probability that a child born to a parent in quintile 1 moves to income quintile 5 as an adult (<code>prob_q1q5</code>).</p>
+<ol type="a">
+<li>Read and filter data to get data only for the 100 largest commuting zones (CZ). You will work with filtered data, <code>chetty_top100</code>, throughout this lab.</li>
+<li>Make a scatterplot with household income per capita (<code>hhi_percap</code>) on the x-axis, and mobility (<code>abs_mobility)</code> on the y-axis. (A) Describe the graph: what is the approximate range of the x-axis? (B) What is the approximate range of the y-axis? (C) Do you think there is a relationship between these two variables?</li>
+<li>Use color to represent the geographic region (region) to your scatterplot. (A) What patterns does this reveal? (B) Describe the distribution of the data, by region.</li>
+<li>Represent geographic region (region) on your scatterplot using shape instead of color. Compare the use of color vs shape to represent the region: what are the benefits and drawbacks of each?</li>
+<li>Going back to the graph you just made, which uses color to represent the geographic region, add another aesthetic to represent the size of the population (<code>pop_2000</code>, population from the 2000 Census). Describe any relationships between size and region.</li>
+<li>Split your plot into facets to display scatterplots of your data by region. (A) Compare this split plot to the combined plot earlier. Are there aspects of the relationship between <code>hhi_percap</code> and mobility that are easier to detect in the faceted plot than in the combined plot? (B) Which regions appear to have a relatively stronger relationship between <code>hhi_percap</code> and mobility?</li>
+<li>Add information on the census division (<code>division</code>) to your graph using the color aesthetic. (A) What does this reveal about divisional differences in the West?</li>
+<li>Create a plot of the relationship between <code>hhi_percap</code> and <code>abs_mobility</code> with two layers: (1) A scatterplot colored by region, and (2) a smooth fit chart with no standard error also colored by region. (A) What patterns does this illustrate in the data?</li>
+<li>Create a bar graph that displays the count of CZs by region and fill each bar using information on census division. What do you learn from this graph? (A) Make new bar graphs with position <code>dodge</code>. (B) Make new bar graphs with position <code>fill</code>.</li>
+</ol>
+<ol start="3" type="A">
+<li>What is the relative advantage of each of the three bar graphs?</li>
+</ol></li>
 </ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-chetty2014where" class="csl-entry" role="listitem">
+Chetty, R., Hendren, N., Kline, P., &amp; Saez, E. (2014). Where is the land of opportunity? The geography of intergenerational mobility in the <span>U</span>nited <span>S</span>tates. <em>Quarterly Journal of Economics</em>, <em>129</em>(4), 1553–1623. <a href="https://doi.org/10.1093/qje/qju022">https://doi.org/10.1093/qje/qju022</a>
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -657,8 +703,8 @@ Table&nbsp;4.1: Variables in <code>india.csv</code>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-R.html" class="pagination-link" aria-label="Jump Start with R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R</span></span>
+      <a href="./04-import.html" class="pagination-link" aria-label="First Impression with Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
