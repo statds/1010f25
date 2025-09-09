@@ -67,5 +67,53 @@
     a.  How many observations are in the dataset? In other words, how
 	many villages were part of this experiment? Additionally, provide
 	a substantive answer.
-
-	
+1. **Land of Opportunity in the US**
+  @chetty2014where show that children’s chances of rising out of
+  poverty in the U.S. vary sharply across commuting zones, with
+  higher mobility in areas with less segregation, less inequality,
+  stronger schools, more two-parent families, and greater social
+  capital. The data and its variable dictionary are available as
+  `data/Chetty_2014.csv` and `data/Chetty_2014_dict.csv`.
+  Here we look into a subset of the data, exploring the
+  relationship between economic mobility and CZ characteristics:
+  household income per capita (`hhi_percap`). The mobility measure
+  that you will use in this analysis captures the probability that a child
+  born to a parent in quintile 1 moves to income quintile 5 as an
+  adult (`prob_q1q5`).
+    a.  Read and filter data to get data only for the 100 largest
+    commuting zones (CZ). You will work with filtered data,
+  `chetty_top100`, throughout this lab.
+    a.   Make a scatterplot with household income per capita
+    (`hhi_percap`) on the x-axis, and mobility (`abs_mobility)` on the
+    y-axis. (A) Describe the graph: what is the approximate range of
+    the  x-axis? (B) What is the approximate range of the y-axis? (C)
+    Do you think there is a relationship between these two variables? 
+	  a.   Use color to represent the geographic region (region) to your
+    scatterplot. (A) What patterns does this reveal? (B) Describe the
+    distribution of the data, by region.
+    a.  Represent geographic region (region) on your scatterplot using
+    shape instead of color. Compare the use of color vs shape to
+    represent the region: what are the benefits and drawbacks of each?
+    a.  Going back to the graph you just made, which uses
+    color to represent the geographic region, add another aesthetic to
+    represent the size of the population (`pop_2000`, population from the
+    2000 Census). Describe any relationships between size and region.
+    a.  Split your plot into facets to display scatterplots of your
+    data by region. (A) Compare this split plot to the combined plot 
+    earlier. Are there aspects of the relationship between 
+    `hhi_percap` and mobility that are easier to detect in the faceted
+    plot than in the combined plot? (B) Which regions appear to have
+    a relatively stronger relationship between `hhi_percap` and mobility?
+    a.  Add information on the census division (`division`) to your
+    graph using the color aesthetic. (A) What does this reveal about
+    divisional differences in the West?
+    a.  Create a plot of the relationship between `hhi_percap` and
+    `abs_mobility` with two layers: (1) A scatterplot colored by
+    region, and (2) a smooth fit chart with no standard error also
+    colored by region. (A) What patterns does this illustrate in
+    the data?
+    a.  Create a bar graph that displays the count of CZs by region
+    and fill each bar using information on census division. What
+    do you learn from this graph? (A) Make new bar graphs with 
+    position `dodge`. (B) Make new bar graphs with position `fill`.
+    (C) What is the relative advantage of each of the three bar graphs?
