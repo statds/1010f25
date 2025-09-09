@@ -173,3 +173,5 @@ censusAPIkey.txt
 gmapKey.txt
 
 .DS_Store
+
+.Rhistory
