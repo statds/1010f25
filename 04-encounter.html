@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jason Byers and Jun Yan">
 
-<title>Data Science and Society with R</title>
+<title>4&nbsp; First Impression with Data – Data Science and Society with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,27 +20,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,7 +65,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-computing.html" rel="next">
+<link href="./exercises.html" rel="next">
+<link href="./03-R.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +104,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -102,7 +119,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preliminaries</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-encounter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,7 +150,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preliminaries</span></a>
   </div>
 </li>
@@ -157,7 +174,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-encounter.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-encounter.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></span></a>
   </div>
 </li>
@@ -183,36 +200,26 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries">Preliminaries</a>
-  <ul class="collapse">
-  <li><a href="#sources-at-github" id="toc-sources-at-github" class="nav-link" data-scroll-target="#sources-at-github">Sources at GitHub</a></li>
-  <li><a href="#adapting-to-rapid-skill-acquisition" id="toc-adapting-to-rapid-skill-acquisition" class="nav-link" data-scroll-target="#adapting-to-rapid-skill-acquisition">Adapting to Rapid Skill Acquisition</a></li>
-  <li><a href="#course-tools" id="toc-course-tools" class="nav-link" data-scroll-target="#course-tools">Course Tools</a></li>
-  <li><a href="#policies-syllabus" id="toc-policies-syllabus" class="nav-link" data-scroll-target="#policies-syllabus">Policies &amp; Syllabus</a></li>
-  <li><a href="#schedule-and-readings" id="toc-schedule-and-readings" class="nav-link" data-scroll-target="#schedule-and-readings">Schedule and Readings</a></li>
-  </ul></li>
+  <li><a href="#r-packages-and-data" id="toc-r-packages-and-data" class="nav-link active" data-scroll-target="#r-packages-and-data"><span class="header-section-number">4.1</span> R Packages and Data</a></li>
+  <li><a href="#exploring-data-frames-in-r" id="toc-exploring-data-frames-in-r" class="nav-link" data-scroll-target="#exploring-data-frames-in-r"><span class="header-section-number">4.2</span> Exploring Data Frames in R</a></li>
+  <li><a href="#variable-types" id="toc-variable-types" class="nav-link" data-scroll-target="#variable-types"><span class="header-section-number">4.3</span> Variable Types</a></li>
+  <li><a href="#messy-data" id="toc-messy-data" class="nav-link" data-scroll-target="#messy-data"><span class="header-section-number">4.4</span> Messy Data</a></li>
+  <li><a href="#putting-it-together" id="toc-putting-it-together" class="nav-link" data-scroll-target="#putting-it-together"><span class="header-section-number">4.5</span> Putting It Together</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/04-encounter.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science and Society with R</h1>
-<p class="subtitle lead">DSDA/STAT 1010 - Quarto Book</p>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Impression with Data</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jason Byers and Jun Yan </p>
-          </div>
-  </div>
     
   
     
@@ -223,100 +230,203 @@ div.csl-indent {
 </header>
 
 
-<section id="preliminaries" class="level1 unnumbered">
-<h1 class="unnumbered">Preliminaries</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="r-packages-and-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="r-packages-and-data"><span class="header-section-number">4.1</span> R Packages and Data</h2>
+<p>R is an open-source language, widely used in data science. One of its greatest strengths is the ecosystem of packages developed by the community. These packages make it easier to perform tasks such as importing data, cleaning it, and creating visualizations.</p>
+<p>Two sets of packages will be central for us. Package <strong>tidyverse</strong> provides a coherent framework for data wrangling and visualization. The <strong>gapminder</strong> package offers a dataset on life expectancy, GDP per capita, and population across countries and years, which will serve as a running example in our practice.</p>
+<p>If packages are not already installed, we can add them to our system with <code>install.packages()</code>. Installation is needed only once, but packages must be loaded every time we start a new R session.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="callout-title-container flex-fill">
-Tip
+<p>Once installed, packages are made available in a session by loading them with <code>library()</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>After loading a dataset, it is good practice to examine its structure. Functions such as <code>str()</code> and <code>summary()</code> provide a quick overview of variable types, sample values, and ranges.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)
+ $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ year     : int [1:1704] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+ $ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...
+ $ pop      : int [1:1704] 8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+ $ gdpPercap: num [1:1704] 779 821 853 836 740 ...</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        country        continent        year         lifeExp     
+ Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+ Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+ Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+ Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+ Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+ Australia  :  12                  Max.   :2007   Max.   :82.60  
+ (Other)    :1632                                                
+      pop              gdpPercap       
+ Min.   :6.001e+04   Min.   :   241.2  
+ 1st Qu.:2.794e+06   1st Qu.:  1202.1  
+ Median :7.024e+06   Median :  3531.8  
+ Mean   :2.960e+07   Mean   :  7215.3  
+ 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  
+ Max.   :1.319e+09   Max.   :113523.1  
+                                       </code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Welcome!</strong> This Quarto book hosts all lecture notes, in-class activities, and weekly reading for DSDA/STAT 1010. It is designed for first-year students with no prerequisites.</p>
-</div>
-</div>
-<p>The notes were developed with Quarto; for details about Quarto, visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-<p>This book is free and is licensed under a <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License</a>.</p>
-<section id="sources-at-github" class="level2">
-<h2 class="anchored" data-anchor-id="sources-at-github">Sources at GitHub</h2>
-<p>These lecture notes for STAT/DSDA 1010 in Fall 2025 are developed by Professor Jun Yan, with help from generative AI and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our GitHub repository at <a href="https://github.com/statds/1010f25" class="uri">https://github.com/statds/1010f25</a>.</p>
-<p>Students are welcome to contribute to the lecture notes by submitting pull requests to our GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
 </section>
-<section id="adapting-to-rapid-skill-acquisition" class="level2">
-<h2 class="anchored" data-anchor-id="adapting-to-rapid-skill-acquisition">Adapting to Rapid Skill Acquisition</h2>
-<p>In this course, students are expected to rapidly acquire new skills, a critical aspect of data science. To emphasize this, consider this insightful quote from <span class="citation" data-cites="vanderplas2016python">VanderPlas (<a href="references.html#ref-vanderplas2016python" role="doc-biblioref">2016</a>)</span>:</p>
-<blockquote class="blockquote">
-<p>When a technologically-minded person is asked to help a friend, family member, or colleague with a computer problem, most of the time it’s less a matter of knowing the answer as much as knowing how to quickly find an unknown answer. In data science it’s the same: searchable web resources such as online documentation, mailing-list threads, and StackOverflow answers contain a wealth of information, even (especially?) if it is a topic you’ve found yourself searching before. Being an effective practitioner of data science is less about memorizing the tool or command you should use for every possible situation, and more about learning to effectively find the information you don’t know, whether through a web search engine or another means.</p>
-</blockquote>
-<p>This quote captures the essence of what we aim to develop in our students: the ability to swiftly navigate and utilize the vast resources available to solve complex problems in data science. Examples tasks are: install needed software (or even hardware); search and find solutions to encountered problems.</p>
-</section>
-<section id="course-tools" class="level2">
-<h2 class="anchored" data-anchor-id="course-tools">Course Tools</h2>
+<section id="exploring-data-frames-in-r" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="exploring-data-frames-in-r"><span class="header-section-number">4.2</span> Exploring Data Frames in R</h2>
+<p>Once data are loaded, the next step is to <strong>explore and understand the dataset</strong>. A data frame (or tibble, in tidyverse) is the standard format for rectangular data. R provides many built-in functions to examine, summarize, and manipulate data frames.</p>
+<section id="structure-and-dimensions" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="structure-and-dimensions"><span class="header-section-number">4.2.1</span> Structure and dimensions</h3>
 <ul>
-<li><strong>R &amp; RStudio</strong> for analysis</li>
-<li><strong>Quarto</strong> for reproducible documents and dashboards</li>
-<li><strong>Git &amp; GitHub</strong> for version control and project management</li>
-<li><strong>Command line</strong> for automation and efficiency</li>
+<li><code>dim(df)</code> – number of rows and columns<br>
+</li>
+<li><code>nrow(df)</code>, <code>ncol(df)</code> – number of rows or columns separately<br>
+</li>
+<li><code>str(df)</code> – internal structure (types, first few values)<br>
+</li>
+<li><code>glimpse(df)</code> (from dplyr) – a cleaner version of <code>str</code></li>
 </ul>
 </section>
-<section id="policies-syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="policies-syllabus">Policies &amp; Syllabus</h2>
-<p>See the course syllabus on HuskyCT.</p>
-<p>Key reminders: academic integrity, no AI-generated text in graded submissions, and professional email etiquette.</p>
-<section id="grading-rubics" class="level3">
-<h3 class="anchored" data-anchor-id="grading-rubics">Grading Rubics</h3>
-<p><strong>Baseline (C level work)</strong></p>
+<section id="column-names-and-metadata" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="column-names-and-metadata"><span class="header-section-number">4.2.2</span> Column names and metadata</h3>
 <ul>
-<li>Your <code>.qmd</code> file knits to HTML without errors.</li>
-<li>You answer questions correctly but do not use complete sentences.</li>
-<li>There are typos and ‘junk code’ throughout the document.</li>
-<li>You do not put much thought or effort into the reflection answers.</li>
-<li>You do not follow the good styles in using R, Quarto, and Git.</li>
-</ul>
-<p><strong>Average (B level work)</strong></p>
-<ul>
-<li>You use complete sentences to answer questions.</li>
-<li>You attempt every exercise/question.</li>
-</ul>
-<p><strong>Advanced (A level work)</strong></p>
-<ul>
-<li>Your code is simple and concise.</li>
-<li>Unnecessary messages from R are hidden from being displayed in the HTML.</li>
-<li>Your document is typo-free.</li>
-<li>You practice all the good styles of using R, Quarto, and Git.</li>
-<li>At the discretion of the instructor, you give exceptionally thoughtful or insightful responses.</li>
+<li><code>names(df)</code> or <code>colnames(df)</code> – list column names<br>
+</li>
+<li><code>rownames(df)</code> – list row names (rarely used in tidy data)</li>
 </ul>
 </section>
+<section id="first-and-last-rows" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="first-and-last-rows"><span class="header-section-number">4.2.3</span> First and last rows</h3>
+<ul>
+<li><code>head(df)</code> – first six rows<br>
+</li>
+<li><code>tail(df)</code> – last six rows</li>
+</ul>
 </section>
-<section id="schedule-and-readings" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-and-readings">Schedule and Readings</h2>
-<ol type="1">
-<li>Computing environment
+<section id="summaries" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="summaries"><span class="header-section-number">4.2.4</span> Summaries</h3>
 <ul>
-<li>R4DS Ch 28-29</li>
-<li>HGR Ch 20-23</li>
-</ul></li>
-<li>Jump start with R
+<li><code>summary(df)</code> – variable-by-variable summaries<br>
+</li>
+<li><code>sapply(df, class)</code> – variable types<br>
+</li>
+<li><code>sapply(df, function)</code> – apply any function to each column (e.g., mean, min, max)</li>
+</ul>
+</section>
+<section id="accessing-columns-and-rows" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="accessing-columns-and-rows"><span class="header-section-number">4.2.5</span> Accessing columns and rows</h3>
 <ul>
-<li>R4DS Ch 4-8; Ch 20-24</li>
-</ul></li>
-<li>Visualization
+<li><code>df$var</code> – access a column by name<br>
+</li>
+<li><code>df[ , "var"]</code> – same as above, but more general<br>
+</li>
+<li><code>df[1:5, ]</code> – first five rows<br>
+</li>
+<li><code>df[ , 1:3]</code> – first three columns</li>
+</ul>
+</section>
+<section id="subsetting-and-filtering" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="subsetting-and-filtering"><span class="header-section-number">4.2.6</span> Subsetting and filtering</h3>
 <ul>
-<li>R4DS Ch 1; Ch 9; Ch 11</li>
-<li><a href="https://www.data-to-viz.com/">Data visualization in R</a></li>
-</ul></li>
-</ol>
+<li><code>subset(df, condition)</code> – filter rows by condition<br>
+</li>
+<li>With tidyverse: <code>filter(df, condition)</code>, <code>select(df, cols)</code></li>
+</ul>
+</section>
+<section id="checking-contents" class="level3" data-number="4.2.7">
+<h3 data-number="4.2.7" class="anchored" data-anchor-id="checking-contents"><span class="header-section-number">4.2.7</span> Checking contents</h3>
+<ul>
+<li><code>unique(df$var)</code> – unique values in a column<br>
+</li>
+<li><code>table(df$var)</code> – frequency counts<br>
+</li>
+<li><code>is.na(df)</code> – identify missing values</li>
+</ul>
+<p>Together, these functions give a toolkit for becoming familiar with any new dataset.</p>
+</section>
+</section>
+<section id="variable-types" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="variable-types"><span class="header-section-number">4.3</span> Variable Types</h2>
+<p>A crucial step in working with data is recognizing the types of variables. Variable types determine how we visualize, summarize, and analyze data.</p>
+<p>Variables are broadly divided into <strong>numerical</strong> and <strong>categorical</strong>. Numerical variables can be <em>continuous</em>, such as income or life expectancy, or <em>discrete</em>, such as the number of siblings or a graduation year. Categorical variables can be <em>nominal</em>, with no inherent order (for example, country or gender), or <em>ordinal</em>, with an order that matters (such as education levels or rankings). R also provides support for <strong>logical</strong> variables, representing true/false values, and <strong>date</strong> variables, with built-in functions for handling time information.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variables.png" class="img-fluid figure-img"></p>
+<figcaption>Variable types</figcaption>
+</figure>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: variable types in gapminder</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+</div>
+<p>Understanding variable types is not just theoretical. The type guides decisions about visualization, statistical summaries, and models. For instance, the mean is meaningful for a numerical variable but not for a nominal one.</p>
+</section>
+<section id="messy-data" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="messy-data"><span class="header-section-number">4.4</span> Messy Data</h2>
+<p>Real-world datasets are rarely clean. Messiness can arise from missing values, inconsistent formats, poorly named variables, or categories coded in multiple ways. Dates might appear in different styles, proper nouns might be inconsistently capitalized, and numeric values might be stored as text.</p>
+<p>Cleaning data involves identifying and fixing these problems. R provides many tools for this work. Missing values can be detected with <code>is.na()</code> and handled using functions such as <code>na.omit()</code>. Variable names can be adjusted with <code>rename()</code>. The <code>mutate()</code> function can change types or create new variables, and joins such as <code>left_join()</code> allow information from multiple tables to be combined.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: identify missing values in gapminder</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(gapminder))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>The tidyverse philosophy emphasizes keeping data in a “tidy” format, where each variable is a column, each observation is a row, and each type of observation forms its own table. Working toward tidy data makes later analysis and visualization much easier.</p>
+</section>
+<section id="putting-it-together" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="putting-it-together"><span class="header-section-number">4.5</span> Putting It Together</h2>
+<p>To see these ideas in practice, consider analyzing life expectancy in African countries. We might start by filtering the data to include only Africa, checking for missing values, and confirming variable types. Once the data are tidy, we can compute summaries and produce visualizations that reveal patterns over time.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>africa <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Africa"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(africa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Algeria","2":"Africa","3":"1952","4":"43.077","5":"9279525","6":"2449.008"},{"1":"Algeria","2":"Africa","3":"1957","4":"45.685","5":"10270856","6":"3013.976"},{"1":"Algeria","2":"Africa","3":"1962","4":"48.303","5":"11000948","6":"2550.817"},{"1":"Algeria","2":"Africa","3":"1967","4":"51.407","5":"12760499","6":"3246.992"},{"1":"Algeria","2":"Africa","3":"1972","4":"54.518","5":"14760787","6":"4182.664"},{"1":"Algeria","2":"Africa","3":"1977","4":"58.014","5":"17152804","6":"4910.417"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This example illustrates the general workflow: install and load packages, import data, understand variable types, clean messy data, and prepare the dataset for analysis.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-vanderplas2016python" class="csl-entry" role="listitem">
-VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential tools for working with data</em>. O’Reilly Media, Inc.
-</div>
-</div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -721,10 +831,13 @@ VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./03-R.html" class="pagination-link" aria-label="Jump Start with R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Jump Start with R</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-computing.html" class="pagination-link" aria-label="Setting up Computing Environment">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Setting up Computing Environment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -733,4 +846,4 @@ VanderPlas, J. (2016). <em>Python data science handbook: <span>E</span>ssential 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/04-encounter.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
