@@ -18,11 +18,12 @@
     a.  Render your homework into an HTML file.
     a.  Print the HTML file into a pdf file and put it into the
       release of this homework assignment.
+
 1. **Getting familiar with command line interface**
-   The command line interface (CLI) is widely used among computing
-   professionals, even though graphical user interfaces (GUI) are more
-   common for everyday users. Be clear and concise in your
-   explanations. Provide short examples if you think they will help
+  The command line interface (CLI) is widely used among computing
+  professionals, even though graphical user interfaces (GUI) are more
+  common for everyday users. Be clear and concise in your
+  explanations. Provide short examples if you think they will help
    illustrate your points.
     a.  Research and explain why many professionals prefer using the
    CLI over a GUI.  Consider aspects such as efficiency, automation,
@@ -33,14 +34,17 @@
     a. Identify your  top five favorite Git commands. For each
    command, explain what it does. If there is an option/flag you found
    particularly useful, describe it.
+
 1. **Do women promote different policies than men?**
-  (Based on Raghabendra Chattopadhyay and Esther Duflo. 2004. “Women
-  as Policy Makers: Evidence from a Randomized Policy Experiment in
-  India." Econometrica, 72 (5): 1409–43.)
-  We will analyze data from an experiment conducted in India, where
-  villages were randomly assigned to have a female council head. The
-  dataset is in the source of the class notes  “data/india.csv”.  As
-  shown in @tbl-india, the dataset contains four variables.
+   @chattopadhyay2004women studied whether female policymakers make
+   different choices than male policymakers by exploiting a unique
+   natural experiment in India. India’s 1993 constitutional amendment
+   required that one-third of village council head positions
+   (pradhans) be randomly reserved for women, creating a setting where
+   the assignment of female leaders was exogenous. In the data here,
+   villages were randomly assigned to have a female council head. The
+   dataset is in the source of the class notes  “data/india.csv”.  As
+   shown in @tbl-india, the dataset contains four variables.
   
    | variable     | description                                                                 |
    |--------------|-----------------------------------------------------------------------------|
@@ -67,6 +71,7 @@
     a.  How many observations are in the dataset? In other words, how
 	many villages were part of this experiment? Additionally, provide
 	a substantive answer.
+
 1. **Land of Opportunity in the US**
   @chetty2014where show that children’s chances of rising out of
   poverty in the U.S. vary sharply across commuting zones, with
