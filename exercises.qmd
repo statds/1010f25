@@ -122,3 +122,45 @@
     do you learn from this graph? (A) Make new bar graphs with 
     position `dodge`. (B) Make new bar graphs with position `fill`.
     (C) What is the relative advantage of each of the three bar graphs?
+
+1. **Connecticut Schools**
+  Data on schools from the Common Core of Data (CCD) are collected by the
+  National Center for Education Statistics. Information about the CCD
+  can be found [here](https://nces.ed.gov/ccd/pubschuniv.asp).
+  We are working with a subset of the 2013-14 dataset,
+  `data/ct_schools` in the classnotes repo. A variable
+  codebook for the CCD, which will explain what each column represents
+  in the data file is located in the `flat file` in the record layout
+  column and 2013-14 row.
+    a.  Load the appropriate packages and load the data.
+    a.  Data manipulation.
+        i.   Make a new variable `sch_type` that has the value
+  `Charter`,  `Magnet` or `TPS`, to specify if the school is a
+  charter, magnet or  traditional public school. 
+        i.  How many schools of each of these three types are in our
+  area? 
+        i.  Make a table that show the number of schools of each of
+  the three school types that are missing data for free lunch. 
+    a.  Descriptives.
+        i.  How many schools are elementary schools? Middle schools?
+  High schools? Other? Missing?
+        i.  How many schools are eligible for Title I status?
+  Summarize the count of schools in each category	 
+    a. Racial composition.
+        i. Create new variables that compute the percentage of
+  students who are Black, White, Hispanic, Asian or another race (call
+  this variable "other"), and the percentage of students receiving
+  free OR reduced price lunch.
+        i. Visualize these data to see the variability of each of
+  these variables (Hint: Use `geom_histogram`).
+    a.  Visualize the variation in the percent of students receiving
+  free lunch (frelch) for magnet schools, TPS, and charter schools
+  (Hint: Use `geom_boxplot`).
+    a.  Visualize the variation in the percent of students of each
+  race and ethnicity in the data file (Black, White, Hispanic, Asian
+  and Other) for each of the type of schools (magnet, TPS and
+  charter).
+    a.  With more R skills what types of questions could you answer
+  using this dataset?
+    a.  What are some questions you have about this dataset? What
+  information would you add to the dataset, if you could?
