@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -206,21 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6</span> Introduction</a></li>
-  <li><a href="#base-r-graphics-plot" id="toc-base-r-graphics-plot" class="nav-link" data-scroll-target="#base-r-graphics-plot"><span class="header-section-number">7</span> Base R Graphics: <code>plot()</code></a>
-  <ul class="collapse">
-  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot"><span class="header-section-number">7.1</span> Scatterplot</a></li>
-  <li><a href="#line-plot" id="toc-line-plot" class="nav-link" data-scroll-target="#line-plot"><span class="header-section-number">7.2</span> Line plot</a></li>
-  </ul></li>
-  <li><a href="#from-ad-hoc-to-grammar-of-graphics" id="toc-from-ad-hoc-to-grammar-of-graphics" class="nav-link" data-scroll-target="#from-ad-hoc-to-grammar-of-graphics"><span class="header-section-number">8</span> From Ad Hoc to Grammar of Graphics</a></li>
-  <li><a href="#case-study-fixing-misleading-charts" id="toc-case-study-fixing-misleading-charts" class="nav-link" data-scroll-target="#case-study-fixing-misleading-charts"><span class="header-section-number">9</span> Case Study: Fixing Misleading Charts</a>
-  <ul class="collapse">
-  <li><a href="#example-1-truncated-bar-chart" id="toc-example-1-truncated-bar-chart" class="nav-link" data-scroll-target="#example-1-truncated-bar-chart"><span class="header-section-number">9.1</span> Example 1: Truncated bar chart</a></li>
-  <li><a href="#example-2-straw-poll-graphic" id="toc-example-2-straw-poll-graphic" class="nav-link" data-scroll-target="#example-2-straw-poll-graphic"><span class="header-section-number">9.2</span> Example 2: Straw poll graphic</a></li>
-  <li><a href="#example-3-donut-chart" id="toc-example-3-donut-chart" class="nav-link" data-scroll-target="#example-3-donut-chart"><span class="header-section-number">9.3</span> Example 3: Donut chart</a></li>
-  </ul></li>
-  <li><a href="#ggplot2-basics-and-your-original-chunks" id="toc-ggplot2-basics-and-your-original-chunks" class="nav-link" data-scroll-target="#ggplot2-basics-and-your-original-chunks"><span class="header-section-number">10</span> <code>ggplot2</code> Basics and Your Original Chunks</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11</span> Summary</a></li>
+  <li><a href="#base-r-graphics-plot" id="toc-base-r-graphics-plot" class="nav-link active" data-scroll-target="#base-r-graphics-plot"><span class="header-section-number">5.1</span> Base R Graphics: <code>plot()</code></a></li>
+  <li><a href="#ggplot2-basics-and-your-original-chunks" id="toc-ggplot2-basics-and-your-original-chunks" class="nav-link" data-scroll-target="#ggplot2-basics-and-your-original-chunks"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics and Your Original Chunks</a></li>
+  <li><a href="#misleading-charts" id="toc-misleading-charts" class="nav-link" data-scroll-target="#misleading-charts"><span class="header-section-number">5.3</span> Misleading Charts</a></li>
+  <li><a href="#good-practice" id="toc-good-practice" class="nav-link" data-scroll-target="#good-practice"><span class="header-section-number">5.4</span> Good Practice</a></li>
+  <li><a href="#in-class-example" id="toc-in-class-example" class="nav-link" data-scroll-target="#in-class-example"><span class="header-section-number">5.5</span> In-Class Example</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.6</span> Summary</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/05-visual.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -246,20 +257,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Introduction</h1>
 <p>Data visualization is one of the most powerful tools in the data scientist’s toolbox. Visuals allow us to quickly summarize complex data, spot trends and outliers, and communicate results to both technical and non-technical audiences. A good visualization can illuminate patterns that might remain hidden in tables or numerical summaries, while a poor visualization can obscure the truth or even mislead. In this chapter, we explore both base R graphics and the <code>ggplot2</code> package, emphasizing good practices and illustrating common pitfalls. We will also critique real world examples of misleading charts and learn how to improve them.</p>
-</section>
-<section id="base-r-graphics-plot" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Base R Graphics: <code>plot()</code></h1>
+<section id="base-r-graphics-plot" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="base-r-graphics-plot"><span class="header-section-number">5.1</span> Base R Graphics: <code>plot()</code></h2>
 <p>R has a built-in graphics system that allows us to create plots quickly. The <code>plot()</code> function is versatile: depending on the type of data it is given, it can produce scatterplots, line plots, or even factor-based displays. This makes <code>plot()</code> an excellent starting point for beginners.</p>
-<section id="scatterplot" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">7.1</span> Scatterplot</h2>
+<section id="scatterplot" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">5.1.1</span> Scatterplot</h3>
 <p>Scatterplots display the relationship between two continuous variables. In the example below, we investigate how car weight relates to fuel efficiency using the built-in <code>mtcars</code> dataset.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## simple scatter using built-in `mtcars`</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### simple scatter using built-in `mtcars`</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Fuel efficiency vs. weight"</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Weight (1000 lbs)"</span>, <span class="at">ylab =</span> <span class="st">"MPG"</span>,</span>
@@ -274,8 +282,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="line-plot" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="line-plot"><span class="header-section-number">7.2</span> Line plot</h2>
+<section id="line-plot" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="line-plot"><span class="header-section-number">5.1.2</span> Line plot</h3>
 <p>When data are ordered, such as time series or physical measurements, line plots are appropriate. The following plot shows how pressure changes with temperature.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -310,35 +318,29 @@ Tip
 <p>Base R graphics are quick and convenient, but they can be inconsistent and limited when creating complex or publication-quality graphics. This motivates the use of a more systematic framework.</p>
 </section>
 </section>
-<section id="from-ad-hoc-to-grammar-of-graphics" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> From Ad Hoc to Grammar of Graphics</h1>
-<p>Although base R allows us to make plots quickly, its commands are not always consistent, and combining multiple layers can be challenging. This is where the <strong>Grammar of Graphics</strong> comes in. The grammar provides a consistent, layered approach: we specify the data, the aesthetic mappings, and the geometric objects (geoms) we want to draw. The <code>ggplot2</code> package implements this grammar, making it possible to build complex visualizations piece by piece. This framework emphasizes transparency and reproducibility: a plot can be read almost like a sentence that describes how the data are visualized.</p>
-</section>
-<section id="case-study-fixing-misleading-charts" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Case Study: Fixing Misleading Charts</h1>
-<p>Visualizations can be abused to mislead. It is important to learn how to critically assess charts we see in the media. The following real-world examples show common problems and better alternatives.</p>
-<section id="example-1-truncated-bar-chart" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="example-1-truncated-bar-chart"><span class="header-section-number">9.1</span> Example 1: Truncated bar chart</h2>
-<p>The chart on the left (from television) uses a truncated y-axis, making the decline from 77% to 65% appear far more dramatic than it really is. The corrected version on the right starts the axis at zero, giving a more truthful impression of the decline.</p>
-<p><img src="bad1.png" class="img-fluid" data-fig-cap="Original television graphic (left) vs corrected bars (right)."></p>
-</section>
-<section id="example-2-straw-poll-graphic" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="example-2-straw-poll-graphic"><span class="header-section-number">9.2</span> Example 2: Straw poll graphic</h2>
-<p>The campaign graphic on the left highlights one candidate with a larger bar, but the scale and ordering are inconsistent. On the right, we recreate the same data as a standard horizontal bar chart. Ordering the bars and scaling them correctly provides a much clearer comparison of candidates.</p>
-<p><img src="bad2.png" class="img-fluid" data-fig-cap="Campaign graphic (left) vs ordered, scaled bars (right)."></p>
-</section>
-<section id="example-3-donut-chart" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="example-3-donut-chart"><span class="header-section-number">9.3</span> Example 3: Donut chart</h2>
-<p>The donut chart below attempts to show candidate support in a primary. Although colorful, donut (and pie) charts make it difficult to compare values precisely. A simple bar chart provides clearer comparisons across categories.</p>
-<p><img src="bad3.png" class="img-fluid" data-fig-cap="Donuts/pies hinder comparison—prefer bars."></p>
-</section>
-</section>
-<section id="ggplot2-basics-and-your-original-chunks" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> <code>ggplot2</code> Basics and Your Original Chunks</h1>
-<p>We now shift to <code>ggplot2</code>, which implements the grammar of graphics in R. The syntax involves calling <code>ggplot()</code> with a dataset and aesthetic mappings (via <code>aes()</code>), then adding layers such as <code>geom_point()</code> or <code>geom_line()</code> with the <code>+</code> operator. Additional layers for smoothing, faceting, and themes give us rich control over the appearance of plots.</p>
-<p>Below we preserve all runnable/demo chunks from your original slides, now interwoven with explanations.</p>
-<section id="exploring-the-mpg-dataset" class="level3" data-number="10.0.1">
-<h3 data-number="10.0.1" class="anchored" data-anchor-id="exploring-the-mpg-dataset"><span class="header-section-number">10.0.1</span> Exploring the mpg dataset</h3>
+<section id="ggplot2-basics-and-your-original-chunks" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="ggplot2-basics-and-your-original-chunks"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics and Your Original Chunks</h2>
+<p>Although base R allows us to make plots quickly, its commands are not always consistent, and combining multiple layers can be challenging. This is where the <strong>Grammar of Graphics</strong> comes in <span class="citation" data-cites="wilkinson1999grammar">(<a href="references.html#ref-wilkinson1999grammar" role="doc-biblioref">Wilkinson, 1999</a>)</span>. The the strongest reason is that grammar teaches you to think systematically about how graphics are constructed, not just how to make a specific chart.</p>
+<p>That means instead of thinking “I want a scatterplot” or “I want a bar chart,” you think in terms of layers of grammar:</p>
+<ul>
+<li>Data: what dataset to use.</li>
+<li>Aesthetics: how variables map to visual properties (x, y, color, size, etc.).</li>
+<li>Geoms: what geometric objects to draw (points, lines, bars).</li>
+<li>Stats: statistical transformations (counts, smoothing, regression fits).</li>
+<li>Scales: how data values are translated into colors, axes, and sizes.</li>
+<li>Facets: how to split data into subplots for comparison.</li>
+<li>Themes: the non-data ink (fonts, grid lines, background).</li>
+</ul>
+<p>The <code>ggplot2</code>package <span class="citation" data-cites="wickham2016ggplot2">(<a href="references.html#ref-wickham2016ggplot2" role="doc-biblioref">Wickham, 2016</a>)</span> implements this grammar, making it possible to build complex visualizations piece by piece. Because of this structure, ggplot2 is:</p>
+<ul>
+<li>Consistent: once you know the grammar, you can build almost any plot without learning a new function each time.</li>
+<li>Extensible: the same framework supports extensions (e.g., gganimate, ggrepel, patchwork).</li>
+<li>Reproducible: code expresses the intent clearly, which is especially useful for teaching and communication.</li>
+</ul>
+<p>The syntax involves calling <code>ggplot()</code> with a dataset and aesthetic mappings (via <code>aes()</code>), then adding layers such as <code>geom_point()</code> or <code>geom_line()</code> with the <code>+</code> operator. Additional layers for smoothing, faceting, and themes give us rich control over the appearance of plots.</p>
+<p>For more syntax, see <a href="https://ggplot2.tidyverse.org/index.html#cheatsheet">ggplot Cheatsheet</a></p>
+<section id="exploring-the-mpg-dataset" class="level4" data-number="5.2.0.1">
+<h4 data-number="5.2.0.1" class="anchored" data-anchor-id="exploring-the-mpg-dataset"><span class="header-section-number">5.2.0.1</span> Exploring the mpg dataset</h4>
 <p>We begin by loading the tidyverse, which includes <code>ggplot2</code>, and looking at the <code>mpg</code> dataset.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -359,17 +361,15 @@ Tip
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mpg)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mpg)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>?mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mpg)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mpg)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>?mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The functions <code>glimpse()</code> and <code>View()</code> allow us to quickly inspect the structure of the dataset, while <code>?mpg</code> shows documentation.</p>
 </section>
-<section id="first-ggplot-calls" class="level3" data-number="10.0.2">
-<h3 data-number="10.0.2" class="anchored" data-anchor-id="first-ggplot-calls"><span class="header-section-number">10.0.2</span> First ggplot calls</h3>
+<section id="first-ggplot-calls" class="level4" data-number="5.2.0.2">
+<h4 data-number="5.2.0.2" class="anchored" data-anchor-id="first-ggplot-calls"><span class="header-section-number">5.2.0.2</span> First ggplot calls</h4>
 <p>Before plotting, we might check available geoms:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -379,194 +379,404 @@ Tip
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>?geom_line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="using-pipes" class="level4" data-number="5.2.0.3">
+<h4 data-number="5.2.0.3" class="anchored" data-anchor-id="using-pipes"><span class="header-section-number">5.2.0.3</span> Using pipes</h4>
+<p>Pipes make code easier to read by passing the result of one expression into the next. Instead of nesting functions, we can write a sequence of operations in the order we think about them. There are two main pipes in R: the <strong>base R pipe</strong> <code>|&gt;</code> (available since R 4.1) and the <strong>magrittr pipe</strong> <code>%&gt;%</code> (commonly used in the tidyverse).</p>
+<p>Both pipes take the left-hand side and feed it into the first argument of the right-hand side.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base R pipe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["manufacturer"],"name":[1],"type":["chr"],"align":["left"]},{"label":["model"],"name":[2],"type":["chr"],"align":["left"]},{"label":["displ"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[4],"type":["int"],"align":["right"]},{"label":["cyl"],"name":[5],"type":["int"],"align":["right"]},{"label":["trans"],"name":[6],"type":["chr"],"align":["left"]},{"label":["drv"],"name":[7],"type":["chr"],"align":["left"]},{"label":["cty"],"name":[8],"type":["int"],"align":["right"]},{"label":["hwy"],"name":[9],"type":["int"],"align":["right"]},{"label":["fl"],"name":[10],"type":["chr"],"align":["left"]},{"label":["class"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"audi","2":"a4","3":"1.8","4":"1999","5":"4","6":"auto(l5)","7":"f","8":"18","9":"29","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"1.8","4":"1999","5":"4","6":"manual(m5)","7":"f","8":"21","9":"29","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.0","4":"2008","5":"4","6":"manual(m6)","7":"f","8":"20","9":"31","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.0","4":"2008","5":"4","6":"auto(av)","7":"f","8":"21","9":"30","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.8","4":"1999","5":"6","6":"auto(l5)","7":"f","8":"16","9":"26","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.8","4":"1999","5":"6","6":"manual(m5)","7":"f","8":"18","9":"26","10":"p","11":"compact"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Magrittr pipe (needs library(magrittr) or tidyverse)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["manufacturer"],"name":[1],"type":["chr"],"align":["left"]},{"label":["model"],"name":[2],"type":["chr"],"align":["left"]},{"label":["displ"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[4],"type":["int"],"align":["right"]},{"label":["cyl"],"name":[5],"type":["int"],"align":["right"]},{"label":["trans"],"name":[6],"type":["chr"],"align":["left"]},{"label":["drv"],"name":[7],"type":["chr"],"align":["left"]},{"label":["cty"],"name":[8],"type":["int"],"align":["right"]},{"label":["hwy"],"name":[9],"type":["int"],"align":["right"]},{"label":["fl"],"name":[10],"type":["chr"],"align":["left"]},{"label":["class"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"audi","2":"a4","3":"1.8","4":"1999","5":"4","6":"auto(l5)","7":"f","8":"18","9":"29","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"1.8","4":"1999","5":"4","6":"manual(m5)","7":"f","8":"21","9":"29","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.0","4":"2008","5":"4","6":"manual(m6)","7":"f","8":"20","9":"31","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.0","4":"2008","5":"4","6":"auto(av)","7":"f","8":"21","9":"30","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.8","4":"1999","5":"6","6":"auto(l5)","7":"f","8":"16","9":"26","10":"p","11":"compact"},{"1":"audi","2":"a4","3":"2.8","4":"1999","5":"6","6":"manual(m5)","7":"f","8":"18","9":"26","10":"p","11":"compact"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 <p>We can now create a basic scatterplot of engine displacement vs highway mileage.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>This produces a scatterplot with <code>displ</code> on the x-axis and <code>hwy</code> on the y-axis. Swapping the variables simply flips the axes:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hwy, displ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hwy, displ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="building-layers" class="level3" data-number="10.0.3">
-<h3 data-number="10.0.3" class="anchored" data-anchor-id="building-layers"><span class="header-section-number">10.0.3</span> Building layers</h3>
+<section id="building-layers" class="level4" data-number="5.2.0.4">
+<h4 data-number="5.2.0.4" class="anchored" data-anchor-id="building-layers"><span class="header-section-number">5.2.0.4</span> Building layers</h4>
 <p>We can add additional layers. For example, combining points with a line layer:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(displ, hwy), <span class="at">color =</span> <span class="st">"tomato"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(displ, hwy), <span class="at">color =</span> <span class="st">"tomato"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="adding-aesthetics" class="level3" data-number="10.0.4">
-<h3 data-number="10.0.4" class="anchored" data-anchor-id="adding-aesthetics"><span class="header-section-number">10.0.4</span> Adding aesthetics</h3>
+<section id="adding-aesthetics" class="level4" data-number="5.2.0.5">
+<h4 data-number="5.2.0.5" class="anchored" data-anchor-id="adding-aesthetics"><span class="header-section-number">5.2.0.5</span> Adding aesthetics</h4>
 <p>Color can highlight categories such as car class:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="adding-smoothers" class="level3" data-number="10.0.5">
-<h3 data-number="10.0.5" class="anchored" data-anchor-id="adding-smoothers"><span class="header-section-number">10.0.5</span> Adding smoothers</h3>
+<section id="adding-smoothers" class="level4" data-number="5.2.0.6">
+<h4 data-number="5.2.0.6" class="anchored" data-anchor-id="adding-smoothers"><span class="header-section-number">5.2.0.6</span> Adding smoothers</h4>
 <p>A smoothing curve helps reveal overall trends.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(displ, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(displ, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Themes can alter the look of the plot:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="customization" class="level3" data-number="10.0.6">
-<h3 data-number="10.0.6" class="anchored" data-anchor-id="customization"><span class="header-section-number">10.0.6</span> Customization</h3>
+<section id="customization" class="level4" data-number="5.2.0.7">
+<h4 data-number="5.2.0.7" class="anchored" data-anchor-id="customization"><span class="header-section-number">5.2.0.7</span> Customization</h4>
 <p>We can set fixed aesthetics outside <code>aes()</code>:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Transparency can improve clarity:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="adding-regression-lines" class="level3" data-number="10.0.7">
-<h3 data-number="10.0.7" class="anchored" data-anchor-id="adding-regression-lines"><span class="header-section-number">10.0.7</span> Adding regression lines</h3>
+<section id="adding-regression-lines" class="level4" data-number="5.2.0.8">
+<h4 data-number="5.2.0.8" class="anchored" data-anchor-id="adding-regression-lines"><span class="header-section-number">5.2.0.8</span> Adding regression lines</h4>
 <p>We can fit smoothers with different methods:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="titles-labels-and-themes" class="level3" data-number="10.0.8">
-<h3 data-number="10.0.8" class="anchored" data-anchor-id="titles-labels-and-themes"><span class="header-section-number">10.0.8</span> Titles, labels, and themes</h3>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel efficiency vs. engine displacement"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Engine displacement (liters)"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Highway MPG"</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
-<section id="faceting" class="level3" data-number="10.0.9">
-<h3 data-number="10.0.9" class="anchored" data-anchor-id="faceting"><span class="header-section-number">10.0.9</span> Faceting</h3>
-<p>We can split data into subplots by categories.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="titles-labels-and-themes" class="level4" data-number="5.2.0.9">
+<h4 data-number="5.2.0.9" class="anchored" data-anchor-id="titles-labels-and-themes"><span class="header-section-number">5.2.0.9</span> Titles, labels, and themes</h4>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fuel efficiency vs. engine displacement"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Engine displacement (liters)"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Highway MPG"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="other-plot-types" class="level3" data-number="10.0.10">
-<h3 data-number="10.0.10" class="anchored" data-anchor-id="other-plot-types"><span class="header-section-number">10.0.10</span> Other plot types</h3>
-<p>Bar charts summarize categorical data:</p>
+<section id="faceting" class="level4" data-number="5.2.0.10">
+<h4 data-number="5.2.0.10" class="anchored" data-anchor-id="faceting"><span class="header-section-number">5.2.0.10</span> Faceting</h4>
+<p>We can split data into subplots by categories.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(class)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="other-plot-types" class="level4" data-number="5.2.0.11">
+<h4 data-number="5.2.0.11" class="anchored" data-anchor-id="other-plot-types"><span class="header-section-number">5.2.0.11</span> Other plot types</h4>
+<p>Bar charts summarize categorical data:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(class)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Histograms show distributions:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hwy)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hwy)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Density plots are another way to display distributions:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hwy)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(hwy)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
+<section id="other-ggplot-functions" class="level4" data-number="5.2.0.12">
+<h4 data-number="5.2.0.12" class="anchored" data-anchor-id="other-ggplot-functions"><span class="header-section-number">5.2.0.12</span> Other <code>ggplot</code> functions</h4>
+<ul>
+<li><code>coord_flip</code> flips the x and y axis to improve the readability of plots</li>
+<li><code>scales</code> change the formatting of x and y axes</li>
+<li><code>plotly</code> makes plots interactive; you can hover over points/lines for more information</li>
+<li><code>labs</code> allows you to add/edit a title, subtitle, a caption, and change the x and y axis labels</li>
+<li><code>gganimate</code> allows you to animate plots into gifs</li>
+</ul>
 </section>
-<section id="summary" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Summary</h1>
+</section>
+<section id="misleading-charts" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="misleading-charts"><span class="header-section-number">5.3</span> Misleading Charts</h2>
+<p>Visualizations can be abused to mislead. It is important to learn how to critically assess charts we see in the media. The following real-world examples show common problems and better alternatives.</p>
+<section id="example-1-truncated-bar-chart" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="example-1-truncated-bar-chart"><span class="header-section-number">5.3.1</span> Example 1: Truncated Bar Chart</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>approval <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2005</span>), <span class="at">percent =</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">65</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(approval<span class="sc">$</span>percent, <span class="at">names.arg =</span> approval<span class="sc">$</span>year,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">80</span>), <span class="at">col =</span> <span class="st">"tomato"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Approval Ratings (misleading)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(approval<span class="sc">$</span>percent, <span class="at">names.arg =</span> approval<span class="sc">$</span>year,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">col =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Approval Ratings (truthful)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-straw-poll-graphic" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="example-2-straw-poll-graphic"><span class="header-section-number">5.3.2</span> Example 2: Straw Poll Graphic</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>poll <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">candidate =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">support =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(poll<span class="sc">$</span>support, <span class="at">names.arg =</span> poll<span class="sc">$</span>candidate,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"purple"</span>),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Poll Results (misleading)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>poll <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(candidate, support), <span class="at">y =</span> support)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Poll Results (truthful)"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Candidate"</span>, <span class="at">y =</span> <span class="st">"Support (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="example-3-donut-vs-bar-chart" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="example-3-donut-vs-bar-chart"><span class="header-section-number">5.3.3</span> Example 3: Donut vs Bar Chart</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>shares <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>), <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">20</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>shares <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> value, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shares (donut, misleading)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>shares <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> value, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shares (bar chart)"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-visual_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pie charts (and donut charts, which are essentially pies with a hole in the middle) are widely criticized because humans are not good at accurately comparing angles or areas. Judgments based on angles are much less precise than those based on position or length. This makes pie charts poor at conveying quantitative comparisons, especially when slices are similar in size. Donut charts exacerbate the problem by removing the center, which eliminates a natural visual baseline (the full radius), making angle judgments even harder. For these reasons, most visualization experts recommend bar charts instead, where lengths aligned to a common baseline support more accurate comparisons.</p>
+</section>
+</section>
+<section id="good-practice" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="good-practice"><span class="header-section-number">5.4</span> Good Practice</h2>
+<section id="bad-plots" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="bad-plots"><span class="header-section-number">5.4.1</span> Bad Plots</h3>
+<ul>
+<li>Truncated axes exaggerate differences.<br>
+</li>
+<li>3D effects distort perception.<br>
+</li>
+<li>Pie/donut charts hinder comparisons.<br>
+</li>
+<li>Overplotting or excessive colors obscure patterns.<br>
+</li>
+<li>Inconsistent scales or ordering confuse the audience.</li>
+</ul>
+</section>
+<section id="good-plots" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="good-plots"><span class="header-section-number">5.4.2</span> Good Plots</h3>
+<ul>
+<li>Start bar charts at zero to preserve proportion.<br>
+</li>
+<li>Use simple, clear chart types.<br>
+</li>
+<li>Provide informative labels and titles.<br>
+</li>
+<li>Keep scales and colors consistent.<br>
+</li>
+<li>Avoid unnecessary clutter.</li>
+</ul>
+</section>
+</section>
+<section id="in-class-example" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="in-class-example"><span class="header-section-number">5.5</span> In-Class Example</h2>
+<p>Consider the data of <span class="citation" data-cites="chetty2014where">Chetty et al. (<a href="references.html#ref-chetty2014where" role="doc-biblioref">2014</a>)</span>.</p>
+<ol type="1">
+<li><p>Visualize the relationship between social capital and absolute mobility. Do you see a correlation? Is it what you expected from the <span class="citation" data-cites="chetty2014where">Chetty et al. (<a href="references.html#ref-chetty2014where" role="doc-biblioref">2014</a>)</span> study executive summary?</p></li>
+<li><p>Add an aesthetic to your graph to represent whether the CZ is urban or not.</p></li>
+<li><p>Separate urban and non-urban CZ’s into two separate plots.</p></li>
+<li><p>Add a smooth fit to each of your plots above. Experiment with adding the option <code>method="lm"</code> in your <code>geom_smooth</code>. What does this option do?</p></li>
+<li><p>Which variables in the chetty data frame are appropriate x variables for a bar graph?</p></li>
+<li><p>Make two separate bar graphs for two different x variables.</p></li>
+<li><p>Make two more bar graphs that display proportions rather than counts of your selected variables.</p></li>
+<li><p>Make a bar graph that lets you compare the number of urban and rural CZ’s in each of the four regions.</p></li>
+</ol>
+</section>
+<section id="summary" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.6</span> Summary</h2>
 <p>We have explored both base R plotting and the <code>ggplot2</code> grammar of graphics. Base R offers quick and simple plotting functions, but lacks consistency for more advanced tasks. <code>ggplot2</code> provides a flexible and layered system, allowing us to build complex visualizations step by step. By studying both good and bad visualizations, we learn not only how to make effective charts but also how to critically evaluate visuals we encounter in practice.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-chetty2014where" class="csl-entry" role="listitem">
+Chetty, R., Hendren, N., Kline, P., &amp; Saez, E. (2014). Where is the land of opportunity? The geography of intergenerational mobility in the <span>U</span>nited <span>S</span>tates. <em>Quarterly Journal of Economics</em>, <em>129</em>(4), 1553–1623. <a href="https://doi.org/10.1093/qje/qju022">https://doi.org/10.1093/qje/qju022</a>
+</div>
+<div id="ref-wickham2016ggplot2" class="csl-entry" role="listitem">
+Wickham, H. (2016). <em><span class="nocase">ggplot2</span>: Elegant graphics for data analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>
+</div>
+<div id="ref-wilkinson1999grammar" class="csl-entry" role="listitem">
+Wilkinson, L. (1999). <em>The grammar of graphics</em>. Springer-Verlag New York, Inc.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
