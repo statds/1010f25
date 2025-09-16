@@ -57,7 +57,7 @@ and limited when creating complex or publication-quality graphics. This
 motivates the use of a more systematic framework.
 
 
-## `ggplot2` Basics and Your Original Chunks
+## `ggplot2` Basics
 
 
 Although base R allows us to make plots quickly, its commands are not
@@ -104,7 +104,7 @@ Cheatsheet](https://ggplot2.tidyverse.org/index.html#cheatsheet)
 
 
 
-#### Exploring the mpg dataset
+### Exploring the mpg dataset
 
 We begin by loading the tidyverse, which includes `ggplot2`, and looking
 at the `mpg` dataset.
@@ -132,7 +132,7 @@ View(mpg)
 The functions `glimpse()` and `View()` allow us to quickly inspect the
 structure of the dataset, while `?mpg` shows documentation.
 
-#### First ggplot calls
+### First ggplot calls
 
 Before plotting, we might check available geoms:
 
@@ -145,7 +145,7 @@ Before plotting, we might check available geoms:
 ```
 
 
-#### Using pipes
+### Using pipes
 
 Pipes make code easier to read by passing the result of one expression
 into the next. Instead of nesting functions, we can write a sequence of
@@ -187,7 +187,7 @@ mpg |>
   geom_point(aes(hwy, displ))
 ```
 
-#### Building layers
+### Building layers
 
 We can add additional layers. For example, combining points with a line
 layer:
@@ -201,7 +201,7 @@ mpg %>%
   geom_line(aes(displ, hwy), color = "tomato")
 ```
 
-#### Adding aesthetics
+### Adding aesthetics
 
 Color can highlight categories such as car class:
 
@@ -213,7 +213,7 @@ mpg %>%
   geom_point(aes(displ, hwy, color = class))
 ```
 
-#### Adding smoothers
+### Adding smoothers
 
 A smoothing curve helps reveal overall trends.
 
@@ -238,7 +238,7 @@ mpg %>%
   theme_bw()
 ```
 
-#### Customization
+### Customization
 
 We can set fixed aesthetics outside `aes()`:
 
@@ -260,7 +260,7 @@ mpg %>%
   geom_point(size = 2, alpha = 0.8)
 ```
 
-#### Adding regression lines
+### Adding regression lines
 
 We can fit smoothers with different methods:
 
@@ -282,7 +282,7 @@ mpg %>%
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-#### Titles, labels, and themes
+### Titles, labels, and themes
 
 ```{r}
 #| eval: FALSE
@@ -298,7 +298,7 @@ mpg %>%
   theme_minimal()
 ```
 
-#### Faceting
+### Faceting
 
 We can split data into subplots by categories.
 
@@ -320,7 +320,7 @@ mpg %>%
   facet_grid(drv ~ cyl)
 ```
 
-#### Other plot types
+### Other plot types
 
 Bar charts summarize categorical data:
 
@@ -353,7 +353,7 @@ mpg %>%
 ```
 
 
-#### Other `ggplot` functions
+### Other `ggplot` functions
 
 -   `coord_flip` flips the x and y axis to improve the readability of plots
 -   `scales` change the formatting of x and y axes
