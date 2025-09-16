@@ -16,6 +16,7 @@ book:
     - 03-R.qmd
     - 04-encounter.qmd
     - 05-visual.qmd
+    - 06-transformation.qmd
     - exercises.qmd
     - references.qmd
 

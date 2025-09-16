@@ -1,0 +1,227 @@
+# Data Transformation
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE)
+```
+
+## Introduction
+
+Raw data are rarely ready for direct analysis. We often need to
+reshape, filter, or summarize before we can create meaningful plots
+or fit statistical models. The `tidyverse` provides a consistent
+grammar for these operations, with `dplyr` as its central package.
+
+In this chapter, we will learn the most important data transformation
+verbs. Each verb is a function that takes a data frame (or tibble)
+as the first argument, applies some transformation, and returns a
+new data frame.
+
+## Core `dplyr` Verbs
+
+The six most commonly used verbs are:
+
+- `filter()` — select rows based on conditions  
+- `arrange()` — reorder rows  
+- `select()` — choose columns  
+- `mutate()` — add or modify columns  
+- `group_by()` — define groups for analysis  
+- `summarise()` — collapse groups into summaries  
+
+All verbs follow the same pattern: the first argument is a data frame,
+and subsequent arguments describe transformations using column names.
+
+We will illustrate these verbs using the `nycflights13::flights`
+dataset.
+
+```{r}
+library(nycflights13)
+flights <- nycflights13::flights
+flights
+```
+
+### Filtering Rows with `filter()`
+
+The `filter()` function selects rows that satisfy logical conditions.
+
+```{r}
+flights |> filter(month == 1 & day == 1)
+```
+
+This gives only flights on January 1st. We can save the result:
+
+```{r}
+jan1 <- flights |> filter(month == 1 & day == 1)
+```
+
+Logical operators like `&` (and), `|` (or), and `!` (not) are often
+used, along with comparisons such as `==`, `!=`, `<`, and `>=`.
+
+#### Handling Missing Values
+
+Missing values (`NA`) require care. For example:
+
+```{r}
+stocks <- data.frame(
+  year   = c(2015, 2015, 2016, 2016),
+  qtr    = c(1, 2, 2, NA),
+  return = c(1.1, NA, 0.9, 2.0)
+)
+
+stocks |> filter(is.na(qtr) | is.na(return))
+stocks |> filter(!is.na(qtr) & !is.na(return))
+```
+
+### Reordering Rows with `arrange()`
+
+`arrange()` sorts rows by column values. Missing values are sorted last.
+
+```{r}
+flights |> arrange(year, month, day)
+```
+
+Descending order is done with `desc()`:
+
+```{r}
+flights |> arrange(desc(dep_delay))
+```
+
+### Selecting Columns with `select()`
+
+`select()` picks out specific columns. Useful helpers include `starts_with()`
+and `ends_with()`.
+
+```{r}
+flights |> select(year, month, day)
+flights |> select(starts_with("dep"))
+```
+
+Columns can also be renamed inline:
+
+```{r}
+flights |> select(tail = tailnum, everything())
+```
+
+### Creating New Columns with `mutate()`
+
+`mutate()` adds new variables or modifies existing ones.
+
+```{r}
+flights |> mutate(speed = distance / (air_time/60))
+```
+
+It is common to create multiple new variables at once:
+
+```{r}
+flights |> mutate(
+  gain = dep_delay - arr_delay,
+  hours = air_time / 60
+)
+```
+
+### Grouping and Summarizing
+
+`group_by()` defines groups of rows, and `summarise()` reduces
+each group to summary statistics.
+
+```{r}
+flights |>
+  group_by(month) |>
+  summarise(delay = mean(dep_delay, na.rm = TRUE))
+```
+
+Multiple grouping variables are possible:
+
+```{r}
+flights |>
+  group_by(carrier, month) |>
+  summarise(
+    delay = mean(dep_delay, na.rm = TRUE),
+    n = n()
+  )
+```
+
+Ungrouping is sometimes useful:
+
+```{r}
+flights |>
+  group_by(month) |>
+  summarise(delay = mean(dep_delay, na.rm = TRUE)) |>
+  ungroup()
+```
+
+## Reshaping Data
+
+Real-world data often need reshaping. Tidy data prefers one
+observation per row, one variable per column.
+
+### Wide to Long: `pivot_longer()`
+
+```{r}
+table4a <- tibble(
+  country = c("A", "B"),
+  `1999` = c(745, 377),
+  `2000` = c(377, 345)
+)
+
+table4a |> pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+### Long to Wide: `pivot_wider()`
+
+```{r}
+table2 <- tibble(
+  country = c("A", "A", "B", "B"),
+  year = c(1999, 2000, 1999, 2000),
+  type = c("cases", "cases", "cases", "cases"),
+  count = c(745, 377, 377, 345)
+)
+
+table2 |> pivot_wider(names_from = type, values_from = count)
+```
+
+## Combining Data from Multiple Tables
+
+Joining datasets is another crucial step.
+
+```{r}
+flights2 <- flights |> select(year, month, day, carrier, tailnum)
+planes2 <- planes |> select(tailnum, type, manufacturer)
+
+flights2 |> left_join(planes2, by = "tailnum")
+```
+
+Other join types include `inner_join()`, `right_join()`, and `full_join()`.
+
+## Assigning Results of Transformations
+
+When working with `dplyr`, it is often useful to save the
+results of a transformation into a new object. This allows you
+to reuse the processed data without repeating all of the steps.
+
+```{r}
+# Filter flights on January 1st and arrange by departure delay
+flights_jan1 <- flights |>
+filter(month == 1, day == 1) |>
+arrange(dep_delay)
+
+# Print the first few rows
+head(flights_jan1)
+```
+
+You can now work with `flights_jan1` in later code chunks without
+re-running the entire transformation. This practice is especially
+helpful for long workflows where the same processed data will be
+used multiple times.
+
+## Summary and Best Practices
+
+- Begin with a clear idea of what transformation you need.  
+- Chain verbs together with the pipe operator for readability.  
+- Use `group_by()` and `summarise()` to move from raw detail to
+  aggregated insights.  
+- Reshape and join data as needed to bring it into tidy form.  
+
+These transformations prepare your data for visualization and modeling,
+ensuring clarity and reproducibility in analysis.
