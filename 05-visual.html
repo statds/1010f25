@@ -227,7 +227,7 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#base-r-graphics-plot" id="toc-base-r-graphics-plot" class="nav-link active" data-scroll-target="#base-r-graphics-plot"><span class="header-section-number">5.1</span> Base R Graphics: <code>plot()</code></a></li>
-  <li><a href="#ggplot2-basics-and-your-original-chunks" id="toc-ggplot2-basics-and-your-original-chunks" class="nav-link" data-scroll-target="#ggplot2-basics-and-your-original-chunks"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics and Your Original Chunks</a></li>
+  <li><a href="#ggplot2-basics" id="toc-ggplot2-basics" class="nav-link" data-scroll-target="#ggplot2-basics"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics</a></li>
   <li><a href="#misleading-charts" id="toc-misleading-charts" class="nav-link" data-scroll-target="#misleading-charts"><span class="header-section-number">5.3</span> Misleading Charts</a></li>
   <li><a href="#good-practice" id="toc-good-practice" class="nav-link" data-scroll-target="#good-practice"><span class="header-section-number">5.4</span> Good Practice</a></li>
   <li><a href="#in-class-example" id="toc-in-class-example" class="nav-link" data-scroll-target="#in-class-example"><span class="header-section-number">5.5</span> In-Class Example</a></li>
@@ -318,8 +318,8 @@ Tip
 <p>Base R graphics are quick and convenient, but they can be inconsistent and limited when creating complex or publication-quality graphics. This motivates the use of a more systematic framework.</p>
 </section>
 </section>
-<section id="ggplot2-basics-and-your-original-chunks" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="ggplot2-basics-and-your-original-chunks"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics and Your Original Chunks</h2>
+<section id="ggplot2-basics" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="ggplot2-basics"><span class="header-section-number">5.2</span> <code>ggplot2</code> Basics</h2>
 <p>Although base R allows us to make plots quickly, its commands are not always consistent, and combining multiple layers can be challenging. This is where the <strong>Grammar of Graphics</strong> comes in <span class="citation" data-cites="wilkinson1999grammar">(<a href="references.html#ref-wilkinson1999grammar" role="doc-biblioref">Wilkinson, 1999</a>)</span>. The the strongest reason is that grammar teaches you to think systematically about how graphics are constructed, not just how to make a specific chart.</p>
 <p>That means instead of thinking “I want a scatterplot” or “I want a bar chart,” you think in terms of layers of grammar:</p>
 <ul>
@@ -339,8 +339,8 @@ Tip
 </ul>
 <p>The syntax involves calling <code>ggplot()</code> with a dataset and aesthetic mappings (via <code>aes()</code>), then adding layers such as <code>geom_point()</code> or <code>geom_line()</code> with the <code>+</code> operator. Additional layers for smoothing, faceting, and themes give us rich control over the appearance of plots.</p>
 <p>For more syntax, see <a href="https://ggplot2.tidyverse.org/index.html#cheatsheet">ggplot Cheatsheet</a></p>
-<section id="exploring-the-mpg-dataset" class="level4" data-number="5.2.0.1">
-<h4 data-number="5.2.0.1" class="anchored" data-anchor-id="exploring-the-mpg-dataset"><span class="header-section-number">5.2.0.1</span> Exploring the mpg dataset</h4>
+<section id="exploring-the-mpg-dataset" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="exploring-the-mpg-dataset"><span class="header-section-number">5.2.1</span> Exploring the mpg dataset</h3>
 <p>We begin by loading the tidyverse, which includes <code>ggplot2</code>, and looking at the <code>mpg</code> dataset.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -368,8 +368,8 @@ Tip
 </div>
 <p>The functions <code>glimpse()</code> and <code>View()</code> allow us to quickly inspect the structure of the dataset, while <code>?mpg</code> shows documentation.</p>
 </section>
-<section id="first-ggplot-calls" class="level4" data-number="5.2.0.2">
-<h4 data-number="5.2.0.2" class="anchored" data-anchor-id="first-ggplot-calls"><span class="header-section-number">5.2.0.2</span> First ggplot calls</h4>
+<section id="first-ggplot-calls" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="first-ggplot-calls"><span class="header-section-number">5.2.2</span> First ggplot calls</h3>
 <p>Before plotting, we might check available geoms:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -380,8 +380,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="using-pipes" class="level4" data-number="5.2.0.3">
-<h4 data-number="5.2.0.3" class="anchored" data-anchor-id="using-pipes"><span class="header-section-number">5.2.0.3</span> Using pipes</h4>
+<section id="using-pipes" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="using-pipes"><span class="header-section-number">5.2.3</span> Using pipes</h3>
 <p>Pipes make code easier to read by passing the result of one expression into the next. Instead of nesting functions, we can write a sequence of operations in the order we think about them. There are two main pipes in R: the <strong>base R pipe</strong> <code>|&gt;</code> (available since R 4.1) and the <strong>magrittr pipe</strong> <code>%&gt;%</code> (commonly used in the tidyverse).</p>
 <p>Both pipes take the left-hand side and feed it into the first argument of the right-hand side.</p>
 <div class="cell">
@@ -429,8 +429,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="building-layers" class="level4" data-number="5.2.0.4">
-<h4 data-number="5.2.0.4" class="anchored" data-anchor-id="building-layers"><span class="header-section-number">5.2.0.4</span> Building layers</h4>
+<section id="building-layers" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="building-layers"><span class="header-section-number">5.2.4</span> Building layers</h3>
 <p>We can add additional layers. For example, combining points with a line layer:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -442,8 +442,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="adding-aesthetics" class="level4" data-number="5.2.0.5">
-<h4 data-number="5.2.0.5" class="anchored" data-anchor-id="adding-aesthetics"><span class="header-section-number">5.2.0.5</span> Adding aesthetics</h4>
+<section id="adding-aesthetics" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="adding-aesthetics"><span class="header-section-number">5.2.5</span> Adding aesthetics</h3>
 <p>Color can highlight categories such as car class:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -454,8 +454,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="adding-smoothers" class="level4" data-number="5.2.0.6">
-<h4 data-number="5.2.0.6" class="anchored" data-anchor-id="adding-smoothers"><span class="header-section-number">5.2.0.6</span> Adding smoothers</h4>
+<section id="adding-smoothers" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="adding-smoothers"><span class="header-section-number">5.2.6</span> Adding smoothers</h3>
 <p>A smoothing curve helps reveal overall trends.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -478,8 +478,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="customization" class="level4" data-number="5.2.0.7">
-<h4 data-number="5.2.0.7" class="anchored" data-anchor-id="customization"><span class="header-section-number">5.2.0.7</span> Customization</h4>
+<section id="customization" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="customization"><span class="header-section-number">5.2.7</span> Customization</h3>
 <p>We can set fixed aesthetics outside <code>aes()</code>:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -499,8 +499,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="adding-regression-lines" class="level4" data-number="5.2.0.8">
-<h4 data-number="5.2.0.8" class="anchored" data-anchor-id="adding-regression-lines"><span class="header-section-number">5.2.0.8</span> Adding regression lines</h4>
+<section id="adding-regression-lines" class="level3" data-number="5.2.8">
+<h3 data-number="5.2.8" class="anchored" data-anchor-id="adding-regression-lines"><span class="header-section-number">5.2.8</span> Adding regression lines</h3>
 <p>We can fit smoothers with different methods:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -521,8 +521,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="titles-labels-and-themes" class="level4" data-number="5.2.0.9">
-<h4 data-number="5.2.0.9" class="anchored" data-anchor-id="titles-labels-and-themes"><span class="header-section-number">5.2.0.9</span> Titles, labels, and themes</h4>
+<section id="titles-labels-and-themes" class="level3" data-number="5.2.9">
+<h3 data-number="5.2.9" class="anchored" data-anchor-id="titles-labels-and-themes"><span class="header-section-number">5.2.9</span> Titles, labels, and themes</h3>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -538,8 +538,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="faceting" class="level4" data-number="5.2.0.10">
-<h4 data-number="5.2.0.10" class="anchored" data-anchor-id="faceting"><span class="header-section-number">5.2.0.10</span> Faceting</h4>
+<section id="faceting" class="level3" data-number="5.2.10">
+<h3 data-number="5.2.10" class="anchored" data-anchor-id="faceting"><span class="header-section-number">5.2.10</span> Faceting</h3>
 <p>We can split data into subplots by categories.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -560,8 +560,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="other-plot-types" class="level4" data-number="5.2.0.11">
-<h4 data-number="5.2.0.11" class="anchored" data-anchor-id="other-plot-types"><span class="header-section-number">5.2.0.11</span> Other plot types</h4>
+<section id="other-plot-types" class="level3" data-number="5.2.11">
+<h3 data-number="5.2.11" class="anchored" data-anchor-id="other-plot-types"><span class="header-section-number">5.2.11</span> Other plot types</h3>
 <p>Bar charts summarize categorical data:</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -590,8 +590,8 @@ Tip
 </details>
 </div>
 </section>
-<section id="other-ggplot-functions" class="level4" data-number="5.2.0.12">
-<h4 data-number="5.2.0.12" class="anchored" data-anchor-id="other-ggplot-functions"><span class="header-section-number">5.2.0.12</span> Other <code>ggplot</code> functions</h4>
+<section id="other-ggplot-functions" class="level3" data-number="5.2.12">
+<h3 data-number="5.2.12" class="anchored" data-anchor-id="other-ggplot-functions"><span class="header-section-number">5.2.12</span> Other <code>ggplot</code> functions</h3>
 <ul>
 <li><code>coord_flip</code> flips the x and y axis to improve the readability of plots</li>
 <li><code>scales</code> change the formatting of x and y axes</li>
