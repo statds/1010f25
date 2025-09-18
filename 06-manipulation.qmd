@@ -38,25 +38,61 @@ dataset.
 ```{r}
 library(nycflights13)
 flights <- nycflights13::flights
-flights
+str(flights)
 ```
 
 ### Filtering Rows with `filter()`
 
 The `filter()` function selects rows that satisfy logical conditions.
-
-```{r}
-flights |> filter(month == 1 & day == 1)
-```
-
-This gives only flights on January 1st. We can save the result:
-
-```{r}
-jan1 <- flights |> filter(month == 1 & day == 1)
-```
-
 Logical operators like `&` (and), `|` (or), and `!` (not) are often
 used, along with comparisons such as `==`, `!=`, `<`, and `>=`.
+
+
+- `==` equals
+- `!=` not equal
+- `<` less than, `<=` less than or equal
+- `>` greater than, `>=` greater than or equal
+- `&` logical AND (both conditions must be true)
+- `|` logical OR (at least one condition must be true)
+- `!` logical NOT (negates a condition)
+
+
+Examples with the `flights` data:
+```{r}
+# Flights on January 1
+flights |>
+filter(month == 1 & day == 1)
+
+# Flights in January or February
+flights |>
+filter(month == 1 | month == 2)
+
+# Flights not in January
+flights |>
+filter(!(month == 1))
+
+# Flights with arrival delay over 2 hours and from JFK
+flights |>
+filter(arr_delay > 120 & origin == "JFK")
+
+# Flights that were either very early (dep_delay < -15) or very late (dep_delay > 120)
+flights |>
+filter(dep_delay < -15 | dep_delay > 120)
+
+# Flights in summer months AND either from JFK or LGA
+flights |>
+filter((month %in% c(6,7,8)) & (origin == "JFK" | origin == "LGA"))
+
+# Flights in December with departure delay over 2 hours OR (in January with arrival delay over 2 hours)
+flights |>
+filter((month == 12 & dep_delay > 120) | (month == 1 & arr_delay > 120))
+
+# Flights from EWR where either (dep_delay > 60 AND arr_delay > 60) OR (dep_delay < -30 AND arr_delay < -30)
+flights |>
+filter(origin == "EWR" & ((dep_delay > 60 & arr_delay > 60) |
+(dep_delay < -30 & arr_delay < -30)))
+```
+
 
 #### Handling Missing Values
 
@@ -78,13 +114,13 @@ stocks |> filter(!is.na(qtr) & !is.na(return))
 `arrange()` sorts rows by column values. Missing values are sorted last.
 
 ```{r}
-flights |> arrange(year, month, day)
+flights |> arrange(year, month, day) |> str()
 ```
 
 Descending order is done with `desc()`:
 
 ```{r}
-flights |> arrange(desc(dep_delay))
+flights |> arrange(desc(dep_delay)) |> str()
 ```
 
 ### Selecting Columns with `select()`
@@ -93,14 +129,14 @@ flights |> arrange(desc(dep_delay))
 and `ends_with()`.
 
 ```{r}
-flights |> select(year, month, day)
-flights |> select(starts_with("dep"))
+flights |> select(year, month, day) |> str()
+flights |> select(starts_with("dep")) |> str()
 ```
 
 Columns can also be renamed inline:
 
 ```{r}
-flights |> select(tail = tailnum, everything())
+flights |> select(tail = tailnum, everything()) |> str()
 ```
 
 ### Creating New Columns with `mutate()`
@@ -108,7 +144,7 @@ flights |> select(tail = tailnum, everything())
 `mutate()` adds new variables or modifies existing ones.
 
 ```{r}
-flights |> mutate(speed = distance / (air_time/60))
+flights |> mutate(speed = distance / (air_time/60)) |> str()
 ```
 
 It is common to create multiple new variables at once:
@@ -117,7 +153,7 @@ It is common to create multiple new variables at once:
 flights |> mutate(
   gain = dep_delay - arr_delay,
   hours = air_time / 60
-)
+) |> str()
 ```
 
 ### Grouping and Summarizing
@@ -139,7 +175,7 @@ flights |>
   summarise(
     delay = mean(dep_delay, na.rm = TRUE),
     n = n()
-  )
+  ) |> str()
 ```
 
 Ungrouping is sometimes useful:
@@ -183,13 +219,32 @@ table2 |> pivot_wider(names_from = type, values_from = count)
 
 ## Combining Data from Multiple Tables
 
-Joining datasets is another crucial step.
+Joins combine data from two tables based on a common key column. The type of
+join determines which rows are kept:
 
+- Inner Join: Keeps only rows with matching keys in both tables.
+- Left Join: Keeps all rows from the left table, adding matches from the
+right table where available (missing values filled with `NA`).
+- Right Join: Keeps all rows from the right table, adding matches from the
+left table where available.
+- Full Join: Keeps all rows from both tables, filling unmatched values with
+`NA`.
+
+
+
+
+Consider the `planes` data.
+```{r}
+planes <- nycflights13::planes
+str(planes)
+```
+
+Join the `flights` data and the `planes` data:
 ```{r}
 flights2 <- flights |> select(year, month, day, carrier, tailnum)
 planes2 <- planes |> select(tailnum, type, manufacturer)
 
-flights2 |> left_join(planes2, by = "tailnum")
+flights2 |> left_join(planes2, by = "tailnum") |> str()
 ```
 
 Other join types include `inner_join()`, `right_join()`, and `full_join()`.
