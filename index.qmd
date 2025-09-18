@@ -95,6 +95,33 @@ graded submissions, and professional email etiquette.
   thoughtful or insightful responses.
 
 
+## Homework Logistics
+
+### Workflow of Submitting Homework Assisngment
+
++ Click the GitHub classroom assignment link in HuskCT announcement.
++ Accept the assignment and follow the instructions to an empty
+  repository.
++ Make a clone of the repo at an appropriate folder on your own
+  computer with `git clone`.
++ Go to this folder, add your qmd source, work on it, and group your
+  changes to different, meaningful commits.
++ Push your work to your GitHub repo with `git push`.
++ Create a new release and put the generated pdf file in it for ease
+  of grading.
+
+### Homework Requirements
+
++ Use the repo from Git Classroom to submit your work. See Section @sec-git.
+    - Keep the repo clean (no tracking generated files).
+        - Never "Upload" your files; use the git command lines.
+        - Make commit message informative (think about the readers).
+    - Make at least 10 commits and form a style of frequent small commits.
++ Use `quarto` source only. See @sec-quarto.
++ For the convenience of grading, add your standalone pdf
+  output to a release in your repo.
+
+
 ## Schedule and Readings
 
 
