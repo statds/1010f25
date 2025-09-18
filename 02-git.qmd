@@ -1,8 +1,4 @@
----
-title: "Project Management with Git"
-description: "Setup Git/GitHub, GitHub Classroom workflow, common git
-  and shell operations"
----
+# Project Management with Git {#sec-git}
 
 > **Learning goals**  
 > By the end, you will be able to:

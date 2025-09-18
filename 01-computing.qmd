@@ -1,6 +1,8 @@
----
-title: "Setting up Computing Environment"
-description: "OS, files, folders, paths, terminals; installing R, Positron/RStudio, and Quarto."
+# Setting up Computing Environment
+
+This chapter reviews operating systems, files, folders, paths,
+terminals; installing R, Positron/RStudio, and Quarto.
+
 ---
 
 ::: callout-note
@@ -239,7 +241,7 @@ cd lab       # go into the newly created folder
 Use <kbd>Tab</kbd> to autocomplete file and folder names.
 :::
 
-## Install R, Positron (or RStudio), and Quarto
+## Install R, Positron (or RStudio), and Quarto {#sec-quarto}
 
 1. Install R from [CRAN](https://CRAN.R-project.org). 
 2. Install [Positron](https://positron.posit.co) or [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
@@ -253,7 +255,7 @@ quarto --version
 
 In RStudio, create a new Quarto document and render it.
 
-## Your first Quarto project
+### Your first Quarto project
 
 From a terminal:
 
