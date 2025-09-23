@@ -164,3 +164,70 @@
   using this dataset?
     a.  What are some questions you have about this dataset? What
   information would you add to the dataset, if you could?
+
+1. **Early Care and Education, NC, 2007–2014**
+   The data on early care and education were carefully collected by
+   Scott Latham and colleagues at the Stanford Center for Educational
+   Policy Analysis, in support of a recent publication, available
+   [here](https://cepa.stanford.edu/content/effects-accountability-incentives-early-childhood-education).
+   Additional background on North Carolina’s Quality Rating and
+   Improvement System (QRIS) can be found
+   [here](http://ncchildcare.nc.gov/parents/pr_sn2_ov_sr.asp).
+   We have a copy in the classnotes repo:
+   `data/NC_ECE_2007-2014.csv`. You can download it into your homework
+   repo, but please do not add it to your repo; it's over 11MB.
+
+   Instead of a formal online codebook, Professor Latham provided the
+   following description:
+
+   > “We have a panel of all licensed child care providers in North
+   > Carolina from 2007 to 2014. This includes both center-based
+   > providers and family child care homes. For all providers, we have
+   > county identifiers and zip codes. We also know facility types
+   > (e.g., independent, Head Start, local public school), enrollment,
+   > capacity, and some zip-code-level demographics (e.g., percentage
+   > below poverty, percentage Black, percentage Hispanic). For most
+   > providers, we have information on quality as measured by North
+   > Carolina’s Quality Rating and Improvement System (QRIS). However,
+   > many of these indicators are not readily interpretable because they
+   > are tied to the QRIS rubric (e.g., a 1–7 measure of teacher/staff
+   > education and credentials). The one quality measure that is
+   > relatively straightforward to interpret is the ERS rating—a widely
+   > used measure of observed classroom quality. These are elective, so
+   > we only have them for a subset of providers.”
+
+   a. Load the needed packages and the data. Take a glimpse of the data.
+   a. Make a new data frame called `nc14` that contains all NC
+      facilities in the year 2014, with the variables `fname`, `zip`,
+      `ftype`, `p_pov`, `med_income`, `QRIS_ERS`, and a new variable
+      `p_cap = enroll/capacity`. You will use this data frame in the
+      remaining questions.
+   a.  Make a new data frame that shows the number of facilities
+	evaluated in each zip code in 2014, and the value of `p_pov` for
+	each zip code.
+        i.  Sort by decreasing order in the number of facilities.
+		i.  Make a plot from the data frame you made to demonstrate
+	variation in percent poverty across zip codes in NC.
+        i.  Explain why your plot in is different from a
+	plot that demonstrates variation in `p_pov` in the original
+	data frame.
+   a.  Add a new variable to `nc14` that lumps together various
+      facility types into five groups, based on the value of `ftype`,
+      as follows: Independent; Franchise; Religious sponsored; Federal,
+      Head Start or Local public school; All others. 
+       i.  Make a plot to show the variation in `p_cap` across these
+       five groups.
+   a.  Make a boxplot to visualize covariation between `QRIS_ERS` and
+      `med_income`, binning `med_income` to treat it as a categorical
+      variable, and representing the number of observations in each
+      category by the width of the corresponding box.
+   a.  Visualize the relationship between `med_income` and `QRIS_ERS`
+      using a scatter plot.
+       i.  Visualize the same relationship using `geom_bin2d`. 
+	   i.  Discuss the pros and cons of each of these visualizations.
+
+	  
+	  
+	  
+	
+	
