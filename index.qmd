@@ -70,7 +70,7 @@ Key reminders: academic integrity, no AI-generated text in
 graded submissions, and professional email etiquette.
 
 
-### Grading Rubics
+### Grading Rubrics
 
 **Baseline (C level work)**
 
@@ -97,9 +97,9 @@ graded submissions, and professional email etiquette.
 
 ## Homework Logistics
 
-### Workflow of Submitting Homework Assisngment
+### Workflow of Submitting Homework Assignment
 
-+ Click the GitHub classroom assignment link in HuskCT announcement.
++ Click the GitHub classroom assignment link in HuskyCT announcement.
 + Accept the assignment and follow the instructions to an empty
   repository.
 + Make a clone of the repo at an appropriate folder on your own
