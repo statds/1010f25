@@ -283,6 +283,30 @@ re-running the entire transformation. This practice is especially
 helpful for long workflows where the same processed data will be
 used multiple times.
 
+## In-Class Example
+
+Consider the data of @chetty2014where. 
+
+1.  Create a data frame with CZs in CT, MA, and NY.
+1.  Create a data frame with CZ's with absolute mobility of at least 40
+1.  Create a data frame with CZ's in any state other than CT, MA, or
+    NY, with absolute mobility at least 40
+1.  Create a data frame with CZ's that are in CT, MA, NY and have
+    absolute mobility less than 40.
+1.  Create a data frame with CZ's that are in CT, MA, NY, sorting the
+    CZ's in decreasing order of absolute mobility, and keeping just
+    the CZ name, state, and absolute mobility variables in the
+    resulting data frames
+1. Create a new data set with only the following variables: `cz_name`,
+   `state`, `pop_2000`, `abs_mobility`, `hhi_percap`, and any variable
+   that starts with `frac`.
+1. Make new variables for each of these quantities: 
+   a.  The number of people in each CZ who consider themselves to be
+   religious. 
+   a.  The log base 2 of the per capita household income (hint:
+   `log2()` ).
+   a.  The proportion of people who are not married. 
+
 ## Summary and Best Practices
 
 - Begin with a clear idea of what transformation you need.  
