@@ -114,8 +114,8 @@ graded submissions, and professional email etiquette.
 
 + Use the repo from Git Classroom to submit your work. See Section @sec-git.
     - Keep the repo clean (no tracking generated files).
-        - Never "Upload" your files; use the git command lines.
-        - Make commit message informative (think about the readers).
+    - Never "Upload" your files; use the git command lines.
+    - Make commit message informative (think about the readers).
     - Make at least 10 commits and form a style of frequent small commits.
 + Use `quarto` source only. See @sec-quarto.
 + For the convenience of grading, add your standalone pdf
@@ -135,3 +135,5 @@ graded submissions, and professional email etiquette.
     + [Data visualization in R](https://www.data-to-viz.com/)
 1. Data transformation
     + R4DS Chapter 3
+1. Exploring data
+    + R4DS Ch 10; Ch 12-13
