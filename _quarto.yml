@@ -17,6 +17,7 @@ book:
     - 04-encounter.qmd
     - 05-visual.qmd
     - 06-manipulation.qmd
+    - 07-eda.qmd
     - exercises.qmd
     - references.qmd
 
