@@ -133,7 +133,9 @@ graded submissions, and professional email etiquette.
 1. Visualization
     + R4DS Ch 1; Ch 9; Ch 11
     + [Data visualization in R](https://www.data-to-viz.com/)
-1. Data transformation
-    + R4DS Chapter 3
+1. Data manipulation
+    + R4DS Ch 3
 1. Exploring data
     + R4DS Ch 10; Ch 12-13
+1. Tidy data
+    + R4DS Ch 5; Ch 19.1-19.2
