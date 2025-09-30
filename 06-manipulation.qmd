@@ -13,9 +13,9 @@ reshape, filter, or summarize before we can create meaningful plots
 or fit statistical models. The `tidyverse` provides a consistent
 grammar for these operations, with `dplyr` as its central package.
 
-In this chapter, we will learn the most important data transformation
+In this chapter, we will learn the most important data manipulation
 verbs. Each verb is a function that takes a data frame (or tibble)
-as the first argument, applies some transformation, and returns a
+as the first argument, applies some manipulation, and returns a
 new data frame.
 
 ::: callout-tip
@@ -41,7 +41,7 @@ The six most commonly used verbs are:
 - `summarise()` — collapse groups into summaries  
 
 All verbs follow the same pattern: the first argument is a data frame,
-and subsequent arguments describe transformations using column names.
+and subsequent arguments describe manipulations using column names.
 
 We will illustrate these verbs using the `nycflights13::flights`
 dataset.
@@ -262,10 +262,10 @@ flights2 |> left_join(planes2, by = "tailnum") |> str()
 
 Other join types include `inner_join()`, `right_join()`, and `full_join()`.
 
-## Assigning Results of Transformations
+## Assigning Results of Manipulations
 
 When working with `dplyr`, it is often useful to save the
-results of a transformation into a new object. This allows you
+results of a manipulation into a new object. This allows you
 to reuse the processed data without repeating all of the steps.
 
 ```{r}
@@ -279,7 +279,7 @@ head(flights_jan1)
 ```
 
 You can now work with `flights_jan1` in later code chunks without
-re-running the entire transformation. This practice is especially
+re-running the entire manipulation. This practice is especially
 helpful for long workflows where the same processed data will be
 used multiple times.
 
@@ -309,11 +309,11 @@ Consider the data of @chetty2014where.
 
 ## Summary and Best Practices
 
-- Begin with a clear idea of what transformation you need.  
+- Begin with a clear idea of what manipulation you need.  
 - Chain verbs together with the pipe operator for readability.  
 - Use `group_by()` and `summarise()` to move from raw detail to
   aggregated insights.  
 - Reshape and join data as needed to bring it into tidy form.  
 
-These transformations prepare your data for visualization and modeling,
+These manipulations prepare your data for visualization and modeling,
 ensuring clarity and reproducibility in analysis.
