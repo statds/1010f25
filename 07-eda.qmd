@@ -50,7 +50,7 @@ digraph {
 
   # feedback arrows
   H -> A [style=dashed, color=gray50]
-  D -> F [style=dashed, color=gray50]
+  F -> D [style=dashed, color=gray50]
 }
 ")
 ```
