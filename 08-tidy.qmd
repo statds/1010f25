@@ -1,0 +1,396 @@
+# Tidy Data {# ch-tidy}
+
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE)
+```
+
+
+## Introduction
+
+Working effectively with data in R is greatly simplified by the
+`tidyverse`, a collection of packages designed for data science. The
+`tidyverse` provides a consistent framework for data manipulation,
+visualization, and modeling, which helps students learn generalizable
+skills rather than package-specific tricks.
+
+
+A central concept in the `tidyverse` is the` tibble`, a modern
+re-imagining of the traditional R data frame. Tibbles keep the familiar
+two-dimensional table structure but introduce improvements such as
+preserving variable types, supporting list columns, and displaying data
+more cleanly in the console. These features make them easier to use in
+practice, especially with large datasets.
+
+
+Finally, the idea of tidy data lies at the heart of the `tidyverse`.
+According to Hadley Wickham’s definition, tidy data means each variable
+forms a column, each observation forms a row, and each type of
+observational unit forms a table. Tidy data creates a standardized
+structure that enables smooth use of functions across the `tidyverse`,
+reducing the need for ad hoc data reshaping and making analyses more
+transparent and reproducible.
+
+## Tibbles
+
+- What is a tibble?
+    + Tibbles are data frames
+    + But they try and enhance the regular "old" data frame from base R
+- To learn more
+    + `vignette("tibble")`
+  
+
+Tibbles are data frames that enhance the regular "old" data frame from
+base R. They keep the same two-dimensional tabular structure but are
+designed to be more consistent, predictable, and user-friendly.
+
+
+### Creating tibbles
+
+There are several ways to create tibbles depending on the source of the
+data.
+
++ From individual vectors
+
+The simplest way is to build a tibble directly from vectors using
+`tibble()`. Inputs of length 1 are automatically recycled, and you can
+refer to variables you just created:
+
+```{r}
+tibble(
+  x = 1:5,
+  y = 1,
+  z = x ^ 2 + y
+)
+```
+
++ Converting existing objects
+
+You can convert existing data structures into tibbles with `as_tibble()`:
+
+```{r}
+# From a data frame
+as_tibble(iris)
+
+# From a list
+as_tibble(list(x = 1:3, y = letters[1:3]))
+```
+
++ Reading from external files
+
+Packages in the tidyverse ecosystem return tibbles when reading data
+from files:
+
+```{r}
+# From CSV, TSV, or delimited text file
+readr::read_csv("data/Chetty_2014.csv")
+
+# From Excel files
+# readxl::read_excel("data.xlsx")
+```
+
++ Reading from databases
+
+You can also obtain tibbles when working with databases using packages
+such as `DBI` and `dbplyr`:
+
+```r
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "mydb.sqlite")
+tbl(con, "tablename")   # returns a tibble-like object
+```
+
+
+A tribble is a transposed tibble, designed for small data entry in code.
+Column headings are defined by formulas that start with `~`:
+
+```{r}
+tribble(
+  ~x, ~y, ~z,
+  #--|--|----
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+```
+
+The `tibble` and `readr` packages are part of the core tidyverse, so
+they load automatically with `library(tidyverse)`. Other packages such
+as `readxl` and `dbplyr` belong to the tidyverse ecosystem. They follow
+the same principles and return tibbles, but you need to load them
+explicitly.
+
+
+### Features of tibbles
+
+Tibbles make fewer automatic changes than base R data frames:
+
+- They never change the type of inputs (strings are not converted to
+  factors).
+- They never change variable names.
+- They never create row names.
+
+For example:
+
+```{r}
+tb <- tibble(
+  `:)` = "smile",
+  ` ` = "space",
+  `2000` = "number"
+)
+```
+
+These column names would not be valid in base R, but are allowed in a
+tibble.
+
+
+
+There are two main differences between tibbles and base R data frames:
+
+**Printing**
+Tibbles have a refined print method that shows only the
+first 10 rows and only as many columns as fit on the screen:
+
+```{r}
+tibble(
+  a = lubridate::now() + runif(1e3) * 86400,
+  b = lubridate::today() + runif(1e3) * 30,
+  c = 1:1e3,
+  d = runif(1e3),
+  e = sample(letters, 1e3, replace = TRUE)
+)
+```
+
+This design avoids overwhelming the console when printing large data
+frames.
+
+If you need more output, you can adjust options:
+
+- `print(n = , width = )` controls number of rows and columns.
+- Global options can be set with:
+
+```r
+options(tibble.print_max = n, tibble.print_min = m)
+options(tibble.print_min = Inf)     # always show all rows
+options(tibble.width = Inf)         # always print all columns
+```
+
+**Subsetting**
+Most of the subsetting tools we have used so far
+generally subset the entire data frame. To pull out just a single
+variable or value, we can use `$` and `[[`:
+    - `[[` extracts by name or position
+    - `$` extracts by name with less typing
+
+```{r}
+df <- tibble(
+  x = runif(5),
+  y = rnorm(5)
+)
+
+# Extract by name
+df$x
+df[["x"]]
+
+# Extract by position
+df[[1]]
+df[[1,1]]
+```
+
+
+## Tidy up data
+
+Structuring datasets to facilitate analysis is at the core of the
+principles of tidy data, as described by Hadley Wickham.
+
+### Tydy data
+
+Tidy data follows three basic rules:
+
+- Each variable forms a column
+- Each observation forms a row
+- Each type of observational unit forms a table
+
+When these rules are not followed, the dataset is considered untidy.
+Common signs of untidy data include:
+
+- Column headers are values instead of variable names
+- Multiple variables are stored in one column (for example, City_State)
+- Variables are stored in both rows and columns
+- Multiple types of observational units are stored in the same table
+- A single observational unit is stored in multiple tables
+- The dataset is either too long or too wide
+
+
+### Pivoting
+
+Most data encountered in practice will be untidy. This is because most
+people are not familiar with the principles of tidy data, and data is
+often organised to facilitate uses other than analysis, such as making
+entry easier.
+
+
+Two common problems to look for are:
+
+- One variable might be spread across multiple columns
+- One observation might be scattered across multiple rows
+
+Usually, a dataset will only suffer from one of these problems.
+
+To resolve them, the `tidyr` package provides two key functions:
+
+- `pivot_longer()`
+- `pivot_wider()`
+
+These functions are illustrated with example datasets included in the
+`tidyr` package. The tables (`table2`, `table4a`) contain data on the
+number of tuberculosis (TB) cases recorded in different countries for
+the years 1999 and 2000. The variable `cases` represents the number of
+TB cases reported for a given country, year, and type of measure.
+
+#### Pivot longer
+
+A common problem is a dataset where some of the column names are not
+variable names, but values of a variable:
+
+```{r}
+table4a
+```
+
+To tidy a dataset like this, pivot the offending columns into a new pair
+of variables.
+
+Steps:
+
+- Select the columns whose names are values, not variables. In this
+  example, those are 1999 and 2000.
+- Choose the variable to move the column names to (here, `year`).
+- Choose the variable to move the column values to (here, `cases`).
+
+```{r}
+table4a |> 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+
+In the final result, the pivoted columns are dropped, and new year and
+cases columns are created. Other variables, such as country, are
+preserved. The `cases` column now explicitly records the number of TB
+cases for each year and country.
+
+
+### Pivot wider
+
+Function `pivot_wider()` is the opposite of `pivot_longer()`. You use
+it when an observation is scattered across multiple rows.
+
+```{r}
+table2
+```
+
+To tidy this up, analyze the representation in a similar way to
+`pivot_longer()`:
+
+- The column to take variable names from (here, type).
+- The column to take values from (here, count).
+
+```{r}
+table2 |>
+  pivot_wider(names_from = type, values_from = count)
+```
+
+
+In this result, values of `type` (cases and population) become separate
+columns, and their associated numbers from `count` fill in the values.
+This produces a clearer dataset where each row corresponds to a country
+and year with distinct variables for cases and population.
+
+
+## Separating
+
+
+The `separate()` function is used to pull apart one column into multiple
+columns by splitting wherever a separator character appears. This is
+useful when a single column actually contains more than one variable.
+
+Consider the dataset `table3` included in the `tidyr` package:
+
+```{r}
+table3
+```
+
+Notice the `rate` column. It contains two variables combined into a
+single column: the number of cases and the population size, separated by
+a forward slash. To make the dataset tidy, these should be split into
+separate variables.
+
+
+
+The `separate()` function takes the name of the column to split and the
+names of the new columns to create:
+
+```{r}
+table3 %>%
+separate(rate, into = c("cases", "population"))
+```
+
+This produces two new columns, `cases` and `population`, replacing the
+original `rate` column. The new columns now contain integer values for
+the reported tuberculosis cases and the population in each country and
+year.
+
+
+By default, `separate()` splits values wherever it sees a non-alphanumeric
+character, meaning any character that is not a number or letter. In the
+example above, it automatically detected and split at the forward slash.
+
+
+If you want to be explicit, you can specify the character to split on
+with the `sep` argument:
+
+```{r}
+table3 %>%
+separate(rate, into = c("cases", "population"), sep = "/")
+```
+
+This ensures that the column is split exactly where expected, giving you
+clearer control over the separation process.
+
+
+### Unite
+
+The `unite()` function is the inverse of `separate()`. It combines
+multiple columns into a single column. This can be useful when two or
+more variables are stored in separate columns but logically belong
+together.
+
+Consider the dataset `table5`:
+
+```{r}
+table5
+```
+
+In this table, the year of observation is split into two columns,
+`century` and `year`. To make the dataset easier to work with, we can
+combine these into a single column.
+
+```{r}
+table5 %>% 
+  unite(new, century, year)
+```
+
+By default, `unite()` places an underscore (`_`) between the values from
+different columns. In this case, that would produce values like
+`19_99`.
+
+If we want the numbers to run together without any separator, we can
+control this with the `sep` argument:
+
+```{r}
+table5 %>% 
+  unite(new, century, year, sep = "")
+```
+
+This produces a single column `new` with values such as `1999` and
+`2000`, giving a cleaner representation of the year variable.

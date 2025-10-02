@@ -1,4 +1,4 @@
-# Exploratory Data Analysis (EDA)
+# Exploratory Data Analysis
 
 Exploratory Data Analysis (EDA) is the practice of using graphs and
 numerical summaries to become familiar with a dataset before formal
@@ -22,6 +22,7 @@ emphasizes that exploratory data analysis sits between data
 transformation and modeling. It also highlights feedback loops:
 visualization can suggest new transformations, and communication can
 lead back to data collection.
+
 
 ```{r}
 #| label: fig-eda-flow
@@ -54,6 +55,7 @@ digraph {
 }
 ")
 ```
+
 
 We will use `ggplot2::diamonds` as a running example. It contains about
 fifty four thousand round‑cut diamonds with carat, cut, color, clarity,
@@ -104,10 +106,12 @@ columns and observations in rows. Data is called *tidy* when each
 value occupies its own cell, making manipulation and visualization
 straightforward.
 
+
 ```{r}
 library(tidyverse)
 glimpse(diamonds)
 ```
+
 
 ### Variation
 
@@ -120,12 +124,15 @@ variation of a variable is to visualize its distribution.
 - For **quantitative variables**, variation appears in the spread and
   shape of the distribution.
 
+
 ```{r}
 # variation in cut (categorical)
 diamonds |>
   count(cut) |>
   mutate(prop = n / sum(n))
 ```
+
+
 
 ```{r}
 # variation in carat (numeric)
@@ -134,41 +141,44 @@ ggplot(diamonds, aes(carat)) +
   labs(title = "Variation in carat", x = "Carat", y = "Count")
 ```
 
-### Visualizing distributions
 
 ### Visualizing distributions
 
 How to visualize a distribution depends on the type of variable.
 
-- **Categorical variables** take one of a small set of levels and are
-  usually stored as factors or character vectors in R. Bar charts are
-  a natural choice for displaying their distributions.
+**Categorical variables** take one of a small set of levels and are
+usually stored as factors or character vectors in R. Bar charts are
+a natural choice for displaying their distributions.
 
-    ```{r}
+
+```{r}
     ggplot(diamonds, aes(cut)) +
       geom_bar() +
       labs(title = "Distribution of cut", x = NULL, y = "Count")
-    ```
+```
 
-- **Quantitative variables** take on a wide range of values. Their
+
+**Quantitative variables** take on a wide range of values. Their
   distributions can be displayed in several ways:
 
-  - **Histograms** divide the range of the variable into bins and count
+- **Histograms** divide the range of the variable into bins and count
     how many observations fall into each bin. They are useful for seeing
     the overall shape of a distribution.
 
-    ```{r}
+
+```{r}
     ggplot(diamonds, aes(price)) +
       geom_histogram(binwidth = 500, boundary = 0, closed = "left") +
       labs(title = "Distribution of price (histogram)",
            x = "Price (USD)", y = "Count")
-    ```
+```
 
-  - **Boxplots** summarize the distribution using the median and
-    quartiles.
+
+- **Boxplots** summarize the distribution using the median and
+  quartiles.
     - The box spans the interquartile range (IQR), from the first
-      quartile (Q1, 25th percentile) to the third quartile (Q3, 75th
-      percentile).
+     quartile (Q1, 25th percentile) to the third quartile (Q3, 75th
+     percentile).
     - The whiskers usually extend from the box out to the most extreme
       data points that are not considered outliers. A common rule is that
       the whiskers reach to the smallest and largest data points within
@@ -176,20 +186,24 @@ How to visualize a distribution depends on the type of variable.
     - The dots are outliers, data points beyond the whiskers (i.e., more
       than 1.5 × IQR away from Q1 or Q3).
 
-    ```{r}
+
+```{r}
     ggplot(diamonds, aes(x = cut, y = price)) +
       geom_boxplot() +
       labs(title = "Price by cut (boxplot)", x = "Cut", y = "Price (USD)")
-    ```
+```
 
-  - **Violin plots** combine a boxplot with a rotated density curve,
+
+- **Violin plots** combine a boxplot with a rotated density curve,
     showing both summary statistics and the shape of the distribution.
 
-    ```{r}
+
+```{r}
     ggplot(diamonds, aes(x = cut, y = price)) +
       geom_violin(trim = FALSE) +
       labs(title = "Price by cut (violin plot)", x = "Cut", y = "Price (USD)")
-    ```
+```
+
 
 These three methods are closely related. A histogram provides a binned
 view of the data, while a density curve offers a smoothed version of
@@ -210,6 +224,7 @@ The `diamonds` dataset has some striking examples.
 
 - **Histogram of `y` (length)**
 
+
 ```{r}
 ggplot(diamonds) +
 geom_histogram(mapping = aes(x = y), binwidth = 0.5) +
@@ -217,9 +232,11 @@ labs(title = "Distribution of diamond length (y)",
 x = "Length (mm)", y = "Count")
 ```
 
+
 Most diamonds have lengths between 3 and 10 mm. However, there are odd
 spikes at 0, 30, 50, and 60 mm, which are not physically plausible.
 These are likely data recording errors.
+
 
 ```{r}
 unusual <- diamonds %>% 
@@ -229,6 +246,7 @@ unusual <- diamonds %>%
 
 unusual
 ```
+
 
    + The y variable measures one of the three dimensions of these diamonds
      in mm. Diamonds can’t have a width of 0mm. 
@@ -241,15 +259,18 @@ Confirmed invalid values could be replaced with `NA`, using  the
 `ifelse()` function.
 
 
+
 ```{r}
 diamonds2 <- diamonds %>% 
   mutate(y = ifelse(y < 3 | y > 20, NA, y))
 
-diamonds2
+diamonds2 |> filter(is.na(y))
 ```
 
 
+
 - **Histogram of `x` (width)**
+
 
 ```{r}
 ggplot(diamonds) +
@@ -258,10 +279,12 @@ labs(title = "Distribution of diamond width (x)",
 x = "Width (mm)", y = "Count")
 ```
 
+
 Again, most values are in a reasonable range, but there are suspicious
 zeros and unusually large values.
 
 - **Boxplot of `price` by `cut`**
+
 
 ```{r}
 ggplot(diamonds, aes(x = cut, y = price)) +
@@ -269,11 +292,13 @@ geom_boxplot() +
 labs(title = "Price by cut (boxplot)", x = "Cut", y = "Price (USD)")
 ```
 
+
 The boxplot reveals outliers as individual points beyond the whiskers.
 These highlight diamonds with unusually high or low prices relative to
 others of the same cut.
 
 - **Scatterplot of `carat` vs. `price`**
+
 
 ```{r}
 ggplot(diamonds, aes(x = carat, y = price)) +
@@ -281,17 +306,20 @@ geom_point(alpha = 0.3) +
 labs(title = "Price vs. Carat", x = "Carat", y = "Price (USD)")
 ```
 
+
 Most diamonds follow a clear increasing trend. Outliers appear as points
 far above or below the main cloud — either unusually expensive small
 diamonds or unusually cheap large ones.
 
 - **Boxplot of `z` (depth) by `cut`**
 
+
 ```{r}
 ggplot(diamonds, aes(x = cut, y = z)) +
 geom_boxplot() +
 labs(title = "Depth (z) by cut", x = "Cut", y = "Depth (mm)")
 ```
+
 
 Here too, implausible depths like 0 or 30+ mm appear as obvious
 outliers.
@@ -316,6 +344,7 @@ decisions you make.
 Sometimes, creating new variable relies on a complex combination of
 existing variables. Utilize the `ifelse()` or `case_when()` command.
 
+
 ```{r}
 diamonds %>%
   mutate(size_category = case_when(
@@ -325,8 +354,10 @@ diamonds %>%
     carat < 1.5  ~ "large",
     TRUE         ~ "huge"
   )) %>%
-  select(size_category, everything())
+  select(size_category, carat) %>%
+  head()
 ```
+
 
 Many insights arise from studying how a variable behaves given the level
 of another variable. These conditional relationships are the basis for
@@ -336,6 +367,7 @@ understanding covariation.
   variable across categories.
 - **Numeric given numeric.** Study scatterplots, possibly with facets,
   to see how the relationship changes across groups.
+
 
 ```{r}
 # price conditional on cut
@@ -352,6 +384,7 @@ ggplot(d_small, aes(carat, price)) +
   labs(title = "Price vs. carat by clarity",
        x = "Carat", y = "Price (USD)")
 ```
+
 
 ::: callout-tip
 **Tip.** Faceting is usually clearer than mapping too many aesthetics at
@@ -386,86 +419,28 @@ The raw data contain missing values in several fields (e.g., borough,
 ZIP code, coordinates, street names, and contributing factors). Detecting
 and interpreting missingness is part of the data exploration process.
 
-### 1. Temporal distribution of crashes
-Plot the number of crashes by day and by hour. Do weekends or evenings
-show distinct patterns compared to weekdays?
+1. Read the data into R.
+1. Plot the number of crashes by day and by hour. Do weekends/holidays
+   or  evening show distinct patterns compared to weekdays?
+1. Which borough recorded the most crashes? Are some boroughs missing
+   altogether?
+1. How many records have missing ZIP codes? Are the missing ones
+   concentrated in certain boroughs?
+1. How many crashes are missing latitude/longitude? What fraction of
+   crashes with missing borough also lack coordinates?
+1. Compare counts of missing values in `ON STREET NAME`, `CROSS STREET
+   NAME`, and `OFF STREET NAME`. What does this suggest about where
+   data collection is weaker?
+1. How many crashes involved at least one person injured? At least one
+   fatality? Show the distribution of injury counts.
+1. What are the most common contributing factors for `VEHICLE 1`? Are
+   there many “Unspecified” entries?
+1. What are the most frequent vehicle categories in 
+   `VEHICLE TYPE CODE 1`? Compare them with secondary vehicles
+   (`VEHICLE TYPE CODE 2`).
+1. Are there crashes with very high numbers of persons injured? How
+   rare are these cases, and do they cluster in any borough?
 
-```{r}
-# your code here
-```
-
-### 2. Crashes by borough
-Which borough recorded the most crashes? Are some boroughs missing
-altogether?
-
-```{r}
-# your code here
-```
-
-### 3. ZIP code completeness
-How many records have missing ZIP codes? Are the missing ones
-concentrated in certain boroughs?
-
-```{r}
-# your code here
-```
-
-### 4. Geocode completeness
-How many crashes are missing latitude/longitude? What fraction of crashes
-with missing borough also lack coordinates?
-
-```{r}
-# your code here
-```
-
-### 5. Missingness in street variables
-Compare counts of missing values in `ON STREET NAME`, `CROSS STREET
-NAME`, and `OFF STREET NAME`. What does this suggest about where data
-collection is weaker?
-
-```{r}
-# your code here
-```
-
-### 6. Severity of outcomes
-How many crashes involved at least one person injured? At least one
-fatality? Show the distribution of injury counts.
-
-```{r}
-# your code here
-```
-
-### 7. Pedestrians, cyclists, and motorists
-Compare the number of injured or killed across these three groups. Who is
-most affected in this week?
-
-```{r}
-# your code here
-```
-
-### 8. Contributing factors
-What are the most common contributing factors for `VEHICLE 1`? Are there
-many “Unspecified” entries?
-
-```{r}
-# your code here
-```
-
-### 9. Vehicle types involved
-What are the most frequent vehicle categories in `VEHICLE TYPE CODE 1`?
-Compare them with secondary vehicles (`VEHICLE TYPE CODE 2`).
-
-```{r}
-# your code here
-```
-
-### 10. Outliers in injury/fatality counts
-Are there crashes with very high numbers of persons injured? How rare are
-these cases, and do they cluster in any borough?
-
-```{r}
-# your code here
-```
 
 ## Good Practices
 

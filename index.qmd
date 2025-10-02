@@ -139,3 +139,5 @@ graded submissions, and professional email etiquette.
     + R4DS Ch 10; Ch 12-13
 1. Tidy data
     + R4DS Ch 5; Ch 19.1-19.2
+1. Relational Daa
+    + R4DS Ch 14; Ch 16; Ch 17; Ch 19.3-19.6
