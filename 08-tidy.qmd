@@ -418,6 +418,7 @@ name of a plane changes, updating one record in the `planes` table is
 enough, rather than updating thousands of flight records.
 :::
 
+### Introduction
 We use the `nycflights13` package as an example again to illustrate.
 This package includes several tables describing all flights departing
 New York City in 2013.
@@ -479,15 +480,9 @@ uniqueness:
 planes %>% count(tailnum) %>% filter(n > 1)
 ```
 
-No duplicates imply that `tailnum` is a valid primary key. To check for
-unmatched foreign keys:
-
-```{r}
-flights %>% anti_join(planes, by = "tailnum") %>% nrow()
-```
-
-The result shows how many flights lack corresponding aircraft
-information.
+No duplicates imply that `tailnum` is a valid primary key. We can also
+check whether every `tailnum` in `flights` appears in `planes` once we
+learn about filtering joins below.
 
 ::: callout-tip
 ### Think: Diagnosing Key Issues
@@ -511,25 +506,21 @@ There are four types of mutating Joins:
 - `right_join(x, y)`: keeps all rows from `y`, adding matches from `x`.
 - `full_join(x, y)`: keeps all rows from both tables.
 
-#### Example: Add Plane Information
 
 ```{r}
 flights2 <- flights %>% select(year:day, hour, origin, dest, tailnum, carrier)
 
-flights2 %>% left_join(planes, by = "tailnum")
+result <- flights2 %>% left_join(planes, by = "tailnum")
+
+## compare dimensions
+nrow(flights2)
+nrow(result)
 ```
 
-This left join keeps every flight and adds aircraft details whenever a
-matching `tailnum` exists. Unmatched rows contain missing values.
+The number of rows in the result matches `flights2` because
+`left_join()` keeps all flights, even those without matching `tailnum`
+records. Missing values appear for unmatched aircraft.
 
-#### Example: Add Airline Names
-
-```{r}
-flights2 %>% left_join(airlines, by = "carrier")
-```
-
-Now each carrier code is replaced with a readable airline name, making
-the dataset easier to interpret.
 
 ::: callout-tip
 ### Think: Choosing the Right Join
@@ -547,7 +538,8 @@ whether they have a match in another. They do not add new columns.
 - `semi_join(x, y)`: keeps rows in `x` that have a match in `y`.
 - `anti_join(x, y)`: keeps rows in `x` that do not have a match in `y`.
 
-#### Example: Flights with Known Planes
+
+**Example**: Flights with Known Planes
 
 ```{r}
 flights2 %>% semi_join(planes, by = "tailnum")
@@ -555,7 +547,7 @@ flights2 %>% semi_join(planes, by = "tailnum")
 
 This keeps only flights that have aircraft information in `planes`.
 
-#### Example: Flights with Unknown Planes
+**Example**: Flights with Unknown Planes
 
 ```{r}
 flights2 %>% anti_join(planes, by = "tailnum")
@@ -565,6 +557,13 @@ These flights are missing aircraft details. `anti_join()` is especially
 useful for finding unmatched keys and diagnosing data quality issues.
 For instance, you might use it to identify which flights are missing
 weather information or which airports have no corresponding records.
+
+After learning about `anti_join()`, we can now check how many flights
+lack corresponding aircraft information:
+
+```{r}
+flights %>% anti_join(planes, by = "tailnum") %>% nrow()
+```
 
 ::: callout-tip
 ### Think: Using `semi_join()` and `anti_join()`
@@ -583,4 +582,256 @@ are linked through keys allows us to integrate information accurately.
 The tidyverse join functions make it straightforward to enrich, filter,
 and explore relational datasets such as the `nycflights13` example.
 
+
+## Strings
+
+Text data are common in real datasets. Variables such as airline
+names, airport codes, or weather descriptions are stored as
+strings. Learning how to inspect, clean, and manipulate string
+variables is essential before analysis. The `stringr` package from the
+tidyverse offers consistent, easy-to-remember functions for string
+operations.
+
+
+### Vectorized String Operations
+
+String functions in R are vectorized, meaning they act on each element
+of a vector. Let us look at examples using the airline names from the
+flights data.
+
+```{r}
+airlines$name
+str_length(airlines$name)
+```
+
+The function `str_length()` returns the number of characters in each
+element. Vectorization allows us to compute results for all airlines
+at once. 
+
+We can combine strings with `str_c()`.
+
+
+```{r}
+str_c("Flight to", airlines$name)
+```
+
+We can extract substrings with `str_sub()`.
+
+```{r}
+str_sub(airlines$name, 1, 3)
+```
+
+
+Simply put, `str_c()` joins elements with an optional
+separator. `str_sub()` extracts a substring between given
+positions. Both are vectorized.
+
+### Pattern Detection and Replacement
+
+Pattern matching is powerful for cleaning string variables. Suppose we want to
+know which airlines have names containing the word *Air*.
+
+```{r}
+str_detect(airlines$name, "Air")
+str_subset(airlines$name, "Air")
+```
+
+To replace part of a string, use `str_replace()`:
+
+```{r}
+str_replace(airlines$name, "Air", "Sky")
+```
+
+Regular expressions can be used for flexible pattern specification. The
+following example finds airline names ending with *Lines*:
+
+```{r}
+str_subset(airlines$name, "Air$")
+```
+
+### Splitting and Joining Strings
+
+When a variable contains multiple pieces of information in one column, we can
+split it into parts. For instance, separate origin and destination in a route.
+
+```{r}
+routes <- flights %>%
+  mutate(route = str_c(origin, dest, sep = "->")) %>%
+  select(route)
+head(routes$route)
+str_split(head(routes$route), "->")
+```
+
+Function `str_split()` returns a list because each element may contain
+a different number of splits. Use `str_c()` or `str_flatten()` to join
+pieces again.
+
+
+## Factors
+
+String variables often represent categorical information, such as
+airline names, weather conditions, or airport codes. In R, categorical
+data are better stored as `factors`, which record the unique
+categories (called `levels`) and store the data as integer codes
+internally. The `forcats` package provide utilities to handle such
+tasks.
+
+
+```{r}
+library(forcats)
+flights$carrier %>% head()
+```
+
+The `carrier` variable is currently a string. We can convert it to a factor
+using `as_factor()` or `factor()`.
+
+```{r}
+flights <- flights %>% mutate(carrier = as_factor(carrier))
+levels(flights$carrier)
+```
+
+Each unique airline code becomes a level. Internally, R stores these levels as
+integers, which saves memory and allows efficient grouping.
+
+### Ordering Factors
+
+Sometimes categories have a natural order, such as flight status (early, on
+ time, late). Ordered factors preserve that ordering for display and modeling.
+
+```{r}
+status <- factor(c("on time", "late", "early"),
+                 levels = c("early", "on time", "late"),
+                 ordered = TRUE)
+status
+```
+
+### Relabeling Factors
+
+We often need to rename levels for clarity. The **forcats** package provides
+functions like `fct_recode()` and `fct_collapse()`.
+
+```{r}
+flights <- flights %>%
+  mutate(carrier = fct_recode(carrier,
+    "United" = "UA",
+    "Delta" = "DL",
+    "American" = "AA",
+    "Southwest" = "WN"
+  ))
+levels(flights$carrier)
+```
+
+### Frequency and Reordering
+
+Factors can be reordered to reflect frequencies or another variable. For
+instance, we can order airlines by the number of flights.
+
+```{r}
+flights %>%
+  count(carrier) %>%
+  mutate(carrier = fct_reorder(carrier, n)) %>%
+  ggplot(aes(x = carrier, y = n)) +
+  geom_col() +
+  coord_flip()
+```
+
+This visualization shows the most frequent carriers at the top. The
+`fct_reorder()` function makes the plot easier to interpret.
+
+### Dropping Unused Levels
+
+If we filter a dataset, some factor levels may no longer appear. We can remove
+them using `fct_drop()`.
+
+```{r}
+flights %>%
+  filter(carrier %in% c("Delta", "United")) %>%
+  mutate(carrier = fct_drop(carrier)) %>%
+  count(carrier)
+```
+
+Proper factor handling ensures consistent grouping and clean visualization.
+
+
+## Date/Time
+
+Flight departure and arrival times are examples of temporal data. The
+`lubridate` package makes it easier to parse and manipulate date-time
+values.
+
+
+### Parsing Date and Time
+
+Package `lubridate` automatically recognizes common formats. Depending
+on whether the string starts with year, month, or day, we use
+different functions.
+
+```{r}
+ymd("2025-10-07")
+mdy("October 7, 2025")
+dmy("07-10-2025")
+```
+
+These functions convert text to proper `Date` objects and eliminate format
+ambiguities.
+
+
+The flights data include `year`, `month`, and `day` variables. The function
+`make_date()` combines them into a single `Date` column.
+
+```{r}
+flights <- flights %>% mutate(fdate = make_date(year, month, day))
+flights %>% select(year, month, day, fdate) %>% head()
+```
+
+For date-times that include hours and minutes, `make_datetime()` is used:
+
+```{r}
+flights <- flights %>%
+  mutate(dep_dt = make_datetime(year, month, day, dep_time %/% 100, dep_time %% 100))
+flights %>% select(dep_time, dep_dt) %>% head()
+```
+
+### Extracting Components
+
+Once a date-time object is created, components such as year, month, and hour
+can be extracted easily.
+
+```{r}
+date_example <- ymd_hms("2025-10-07 14:30:00")
+year(date_example)
+month(date_example, label = TRUE)
+day(date_example)
+hour(date_example)
+```
+
+### Date Arithmetic
+
+Arithmetic operations work naturally on date-time objects.
+
+```{r}
+date_example + days(10)
+date_example - hours(5)
+```
+
+Delays between departure and arrival can be computed by subtraction:
+
+```{r}
+flights %>%
+  mutate(arr_dt = make_datetime(year, month, day, arr_time %/% 100, arr_time %% 100),
+         delay_mins = as.numeric(difftime(arr_dt, dep_dt, units = "mins"))) %>%
+  select(dep_dt, arr_dt, delay_mins) %>% head()
+```
+
+### Example: Average Delay by Hour
+
+We can examine how departure delays vary by hour of the day.
+
+```{r}
+flights %>%
+  mutate(dep_dt = make_datetime(year, month, day, dep_time %/% 100, dep_time %% 100)) %>%
+  group_by(hour = hour(dep_dt)) %>%
+  summarize(mean_delay = mean(dep_delay, na.rm = TRUE)) %>%
+  arrange(hour)
+```
 
