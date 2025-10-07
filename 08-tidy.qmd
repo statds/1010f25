@@ -72,7 +72,7 @@ You can convert existing data structures into tibbles with `as_tibble()`:
 
 ```{r}
 # From a data frame
-as_tibble(iris)
+head(as_tibble(iris))
 
 # From a list
 as_tibble(list(x = 1:3, y = letters[1:3]))
@@ -85,7 +85,7 @@ from files:
 
 ```{r}
 # From CSV, TSV, or delimited text file
-readr::read_csv("data/Chetty_2014.csv")
+head(readr::read_csv("data/Chetty_2014.csv"))
 
 # From Excel files
 # readxl::read_excel("data.xlsx")
@@ -159,7 +159,7 @@ tibble(
   c = 1:1e3,
   d = runif(1e3),
   e = sample(letters, 1e3, replace = TRUE)
-)
+) |> head()
 ```
 
 This design avoids overwhelming the console when printing large data
@@ -307,7 +307,7 @@ This produces a clearer dataset where each row corresponds to a country
 and year with distinct variables for cases and population.
 
 
-## Separating
+### Separating
 
 
 The `separate()` function is used to pull apart one column into multiple
