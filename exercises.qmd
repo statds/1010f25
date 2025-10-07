@@ -283,7 +283,8 @@
    This exercise is based on a data set from Chetty et al., the same
    author team as the economic mobility data we have worked with, but
    a different paper and different data that examines the role of
-   colleges in economic mobility. If you wish, you can read about this
+   colleges in economic mobility; see `data/mrc.csv`. 
+   If you wish, you can read about this
    study
    [here](https://opportunityinsights.org/paper/mobilityreportcards/).
    a.  Load the appropriate packages and the data and take a glimpse
