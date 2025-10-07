@@ -301,7 +301,7 @@ Table&nbsp;9.1: Variables in <code>india.csv</code>
 <li>For each variable in the dataset, identify the type of variable (character vs.&nbsp;numeric binary vs.&nbsp;numeric non-binary).</li>
 <li>How many observations are in the dataset? In other words, how many villages were part of this experiment? Additionally, provide a substantive answer.</li>
 </ol></li>
-<li><p><strong>Land of Opportunity in the US</strong> <span class="citation" data-cites="chetty2014where">Chetty et al. (<a href="references.html#ref-chetty2014where" role="doc-biblioref">2014</a>)</span> show that children’s chances of rising out of poverty in the U.S. vary sharply across commuting zones, with higher mobility in areas with less segregation, less inequality, stronger schools, more two-parent families, and greater social capital. The data and its variable dictionary are available as <code>data/Chetty_2014.csv</code> and <code>data/Chetty_2014_dict.csv</code>. Here we look into a subset of the data, exploring the relationship between economic mobility and CZ characteristics: household income per capita (<code>hhi_percap</code>). The mobility measure that you will use in this analysis captures the probability that a child born to a parent in quintile 1 moves to income quintile 5 as an adult (<code>prob_q1q5</code>).</p>
+<li><p><strong>Land of opportunity in the US</strong> <span class="citation" data-cites="chetty2014where">Chetty et al. (<a href="references.html#ref-chetty2014where" role="doc-biblioref">2014</a>)</span> show that children’s chances of rising out of poverty in the U.S. vary sharply across commuting zones, with higher mobility in areas with less segregation, less inequality, stronger schools, more two-parent families, and greater social capital. The data and its variable dictionary are available as <code>data/Chetty_2014.csv</code> and <code>data/Chetty_2014_dict.csv</code>. Here we look into a subset of the data, exploring the relationship between economic mobility and CZ characteristics: household income per capita (<code>hhi_percap</code>). The mobility measure that you will use in this analysis captures the probability that a child born to a parent in quintile 1 moves to income quintile 5 as an adult (<code>prob_q1q5</code>).</p>
 <ol type="a">
 <li>Read and filter data to get data only for the 100 largest commuting zones (CZ). You will work with filtered data, <code>chetty_top100</code>, throughout this lab.</li>
 <li>Make a scatterplot with household income per capita (<code>hhi_percap</code>) on the x-axis, and mobility (<code>abs_mobility)</code> on the y-axis. (A) Describe the graph: what is the approximate range of the x-axis? (B) What is the approximate range of the y-axis? (C) Do you think there is a relationship between these two variables?</li>
@@ -316,7 +316,7 @@ Table&nbsp;9.1: Variables in <code>india.csv</code>
 <ol start="3" type="A">
 <li>What is the relative advantage of each of the three bar graphs?</li>
 </ol></li>
-<li><p><strong>Connecticut Schools</strong> Data on schools from the Common Core of Data (CCD) are collected by the National Center for Education Statistics. Information about the CCD can be found <a href="https://nces.ed.gov/ccd/pubschuniv.asp">here</a>. We are working with a subset of the 2013-14 dataset, <code>data/ct_schools</code> in the classnotes repo. A variable codebook for the CCD, which will explain what each column represents in the data file is located in the <code>flat file</code> in the record layout column and 2013-14 row.</p>
+<li><p><strong>Connecticut schools</strong> Data on schools from the Common Core of Data (CCD) are collected by the National Center for Education Statistics. Information about the CCD can be found <a href="https://nces.ed.gov/ccd/pubschuniv.asp">here</a>. We are working with a subset of the 2013-14 dataset, <code>data/ct_schools</code> in the classnotes repo. A variable codebook for the CCD, which will explain what each column represents in the data file is located in the <code>flat file</code> in the record layout column and 2013-14 row.</p>
 <ol type="a">
 <li>Load the appropriate packages and load the data.</li>
 <li>Data manipulation.
@@ -341,7 +341,7 @@ Table&nbsp;9.1: Variables in <code>india.csv</code>
 <li>With more R skills what types of questions could you answer using this dataset?</li>
 <li>What are some questions you have about this dataset? What information would you add to the dataset, if you could?</li>
 </ol></li>
-<li><p><strong>Early Care and Education, NC, 2007–2014</strong> The data on early care and education were carefully collected by Scott Latham and colleagues at the Stanford Center for Educational Policy Analysis, in support of a recent publication, available <a href="https://cepa.stanford.edu/content/effects-accountability-incentives-early-childhood-education">here</a>. Additional background on North Carolina’s Quality Rating and Improvement System (QRIS) can be found <a href="http://ncchildcare.nc.gov/parents/pr_sn2_ov_sr.asp">here</a>. We have a copy in the classnotes repo: <code>data/NC_ECE_2007-2014.csv</code>. You can download it into your homework repo, but please do not add it to your repo; it’s over 11MB.</p>
+<li><p><strong>Early care and education, NC, 2007–2014</strong> The data on early care and education were carefully collected by Scott Latham and colleagues at the Stanford Center for Educational Policy Analysis, in support of a recent publication, available <a href="https://cepa.stanford.edu/content/effects-accountability-incentives-early-childhood-education">here</a>. Additional background on North Carolina’s Quality Rating and Improvement System (QRIS) can be found <a href="http://ncchildcare.nc.gov/parents/pr_sn2_ov_sr.asp">here</a>. We have a copy in the classnotes repo: <code>data/NC_ECE_2007-2014.csv</code>. You can download it into your homework repo, but please do not add it to your repo; it’s over 11MB.</p>
 <p>Instead of a formal online codebook, Professor Latham provided the following description:</p>
 <blockquote class="blockquote">
 <p>“We have a panel of all licensed child care providers in North Carolina from 2007 to 2014. This includes both center-based providers and family child care homes. For all providers, we have county identifiers and zip codes. We also know facility types (e.g., independent, Head Start, local public school), enrollment, capacity, and some zip-code-level demographics (e.g., percentage below poverty, percentage Black, percentage Hispanic). For most providers, we have information on quality as measured by North Carolina’s Quality Rating and Improvement System (QRIS). However, many of these indicators are not readily interpretable because they are tied to the QRIS rubric (e.g., a 1–7 measure of teacher/staff education and credentials). The one quality measure that is relatively straightforward to interpret is the ERS rating—a widely used measure of observed classroom quality. These are elective, so we only have them for a subset of providers.”</p>
@@ -366,7 +366,7 @@ Table&nbsp;9.1: Variables in <code>india.csv</code>
 <li>Discuss the pros and cons of each of these visualizations.</li>
 </ol></li>
 </ol></li>
-<li><p><strong>Quality of Life, NC</strong> This project was created by the UNCC Urban Institute in collaboration with the city of Charlotte, Mecklenburg County, and nearby townships. This dataset describes how various aspects of Charlotte residents’ “quality of life” varies according to neighborhood. You can explore and learn more about this project <a href="https://ui.charlotte.edu/our-work/quality-life-explorer/">here</a>. The data is <code>data/qol_PS3.csv</code>. We explore how adolescent birth rate and income are related at the neighborhood level in Mecklenburg county.</p>
+<li><p><strong>Quality of life, NC</strong> This project was created by the UNCC Urban Institute in collaboration with the city of Charlotte, Mecklenburg County, and nearby townships. This dataset describes how various aspects of Charlotte residents’ “quality of life” varies according to neighborhood. You can explore and learn more about this project <a href="https://ui.charlotte.edu/our-work/quality-life-explorer/">here</a>. The data is <code>data/qol_PS3.csv</code>. We explore how adolescent birth rate and income are related at the neighborhood level in Mecklenburg county.</p>
 <ol type="a">
 <li>Load the appropriate packages and load the data.</li>
 <li>Visualize the covariation between the rate of adolescent births and median household income. What do you observe about the relationship between these variables?</li>
@@ -377,12 +377,35 @@ Table&nbsp;9.1: Variables in <code>india.csv</code>
 <li>Describe why you decided to assign variables to the asthetics you chose. How did these choices help you tell a<br>
 compelling story with this visualization?</li>
 </ol></li>
-<li><p><strong>Quality of Life, NC</strong> (continued) Conduct your own exploratory data analysis (EDA). Your EDA will be graded on your choice of an appropriate research question, the clarity of your visualizations, and how well your visualizations allow you to recognize patterns in your data and provide insight into the question you have posed.</p>
+<li><p><strong>Quality of life, NC</strong> (continued) Conduct your own exploratory data analysis (EDA). Your EDA will be graded on your choice of an appropriate research question, the clarity of your visualizations, and how well your visualizations allow you to recognize patterns in your data and provide insight into the question you have posed.</p>
 <ol type="a">
 <li>Pose and answer at minimum four iterative, related EDA questions, using a minimum of 3 different variables (as in the last exercise). Write as though you were guiding future students through an exploration of the data, along with an answer key. Be sure to clearly state your EDA question, explain why you chose the visualizations that you did, and describe your findings.</li>
 <li>What were the easiest and hardest parts of this assignment?</li>
 <li>With more R skills what types of questions could you answer using this dataset?</li>
 <li>What are some questions you have about this dataset? What information would you add to the dataset, if you could?</li>
+</ol></li>
+<li><p><strong>Role of colleges in economic mobility</strong> This exercise is based on a data set from Chetty et al., the same author team as the economic mobility data we have worked with, but a different paper and different data that examines the role of colleges in economic mobility. If you wish, you can read about this study <a href="https://opportunityinsights.org/paper/mobilityreportcards/">here</a>.</p>
+<ol type="a">
+<li>Load the appropriate packages and the data and take a glimpse of the data.</li>
+<li>Get to know the data.
+<ol type="i">
+<li>What does each row in this data set represent?</li>
+<li>Make a table of the number of colleges in each state, sorted by number.</li>
+<li>Explain why there are more than 50 rows in the table you just produced even though there are only 50 states, and write code to show what are in these extra rows.</li>
+<li>For the four CZs in New York with the most colleges, output a table of the CZ name, number of colleges in the CZ, and the average value of <code>par_median</code> in the CZ, sorted by the number of colleges in the CZ.</li>
+</ol></li>
+<li>Compare parent and child median income.
+<ol type="i">
+<li>Make a new variable called <code>pk_ratio</code> that is the ratio of parent median income to child median income, and another new variable to indicate if this ratio is low (&lt;=2), medium (between 2 and 3), or high (&gt;= 3).</li>
+<li>Graphically display the number of colleges with low, medium and high parent to child median income by CZ in New York</li>
+</ol></li>
+<li>Visualize income mobility.
+<ol type="i">
+<li>Graphically display the number of colleges in each state.</li>
+<li>Graphically display the distribution of <code>mr_kq5_pq1.</code></li>
+</ol></li>
+<li>Visualize the variability in <code>mr_kq5_pq1</code> by CZ name in New York and describe your visualization.</li>
+<li>Visualize the relationship between <code>pk_ratio</code>, <code>mr_kq5_pq1</code>, and <code>trend_parq1</code> using <code>geom_boxplot</code> Describe your visualization.</li>
 </ol></li>
 </ol>
 
