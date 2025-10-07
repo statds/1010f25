@@ -4,7 +4,7 @@ project:
 book:
   title: "Data Science and Society with R"
   subtitle: "DSDA/STAT 1010 - Quarto Book"
-  author: "[Jason S. Byers](https://jasonsbyers.com) and [Jun Yan](https:/statcomp.org)"
+  author: "[Jason S. Byers](https://jasonsbyers.com) and [Jun Yan](https://statcomp.org)"
 #  date: last-modified
   repo-url: https://github.com/statds/1010f25
   repo-actions: [issue, source]
