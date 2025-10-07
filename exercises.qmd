@@ -72,7 +72,7 @@
 	many villages were part of this experiment? Additionally, provide
 	a substantive answer.
 
-1. **Land of Opportunity in the US**
+1. **Land of opportunity in the US**
   @chetty2014where show that children’s chances of rising out of
   poverty in the U.S. vary sharply across commuting zones, with
   higher mobility in areas with less segregation, less inequality,
@@ -123,7 +123,7 @@
     position `dodge`. (B) Make new bar graphs with position `fill`.
     (C) What is the relative advantage of each of the three bar graphs?
 
-1. **Connecticut Schools**
+1. **Connecticut schools**
   Data on schools from the Common Core of Data (CCD) are collected by the
   National Center for Education Statistics. Information about the CCD
   can be found [here](https://nces.ed.gov/ccd/pubschuniv.asp).
@@ -165,7 +165,7 @@
     a.  What are some questions you have about this dataset? What
   information would you add to the dataset, if you could?
 
-1. **Early Care and Education, NC, 2007–2014**
+1. **Early care and education, NC, 2007–2014**
    The data on early care and education were carefully collected by
    Scott Latham and colleagues at the Stanford Center for Educational
    Policy Analysis, in support of a recent publication, available
@@ -226,7 +226,7 @@
        i.  Visualize the same relationship using `geom_bin2d`. 
 	   i.  Discuss the pros and cons of each of these visualizations.
 
-1. **Quality of Life, NC**
+1. **Quality of life, NC**
    This project was created by the UNCC Urban Institute in
    collaboration with the city of Charlotte, Mecklenburg County, and
    nearby townships. This dataset describes how various aspects of
@@ -261,13 +261,13 @@
    asthetics you chose. How did these choices help you tell a   
    compelling story with this visualization? 
    
-1. **Quality of Life, NC** (continued)
+1. **Quality of life, NC** (continued)
    Conduct your own exploratory data analysis (EDA). Your EDA will be
    graded on your choice of an appropriate research question, the
    clarity of your visualizations, and how well your visualizations
    allow you to recognize patterns in your data and provide insight
    into the question you have posed. 
-   a.  Pose and answer at minimum four iterative, related EDA
+   a. Pose and answer at minimum four iterative, related EDA
    questions, using a minimum of 3 different variables (as in the last
    exercise). Write as though you were guiding future students through
    an exploration of the data, along with an answer key. Be sure to
@@ -279,4 +279,40 @@
    a. What are some questions you have about this dataset? What
    information would you add to the dataset, if you could?
 
-	
+1. **Role of colleges in economic mobility**
+   This exercise is based on a data set from Chetty et al., the same
+   author team as the economic mobility data we have worked with, but
+   a different paper and different data that examines the role of
+   colleges in economic mobility. If you wish, you can read about this
+   study
+   [here](https://opportunityinsights.org/paper/mobilityreportcards/).
+   a.  Load the appropriate packages and the data and take a glimpse
+   of the data.
+   a.  Get to know the data.
+        i.  What does each row in this data set represent? 
+        i.  Make a table of the number of colleges in each state, sorted
+        by number. 
+        i.  Explain why there are more than 50 rows in the table you
+        just produced even though there are only 50 states, and write code
+        to show what are in these extra rows.
+        i.  For the four CZs in New York with the most colleges, output
+        a table of the CZ name, number of colleges in the CZ, and the
+        average value of `par_median` in the CZ, sorted by the number of
+        colleges in the CZ.
+   a.  Compare parent and child median income.
+        i.  Make a new variable called `pk_ratio` that is the ratio of
+        parent median income to child median income, and another new
+        variable to indicate if this ratio is low (\<=2), medium
+        (between 2 and 3), or  high (\>= 3).
+        i. Graphically display the number of colleges with low, medium
+        and high parent to child median income by CZ in New York
+   a.  Visualize income mobility.
+        i.  Graphically display the number of colleges in each state. 
+        i.  Graphically display the distribution of `mr_kq5_pq1.`
+   a.  Visualize the variability in `mr_kq5_pq1` by CZ name in New
+   York and describe your visualization.
+   a. Visualize the relationship between `pk_ratio`, `mr_kq5_pq1`,
+   and `trend_parq1` using `geom_boxplot` Describe your
+   visualization.
+   
+	  
