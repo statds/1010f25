@@ -394,3 +394,193 @@ table5 %>%
 
 This produces a single column `new` with values such as `1999` and
 `2000`, giving a cleaner representation of the year variable.
+
+
+## Relational Data
+
+Many datasets consist of multiple tables that are connected in a
+meaningful way. Together, such collections are called *relational
+data*. Each table stores information about a particular type of
+observation, and the relationships among these tables allow us to draw
+richer conclusions.
+
+Why not store everything in one giant table? Because different kinds
+of observations naturally belong in different tables. For example,
+aircraft information does not change across flights, and weather data
+apply to all flights departing at a specific time from the same
+airport.
+
+::: callout-tip
+### Think: Storage Efficiency and Consistency
+Keeping separate tables avoids duplication, reduces storage, and
+prevents inconsistencies when information changes. If the manufacturer
+name of a plane changes, updating one record in the `planes` table is
+enough, rather than updating thousands of flight records.
+:::
+
+We use the `nycflights13` package as an example again to illustrate.
+This package includes several tables describing all flights departing
+New York City in 2013.
+
+```{r}
+library(nycflights13)
+flights %>% select(year:day, hour, origin, dest, tailnum, carrier) %>% head()
+airlines %>% head()
+planes %>% select(tailnum, manufacturer, model, year) %>% head()
+airports %>% select(faa, name, lat, lon) %>% head()
+weather %>% select(origin, year:day, hour, temp, wind_speed) %>% head()
+```
+
+Each table contains different but related information:
+
+- `flights` records each departure, including date, time, origin,
+  destination, tail number, and carrier code.
+- `airlines` provides the full airline names corresponding to carrier
+  codes.
+- `airports` gives the name and geographic location for each airport.
+- `planes` contains aircraft details such as manufacturer and model.
+- `weather` records hourly weather data for each origin airport.
+
+These tables are linked by shared variables. For example:
+
+- `carrier` links `flights` to `airlines`.
+- `tailnum` links `flights` to `planes`.
+- `origin` and `dest` link `flights` to `airports`.
+- `year`, `month`, `day`, `hour`, and `origin` link `flights` to
+  `weather`.
+
+A natural question to ask is: how can we combine information across
+these tables to answer questions such as:
+
+1. What type of aircraft fly most often from JFK?
+2. Which airlines experience the longest delays?
+3. Are certain weather conditions associated with longer delays?
+
+To answer these questions, we must understand *keys* and *joins*.
+
+
+### Keys and Relationships
+
+A key identifies how observations in one table relate to those in
+another.
+
+- A primary key uniquely identifies each observation within a table.
+- A foreign key refers to a primary key in another table.
+
+For example, in `planes`, the variable `tailnum` serves as a primary
+key because each aircraft has a unique tail number. In `flights`, the
+same variable acts as a foreign key since many flights can share the
+same aircraft.
+
+We can verify whether a variable is a primary key by checking for
+uniqueness:
+
+```{r}
+planes %>% count(tailnum) %>% filter(n > 1)
+```
+
+No duplicates imply that `tailnum` is a valid primary key. To check for
+unmatched foreign keys:
+
+```{r}
+flights %>% anti_join(planes, by = "tailnum") %>% nrow()
+```
+
+The result shows how many flights lack corresponding aircraft
+information.
+
+::: callout-tip
+### Think: Diagnosing Key Issues
+It’s common for foreign keys to have missing matches. This may happen
+when aircraft were retired, renamed, or missing from the record. Always
+check unmatched keys before joining tables.
+:::
+
+
+### Mutating Joins
+
+Mutating joins combine variables from two tables based on matching key
+values. They allow us to enrich one dataset with information from
+another.
+
+
+There are four types of mutating Joins:
+
+- `inner_join(x, y)`: keeps only rows with matching keys in both tables.
+- `left_join(x, y)`: keeps all rows from `x`, adding matches from `y`.
+- `right_join(x, y)`: keeps all rows from `y`, adding matches from `x`.
+- `full_join(x, y)`: keeps all rows from both tables.
+
+#### Example: Add Plane Information
+
+```{r}
+flights2 <- flights %>% select(year:day, hour, origin, dest, tailnum, carrier)
+
+flights2 %>% left_join(planes, by = "tailnum")
+```
+
+This left join keeps every flight and adds aircraft details whenever a
+matching `tailnum` exists. Unmatched rows contain missing values.
+
+#### Example: Add Airline Names
+
+```{r}
+flights2 %>% left_join(airlines, by = "carrier")
+```
+
+Now each carrier code is replaced with a readable airline name, making
+the dataset easier to interpret.
+
+::: callout-tip
+### Think: Choosing the Right Join
+`left_join()` is most common because it preserves the main dataset.
+Use `inner_join()` only when you are sure you want to exclude records
+that do not match.
+:::
+
+
+### Filtering Joins
+
+Filtering joins keep or exclude observations in one table based on
+whether they have a match in another. They do not add new columns.
+
+- `semi_join(x, y)`: keeps rows in `x` that have a match in `y`.
+- `anti_join(x, y)`: keeps rows in `x` that do not have a match in `y`.
+
+#### Example: Flights with Known Planes
+
+```{r}
+flights2 %>% semi_join(planes, by = "tailnum")
+```
+
+This keeps only flights that have aircraft information in `planes`.
+
+#### Example: Flights with Unknown Planes
+
+```{r}
+flights2 %>% anti_join(planes, by = "tailnum")
+```
+
+These flights are missing aircraft details. `anti_join()` is especially
+useful for finding unmatched keys and diagnosing data quality issues.
+For instance, you might use it to identify which flights are missing
+weather information or which airports have no corresponding records.
+
+::: callout-tip
+### Think: Using `semi_join()` and `anti_join()`
+Use `semi_join()` to filter data based on membership, and `anti_join()`
+to find mismatches. They are efficient tools for quality control and
+exploratory checks.
+:::
+
+
+### Summary
+
+Relational data represent multiple connected tables describing related
+entities. Keeping separate tables helps minimize redundancy, reduce
+errors, and maintain data consistency. Understanding how these tables
+are linked through keys allows us to integrate information accurately.
+The tidyverse join functions make it straightforward to enrich, filter,
+and explore relational datasets such as the `nycflights13` example.
+
+
