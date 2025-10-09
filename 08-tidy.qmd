@@ -542,7 +542,7 @@ whether they have a match in another. They do not add new columns.
 **Example**: Flights with Known Planes
 
 ```{r}
-flights2 %>% semi_join(planes, by = "tailnum")
+flights2 %>% semi_join(planes, by = "tailnum") %>% nrow()
 ```
 
 This keeps only flights that have aircraft information in `planes`.
@@ -550,7 +550,7 @@ This keeps only flights that have aircraft information in `planes`.
 **Example**: Flights with Unknown Planes
 
 ```{r}
-flights2 %>% anti_join(planes, by = "tailnum")
+flights2 %>% anti_join(planes, by = "tailnum") %>% nrow()
 ```
 
 These flights are missing aircraft details. `anti_join()` is especially
@@ -558,8 +558,9 @@ useful for finding unmatched keys and diagnosing data quality issues.
 For instance, you might use it to identify which flights are missing
 weather information or which airports have no corresponding records.
 
-After learning about `anti_join()`, we can now check how many flights
-lack corresponding aircraft information:
+This is how we check how many flights lack corresponding aircraft
+information 
+
 
 ```{r}
 flights %>% anti_join(planes, by = "tailnum") %>% nrow()
@@ -788,7 +789,8 @@ For date-times that include hours and minutes, `make_datetime()` is used:
 
 ```{r}
 flights <- flights %>%
-  mutate(dep_dt = make_datetime(year, month, day, dep_time %/% 100, dep_time %% 100))
+    mutate(dep_dt = make_datetime(year, month, day,
+                                  dep_time %/% 100, dep_time %% 100))
 flights %>% select(dep_time, dep_dt) %>% head()
 ```
 
@@ -818,9 +820,11 @@ Delays between departure and arrival can be computed by subtraction:
 
 ```{r}
 flights %>%
-  mutate(arr_dt = make_datetime(year, month, day, arr_time %/% 100, arr_time %% 100),
-         delay_mins = as.numeric(difftime(arr_dt, dep_dt, units = "mins"))) %>%
-  select(dep_dt, arr_dt, delay_mins) %>% head()
+    mutate(arr_dt = make_datetime(year, month, day,
+                                  arr_time %/% 100, arr_time %% 100),
+           delay_mins = as.numeric(difftime(arr_dt, dep_dt,
+                                            units = "mins"))) %>%
+    select(dep_dt, arr_dt, delay_mins) %>% head()
 ```
 
 ### Example: Average Delay by Hour
@@ -829,9 +833,10 @@ We can examine how departure delays vary by hour of the day.
 
 ```{r}
 flights %>%
-  mutate(dep_dt = make_datetime(year, month, day, dep_time %/% 100, dep_time %% 100)) %>%
-  group_by(hour = hour(dep_dt)) %>%
-  summarize(mean_delay = mean(dep_delay, na.rm = TRUE)) %>%
-  arrange(hour)
+    mutate(dep_dt = make_datetime(year, month, day,
+                                  dep_time %/% 100, dep_time %% 100)) %>%
+    group_by(hour = hour(dep_dt)) %>%
+    summarize(mean_delay = mean(dep_delay, na.rm = TRUE)) %>%
+    arrange(hour)
 ```
 
