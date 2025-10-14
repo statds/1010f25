@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -231,6 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="header-section-number">8.5</span> Strings</a></li>
   <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors"><span class="header-section-number">8.6</span> Factors</a></li>
   <li><a href="#datetime" id="toc-datetime" class="nav-link" data-scroll-target="#datetime"><span class="header-section-number">8.7</span> Date/Time</a></li>
+  <li><a href="#case-study-nyc-snow-extremes" id="toc-case-study-nyc-snow-extremes" class="nav-link" data-scroll-target="#case-study-nyc-snow-extremes"><span class="header-section-number">8.8</span> Case Study: NYC Snow Extremes</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/08-tidy.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -417,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["a"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["b"],"name":[2],"type":["date"],"align":["right"]},{"label":["c"],"name":[3],"type":["int"],"align":["right"]},{"label":["d"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["e"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"2025-10-15 08:19:54.241468","2":"2025-11-09","3":"1","4":"0.6313018","5":"a"},{"1":"2025-10-15 04:22:27.539685","2":"2025-10-24","3":"2","4":"0.9948859","5":"p"},{"1":"2025-10-14 16:52:25.267894","2":"2025-11-04","3":"3","4":"0.6391869","5":"w"},{"1":"2025-10-15 07:16:28.002810","2":"2025-11-03","3":"4","4":"0.5467617","5":"g"},{"1":"2025-10-15 07:13:08.932415","2":"2025-10-31","3":"5","4":"0.6499452","5":"i"},{"1":"2025-10-14 11:38:34.246377","2":"2025-10-16","3":"6","4":"0.5713582","5":"m"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["a"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["b"],"name":[2],"type":["date"],"align":["right"]},{"label":["c"],"name":[3],"type":["int"],"align":["right"]},{"label":["d"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["e"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"2025-10-15 07:40:51.318605","2":"2025-10-20","3":"1","4":"0.35623455","5":"b"},{"1":"2025-10-14 12:46:03.460599","2":"2025-11-06","3":"2","4":"0.06675943","5":"t"},{"1":"2025-10-15 02:02:51.303339","2":"2025-11-09","3":"3","4":"0.01170469","5":"l"},{"1":"2025-10-15 06:38:11.532923","2":"2025-11-01","3":"4","4":"0.96967128","5":"w"},{"1":"2025-10-14 09:59:31.954584","2":"2025-10-21","3":"5","4":"0.50757094","5":"h"},{"1":"2025-10-15 08:15:01.806739","2":"2025-10-18","3":"6","4":"0.10314892","5":"g"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -444,14 +465,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
+<pre><code>[1] 0.8014674 0.7676844 0.8657814 0.6571513 0.2417212</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"x"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
+<pre><code>[1] 0.8014674 0.7676844 0.8657814 0.6571513 0.2417212</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -459,14 +480,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
+<pre><code>[1] 0.8014674 0.7676844 0.8657814 0.6571513 0.2417212</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="dv">1</span>,<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9370594</code></pre>
+<pre><code>[1] 0.8014674</code></pre>
 </div>
 </div>
 </section>
@@ -1364,9 +1385,25 @@ Levels: early &lt; on time &lt; late</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="case-study-nyc-snow-extremes" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="case-study-nyc-snow-extremes"><span class="header-section-number">8.8</span> Case Study: NYC Snow Extremes</h2>
+<p><span class="citation" data-cites="lee2019trend">Lee &amp; Lee (<a href="references.html#ref-lee2019trend" role="doc-biblioref">2020</a>)</span> investigate the snow storms in NYC with extreme value theory, quantifying linear trends in extreme snowfall and assess how severe the 2016 blizzard is in terms of return levels. The authors have nicely published their data and R code in their online supplementary material, which facilitates reproducibility.</p>
+<ol type="1">
+<li>Find the data source and download the csv file. Let’s focus on the Central Park Station.</li>
+<li>Import the data; read the product info; and process it.</li>
+<li>Plot the time series.</li>
+<li>Get another station’s data.</li>
+<li>How should we store the data from multiple sites.</li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-lee2019trend" class="csl-entry" role="listitem">
+Lee, M., &amp; Lee, J. (2020). Trend and return level of extreme snow events in <span>N</span>ew <span>Y</span>ork <span>C</span>ity. <em>The American Statistician</em>, <em>74</em>(3), 282–293. <a href="https://doi.org/10.1080/00031305.2019.1592780">https://doi.org/10.1080/00031305.2019.1592780</a>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
