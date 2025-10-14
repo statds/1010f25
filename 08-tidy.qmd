@@ -586,9 +586,12 @@ and explore relational datasets such as the `nycflights13` example.
 
 ## Strings
 
-Text data are common in real datasets. Variables such as airline
+Text data are common in real datasets. In the NYC flights example,
+variables such as airline
 names, airport codes, or weather descriptions are stored as
-strings. Learning how to inspect, clean, and manipulate string
+strings. Because text data often includes noise, inconsistent
+capitalization, or embedded structure (like “city–state”), knowing how
+how to inspect, clean, and manipulate string
 variables is essential before analysis. The `stringr` package from the
 tidyverse offers consistent, easy-to-remember functions for string
 operations.
@@ -616,6 +619,9 @@ We can combine strings with `str_c()`.
 str_c("Flight to", airlines$name)
 ```
 
+This is not exactly what we wanted, because the default `sep = ""`. We
+should add `sep = " "`.
+
 We can extract substrings with `str_sub()`.
 
 ```{r}
@@ -637,11 +643,21 @@ str_detect(airlines$name, "Air")
 str_subset(airlines$name, "Air")
 ```
 
+
+
 To replace part of a string, use `str_replace()`:
 
 ```{r}
 str_replace(airlines$name, "Air", "Sky")
 ```
+
+Note the differences
++ `str_replace()` replaces only the first occurrence of a pattern in
+  each string.
++ `str_replace_all()` replaces all occurrences of the pattern in each
+string. 
+
+
 
 Regular expressions can be used for flexible pattern specification. The
 following example finds airline names ending with *Lines*:
