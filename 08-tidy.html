@@ -417,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["a"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["b"],"name":[2],"type":["date"],"align":["right"]},{"label":["c"],"name":[3],"type":["int"],"align":["right"]},{"label":["d"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["e"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"2025-10-09 23:28:48.529752","2":"2025-10-14","3":"1","4":"0.27186398","5":"h"},{"1":"2025-10-09 16:05:53.752290","2":"2025-10-14","3":"2","4":"0.08629987","5":"r"},{"1":"2025-10-09 20:47:26.642658","2":"2025-10-13","3":"3","4":"0.23579296","5":"z"},{"1":"2025-10-09 21:31:01.958889","2":"2025-10-21","3":"4","4":"0.74579270","5":"e"},{"1":"2025-10-10 00:06:50.462316","2":"2025-11-04","3":"5","4":"0.71503837","5":"a"},{"1":"2025-10-09 15:32:38.532897","2":"2025-10-19","3":"6","4":"0.40900163","5":"v"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["a"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["b"],"name":[2],"type":["date"],"align":["right"]},{"label":["c"],"name":[3],"type":["int"],"align":["right"]},{"label":["d"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["e"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"2025-10-15 08:19:54.241468","2":"2025-11-09","3":"1","4":"0.6313018","5":"a"},{"1":"2025-10-15 04:22:27.539685","2":"2025-10-24","3":"2","4":"0.9948859","5":"p"},{"1":"2025-10-14 16:52:25.267894","2":"2025-11-04","3":"3","4":"0.6391869","5":"w"},{"1":"2025-10-15 07:16:28.002810","2":"2025-11-03","3":"4","4":"0.5467617","5":"g"},{"1":"2025-10-15 07:13:08.932415","2":"2025-10-31","3":"5","4":"0.6499452","5":"i"},{"1":"2025-10-14 11:38:34.246377","2":"2025-10-16","3":"6","4":"0.5713582","5":"m"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -444,14 +444,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1091435 0.1797267 0.8887079 0.1221268 0.2125729</code></pre>
+<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"x"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1091435 0.1797267 0.8887079 0.1221268 0.2125729</code></pre>
+<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -459,14 +459,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1091435 0.1797267 0.8887079 0.1221268 0.2125729</code></pre>
+<pre><code>[1] 0.93705938 0.89744407 0.30881152 0.01923029 0.52009777</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="dv">1</span>,<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1091435</code></pre>
+<pre><code>[1] 0.9370594</code></pre>
 </div>
 </div>
 </section>
@@ -931,7 +931,7 @@ Think: Using <code>semi_join()</code> and <code>anti_join()</code>
 </section>
 <section id="strings" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="strings"><span class="header-section-number">8.5</span> Strings</h2>
-<p>Text data are common in real datasets. Variables such as airline names, airport codes, or weather descriptions are stored as strings. Learning how to inspect, clean, and manipulate string variables is essential before analysis. The <code>stringr</code> package from the tidyverse offers consistent, easy-to-remember functions for string operations.</p>
+<p>Text data are common in real datasets. In the NYC flights example, variables such as airline names, airport codes, or weather descriptions are stored as strings. Because text data often includes noise, inconsistent capitalization, or embedded structure (like “city–state”), knowing how how to inspect, clean, and manipulate string variables is essential before analysis. The <code>stringr</code> package from the tidyverse offers consistent, easy-to-remember functions for string operations.</p>
 <section id="vectorized-string-operations" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="vectorized-string-operations"><span class="header-section-number">8.5.1</span> Vectorized String Operations</h3>
 <p>String functions in R are vectorized, meaning they act on each element of a vector. Let us look at examples using the airline names from the flights data.</p>
@@ -984,6 +984,7 @@ Think: Using <code>semi_join()</code> and <code>anti_join()</code>
 [16] "Flight toMesa Airlines Inc."         </code></pre>
 </div>
 </div>
+<p>This is not exactly what we wanted, because the default <code>sep = ""</code>. We should add <code>sep = " "</code>.</p>
 <p>We can extract substrings with <code>str_sub()</code>.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -1041,6 +1042,7 @@ Think: Using <code>semi_join()</code> and <code>anti_join()</code>
 [15] "Southwest Skylines Co."      "Mesa Skylines Inc."         </code></pre>
 </div>
 </div>
+<p>Note the differences + <code>str_replace()</code> replaces only the first occurrence of a pattern in each string. + <code>str_replace_all()</code> replaces all occurrences of the pattern in each string.</p>
 <p>Regular expressions can be used for flexible pattern specification. The following example finds airline names ending with <em>Lines</em>:</p>
 <div class="cell">
 <details open="" class="code-fold">

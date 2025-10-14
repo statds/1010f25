@@ -251,8 +251,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#questions-to-consider" id="toc-questions-to-consider" class="nav-link active" data-scroll-target="#questions-to-consider"><span class="header-section-number">7.1</span> Questions to consider</a></li>
   <li><a href="#conditional-statements" id="toc-conditional-statements" class="nav-link" data-scroll-target="#conditional-statements"><span class="header-section-number">7.2</span> Conditional statements</a></li>
-  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises"><span class="header-section-number">7.3</span> In-Class Exercises</a></li>
-  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices"><span class="header-section-number">7.4</span> Good Practices</a></li>
+  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices"><span class="header-section-number">7.3</span> Good Practices</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/07-eda.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -284,8 +283,8 @@ div.csl-indent {
 <div id="fig-eda-flow" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eda-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2bacb660b72ae3883367" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2bacb660b72ae3883367">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n\n  node [shape = box, style = filled, fontname = Helvetica]\n\n  A [label = \"Design & collect\", fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  B [label = \"Import\",           fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  C [label = \"Tidy\",             fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  D [label = \"Transform\"]\n  E [label = \"Visualize\",        fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  F [label = \"Model\",            fillcolor = \"#E3F2FD\", color = \"#2196F3\", fontcolor = \"#0D47A1\"]\n  G [label = \"Publish\"]\n  H [label = \"Communicate\",      fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n\n  # main downward flow\n  A -> B -> C -> D -> E -> F -> G -> H\n\n  # feedback arrows\n  H -> A [style=dashed, color=gray50]\n  F -> D [style=dashed, color=gray50]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-ec90f82a7b5afd56718d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ec90f82a7b5afd56718d">{"x":{"diagram":"\ndigraph {\n  graph [layout = dot, rankdir = TB]\n\n  node [shape = box, style = filled, fontname = Helvetica]\n\n  A [label = \"Design & collect\", fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  B [label = \"Import\",           fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  C [label = \"Tidy\",             fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  D [label = \"Transform\"]\n  E [label = \"Visualize\",        fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n  F [label = \"Model\",            fillcolor = \"#E3F2FD\", color = \"#2196F3\", fontcolor = \"#0D47A1\"]\n  G [label = \"Publish\"]\n  H [label = \"Communicate\",      fillcolor = \"#FFF3E0\", color = \"#FF9800\", fontcolor = \"#E65100\"]\n\n  # main downward flow\n  A -> B -> C -> D -> E -> F -> G -> H\n\n  # feedback arrows\n  H -> A [style=dashed, color=gray50]\n  F -> D [style=dashed, color=gray50]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eda-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.1: Data science workflow from design and collection to communication, with feedback loops.
@@ -704,34 +703,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="in-class-exercises" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="in-class-exercises"><span class="header-section-number">7.3</span> In-Class Exercises</h2>
-<p>The data come from the NYC Open Data portal: Motor Vehicle Collisions–Crashes. This dataset contains information reported to the NYPD for motor vehicle crashes, available as <code>data/nyc_crashes_lbdwk_2025.csv</code>. For this exercise, a subset covering Labor Day week 2025 (from 11:59:59 PM August 30 to 12:00:00 AM September 7) was downloaded. It includes <strong>1,487 crash records</strong> with 29 variables.</p>
-<p>Key variables include:</p>
-<ul>
-<li><code>CRASH DATE</code>, <code>CRASH TIME</code>: when the crash occurred.</li>
-<li><code>BOROUGH</code>, <code>ZIP CODE</code>, <code>LATITUDE</code>, <code>LONGITUDE</code>, <code>LOCATION</code>: where the crash occurred.</li>
-<li><code>ON STREET NAME</code>, <code>CROSS STREET NAME</code>, <code>OFF STREET NAME</code>: streets involved.</li>
-<li><code>NUMBER OF PERSONS INJURED/KILLED</code> and subcategories for pedestrians, cyclists, and motorists.</li>
-<li><code>CONTRIBUTING FACTOR VEHICLE 1–5</code>: recorded causes of crashes.</li>
-<li><code>VEHICLE TYPE CODE 1–5</code>: vehicle categories involved.</li>
-</ul>
-<p>The raw data contain missing values in several fields (e.g., borough, ZIP code, coordinates, street names, and contributing factors). Detecting and interpreting missingness is part of the data exploration process.</p>
-<ol type="1">
-<li>Read the data into R.</li>
-<li>Plot the number of crashes by day and by hour. Do weekends/holidays or evening show distinct patterns compared to weekdays?</li>
-<li>Which borough recorded the most crashes? Are some boroughs missing altogether?</li>
-<li>How many records have missing ZIP codes? Are the missing ones concentrated in certain boroughs?</li>
-<li>How many crashes are missing latitude/longitude? What fraction of crashes with missing borough also lack coordinates?</li>
-<li>Compare counts of missing values in <code>ON STREET NAME</code>, <code>CROSS STREET    NAME</code>, and <code>OFF STREET NAME</code>. What does this suggest about where data collection is weaker?</li>
-<li>How many crashes involved at least one person injured? At least one fatality? Show the distribution of injury counts.</li>
-<li>What are the most common contributing factors for <code>VEHICLE 1</code>? Are there many “Unspecified” entries?</li>
-<li>What are the most frequent vehicle categories in <code>VEHICLE TYPE CODE 1</code>? Compare them with secondary vehicles (<code>VEHICLE TYPE CODE 2</code>).</li>
-<li>Are there crashes with very high numbers of persons injured? How rare are these cases, and do they cluster in any borough?</li>
-</ol>
-</section>
-<section id="good-practices" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="good-practices"><span class="header-section-number">7.4</span> Good Practices</h2>
+<section id="good-practices" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="good-practices"><span class="header-section-number">7.3</span> Good Practices</h2>
 <ul>
 <li>Prefer simple, readable graphics over clever ones.</li>
 <li>Keep code blocks short and name intermediate objects clearly.</li>

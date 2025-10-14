@@ -407,6 +407,46 @@ compelling story with this visualization?</li>
 <li>Visualize the variability in <code>mr_kq5_pq1</code> by CZ name in New York and describe your visualization.</li>
 <li>Visualize the relationship between <code>pk_ratio</code>, <code>mr_kq5_pq1</code>, and <code>trend_parq1</code> using <code>geom_boxplot</code> Describe your visualization.</li>
 </ol></li>
+<li><p><strong>NYC crashes in the week of Labor Day, 2025</strong> The data come from the NYC Open Data portal: <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data">Motor Vehicle Collisions–Crashes</a>. This dataset contains information reported to the NYPD for motor vehicle crashes, available as <code>data/nyc_crashes_lbdwk_2025.csv</code>. For this exercise, a subset covering Labor Day week 2025 was downloaded. It includes 29 variables, which are explained at the portal. The raw data contain missing values in several fields.</p>
+<ol type="a">
+<li>Importing the data.
+<ol type="i">
+<li>Read the data into R and take a glimpse.</li>
+<li>The variable names are all upper-cases, with spaces replaced with periods when imported. Rename the variables to use lower cases, with underscores in places of spaces (periods).</li>
+<li>Are all the observations really in our target time frame? If not, filter out those are not and use the filtered data for the rest of the exercise.</li>
+<li>Do you need the <code>location</code> variable in the data? What suggestion would you give to the data curator?</li>
+</ol></li>
+<li>Missing values.
+<ol type="i">
+<li>Are there borough values that should be coded as <code>NA</code>? If so, recode them.</li>
+<li>Are there unreasonable geocode (lattitude/longitude) that should be coded as <code>NA</code>? If so, recode them.</li>
+<li>How many records have geocode missing?</li>
+<li>How many zip code missing and borough missing occur simultaneously?</li>
+<li>Create a logical variable <code>fillable_zip</code>, which is <code>TRUE</code> when the geocode is not missing but zip code is missing. Compare the rate of fillable zip across the seven days.</li>
+</ol></li>
+<li>Data exploration.
+<ol type="i">
+<li>Create a variable <code>hour</code> to store the hour in which a collision occurs.</li>
+<li>Plot the number of crashes by hour by borough, Summarize the patterns in the figure (e.g., are there more crashes during rush hours?).</li>
+<li>How many crashes occurred at exactly midnight? How about whole hours? Is this a metter of bad luck when the clock strikes midnight?</li>
+<li>Create a logical variable <code>business_day</code>, which is <code>TRUE</code> if the day is a business day and <code>FALSE</code> otherwise.</li>
+<li>Plot the number of crashes by business day by borough. Summarize your observations.</li>
+</ol></li>
+<li>Severity analysis.
+<ol type="i">
+<li>Create a logical variable <code>severe</code>, which is <code>TRUE</code> if a crash involved at least one person injured or one person killed.</li>
+<li>Create a count variable <code>n_vehicles</code> to store the number of vehicles involved for the crashes.</li>
+<li>Create a contingency table of <code>severe</code> and <code>n_vehicles</code>. Summarize your observations.</li>
+<li>Create a contingency table of <code>severe</code> and <code>hour</code>. Summarize your observations.</li>
+<li>Identify the top 10 severe crashes. Are some of them geographically clustered?</li>
+</ol></li>
+<li>Contributing factors.</li>
+<li>Create a frequency table for the contributing factors for vehicle 1.</li>
+<li>Are there contributing factors differ only in cases? If so, convert upper cases to lower cases.</li>
+<li>What are the top five contributing factors?</li>
+<li>Should any values in the frequency table be considered <code>NA</code>?</li>
+<li>What are the most frequent vehicle categories in vehicle 1 and vehicle 2? Comment on the results.</li>
+</ol></li>
 </ol>
 
 
