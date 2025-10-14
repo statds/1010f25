@@ -856,3 +856,18 @@ flights %>%
     arrange(hour)
 ```
 
+## Case Study: NYC Snow Extremes
+
+@lee2019trend investigate the snow storms in NYC with extreme value
+theory, quantifying linear trends in extreme snowfall and assess how
+severe the 2016 blizzard is in terms of return levels. The authors
+have nicely published their data and R code in their online
+supplementary material, which facilitates reproducibility.
+
+1. Find the data source and download the csv file. Let's focus on the
+   Central Park Station.
+1. Import the data; read the product info; and process it.
+1. Plot the time series.
+1. Get another station's data.
+1. How should we store the data from multiple sites.
+
