@@ -370,10 +370,10 @@
       your observations.
       i.  Identify the top 10 severe crashes. Are some of them
       geographically clustered?
-   a.  Contributing factors.
+   a. Contributing factors.
       i.  Create a frequency table for the contributing factors for
       vehicle 1. 
-	  i.  Are there contributing factors differ only in cases? If so,
+      i.  Are there contributing factors differ only in cases? If so,
       convert upper cases to lower cases.
       i.  What are the top five contributing factors?
       i.  Should any values in the frequency table be considered `NA`?
