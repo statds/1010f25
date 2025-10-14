@@ -392,56 +392,6 @@ once. Use small multiples to keep comparisons interpretable.
 :::
 
 
-## In-Class Exercises
-
-The data come from the NYC Open Data portal: Motor Vehicle
-Collisions–Crashes. This dataset contains information reported to the
-NYPD for motor vehicle crashes, available as
-`data/nyc_crashes_lbdwk_2025.csv`. 
-For this exercise, a subset covering Labor Day week 2025 (from
-11:59:59 PM August 30 to 12:00:00 AM September 7) was
-downloaded. It includes **1,487 crash records** with 29 variables.
-
-
-Key variables include:
-
-- `CRASH DATE`, `CRASH TIME`: when the crash occurred.
-- `BOROUGH`, `ZIP CODE`, `LATITUDE`, `LONGITUDE`, `LOCATION`: where the
-  crash occurred.
-- `ON STREET NAME`, `CROSS STREET NAME`, `OFF STREET NAME`: streets
-  involved.
-- `NUMBER OF PERSONS INJURED/KILLED` and subcategories for pedestrians,
-  cyclists, and motorists.
-- `CONTRIBUTING FACTOR VEHICLE 1–5`: recorded causes of crashes.
-- `VEHICLE TYPE CODE 1–5`: vehicle categories involved.
-
-The raw data contain missing values in several fields (e.g., borough,
-ZIP code, coordinates, street names, and contributing factors). Detecting
-and interpreting missingness is part of the data exploration process.
-
-1. Read the data into R.
-1. Plot the number of crashes by day and by hour. Do weekends/holidays
-   or  evening show distinct patterns compared to weekdays?
-1. Which borough recorded the most crashes? Are some boroughs missing
-   altogether?
-1. How many records have missing ZIP codes? Are the missing ones
-   concentrated in certain boroughs?
-1. How many crashes are missing latitude/longitude? What fraction of
-   crashes with missing borough also lack coordinates?
-1. Compare counts of missing values in `ON STREET NAME`, `CROSS STREET
-   NAME`, and `OFF STREET NAME`. What does this suggest about where
-   data collection is weaker?
-1. How many crashes involved at least one person injured? At least one
-   fatality? Show the distribution of injury counts.
-1. What are the most common contributing factors for `VEHICLE 1`? Are
-   there many “Unspecified” entries?
-1. What are the most frequent vehicle categories in 
-   `VEHICLE TYPE CODE 1`? Compare them with secondary vehicles
-   (`VEHICLE TYPE CODE 2`).
-1. Are there crashes with very high numbers of persons injured? How
-   rare are these cases, and do they cluster in any borough?
-
-
 ## Good Practices
 
 - Prefer simple, readable graphics over clever ones.

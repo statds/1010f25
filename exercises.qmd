@@ -317,3 +317,67 @@
    visualization.
    
 	  
+1. **NYC crashes in the week of Labor Day, 2025** 
+   The data come from the NYC Open Data portal: [Motor Vehicle
+   Collisions–Crashes](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/about_data).
+   This dataset contains information reported to the NYPD for motor
+   vehicle crashes, available as `data/nyc_crashes_lbdwk_2025.csv`. 
+   For this exercise, a subset covering Labor Day week 2025 was
+   downloaded. It includes 29 variables, which are explained at the
+   portal. The raw data contain missing values in several fields.
+   a. Importing the data.
+      i.  Read the data into R and take a glimpse.
+	  i.  The variable names are all upper-cases, with spaces replaced
+      with periods when imported. Rename the variables to use lower
+      cases, with underscores in places of spaces (periods).
+      i.  Are all the observations really in our target time frame? If not,
+      filter out those are not and use the filtered data for the rest
+      of the exercise.
+      i.  Do you need the `location` variable in the data? What
+      suggestion would you give to the data curator?
+   a. Missing values.
+      i.  Are there borough values that should be coded as `NA`? If
+      so, recode them.
+      i.  Are there unreasonable geocode (lattitude/longitude) that
+      should be coded as `NA`? If so, recode them.
+      i.  How many records have geocode missing?
+      i.  How many zip code missing and borough missing occur
+      simultaneously?
+      i.  Create a logical variable `fillable_zip`, which is `TRUE`
+      when the geocode is not missing but zip code is missing. Compare
+      the rate of fillable zip across the seven days.
+   a. Data exploration.
+      i.  Create a variable `hour` to store the hour in which a
+      collision occurs. 
+      i.  Plot the number of crashes by hour by borough, Summarize the
+      patterns in the figure (e.g., are there more crashes during rush
+      hours?).
+	  i.  How many crashes occurred at exactly midnight? How about
+		whole hours? Is this a metter of bad luck when the clock
+      strikes midnight?
+      i.  Create a logical variable `business_day`, which is `TRUE` if
+      the day is a business day and `FALSE` otherwise.
+      i.  Plot the number of crashes by business day by
+      borough. Summarize your observations.
+   a. Severity analysis.
+      i.  Create a logical variable `severe`, which is `TRUE` if a
+      crash involved at least one person injured or one person killed.
+      i.  Create a count variable `n_vehicles` to store the number of
+      vehicles involved for the crashes.
+      i.  Create a contingency table of `severe` and
+      `n_vehicles`. Summarize your observations.
+      i.  Create a contingency table of `severe` and `hour`. Summarize
+      your observations.
+      i.  Identify the top 10 severe crashes. Are some of them
+      geographically clustered?
+   a.  Contributing factors.
+      i.  Create a frequency table for the contributing factors for
+      vehicle 1. 
+	  i.  Are there contributing factors differ only in cases? If so,
+      convert upper cases to lower cases.
+      i.  What are the top five contributing factors?
+      i.  Should any values in the frequency table be considered `NA`?
+      i.  What are the most frequent vehicle categories in vehicle 1
+      and vehicle 2? Comment on the results.
+
+
