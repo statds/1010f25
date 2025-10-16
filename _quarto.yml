@@ -19,6 +19,7 @@ book:
     - 06-manipulation.qmd
     - 07-eda.qmd
     - 08-tidy.qmd
+    - 09-geospat.qmd
     - exercises.qmd
     - references.qmd
 
