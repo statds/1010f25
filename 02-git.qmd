@@ -125,7 +125,10 @@ cd dsda1010-hw01-<username>
 ls -la
 ```
 
-Copy the homework template to this folder and start working on it.
+Copy the [homework
+template](https://github.com/statds/1010f25/blob/main/template/hw.qmd)
+to this folder and start working on it.
+
 Make commits at appropriate stops.
 
 ::: callout-tip
