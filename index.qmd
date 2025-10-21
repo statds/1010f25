@@ -136,16 +136,6 @@ graded submissions, and professional email etiquette.
 
 <!-- This project is designed as a capstone experience, bringing together most of what you have learned this semester. You will work as a team, as most data scientists do, to analyze a historical or contemporary case study. The goal is to illuminate the issue through visualization of data, and encourage exploration by providing a user interface in an R Shiny application. -->
 
----
-title: "Final Project Instructions"
-subtitle: "Individual Data Science Project"
-format:
-  html:
-    toc: true
-    toc-depth: 2
-    number-sections: true
----
-
 ## Final Project Logistics
 
 Many data science professionals work independently while collaborating
@@ -291,9 +281,10 @@ Reserve the last week for polishing your Shiny app and final report.
 - [Kaggle Public Datasets](https://www.kaggle.com/datasets)  
 - [UN Humanitarian Data Exchange](https://data.humdata.org)  
 - [NYC Open Data](https://opendata.cityofnewyork.us)  
+- [CT Open Data](https://data.ct.gov)
 - [Google Dataset Search](https://datasetsearch.research.google.com)  
-- Ask library staff  
-- UConn data sources  
+- [UConn library research data services](https://library.uconn.edu/services/research-data/)
+- [UConn energy data](https://energystats.fo.uconn.edu)
 
 
 ## Schedule and Readings
