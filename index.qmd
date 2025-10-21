@@ -121,6 +121,180 @@ graded submissions, and professional email etiquette.
 + For the convenience of grading, add your standalone pdf
   output to a release in your repo.
 
+## Final Project Logistics
+
+<!-- Many data science teams are composed of professionals from varied -->
+<!-- backgrounds. These individuals work together to identify and answer -->
+<!-- interesting business and research questions using data. Participating -->
+<!-- in this group project will give you insight into working on a data -->
+<!-- science team, and working through the Tidy Data Workflow to transform -->
+<!-- a set of questions into a well-designed product that communicates -->
+<!-- clear findings. -->
+
+
+<!-- For your final project, you will be divided into groups of four. Your charge is to identify a data set and complete a data analysis that answers one or more questions. Your project should generally follow the process of the Tidy Data Workflow. As this charge can be interpreted broadly, more information is outlined below. -->
+
+<!-- This project is designed as a capstone experience, bringing together most of what you have learned this semester. You will work as a team, as most data scientists do, to analyze a historical or contemporary case study. The goal is to illuminate the issue through visualization of data, and encourage exploration by providing a user interface in an R Shiny application. -->
+
+---
+title: "Final Project Instructions"
+subtitle: "Individual Data Science Project"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+---
+
+## Final Project Logistics
+
+Many data science professionals work independently while collaborating
+across teams. This final project will give you experience completing a
+full data analysis cycle on your own, following the **Tidy Data
+Workflow** to transform questions into a well-designed product that
+communicates clear findings.
+
+For your final project, you will work **individually** to identify a
+data set and complete a data analysis that answers one or more
+questions. Your project should generally follow the process of the Tidy
+Data Workflow. As this charge can be interpreted broadly, more
+information is outlined below.
+
+This project is designed as a capstone experience, bringing together
+most of what you have learned this semester. You will complete all
+aspects of the project yourself—planning, analysis, visualization, and
+communication—to simulate the end-to-end workflow of a professional
+data scientist. The goal is to illuminate the issue through
+visualization of data and encourage exploration by providing a user
+interface in an **R Shiny** application.
+
+::: callout-tip
+### Tip
+Start identifying your data source early. A good data set is rich,
+clean enough to work with, and aligned with your interests.
+:::
+
+### Goals
+
+- Produce an end-to-end data science project  
+- Take full ownership of your analysis and communication  
+- Identify interesting data sets, develop questions that can be
+answered with available data, use data science techniques to draw
+insights, and present those insights clearly and convincingly  
+
+### Deliverables
+
+- Project Proposal
+- Exploratory Data Analysis
+- Final Presentation
+- Final Report
+
+### Rationale for the Individual Project
+
+- Simulates independent data science work from start to finish  
+- Encourages personal accountability and self-management  
+- Provides flexibility to pursue topics reflecting individual interests
+and strengths  
+- Gives practice communicating insights in multiple formats  
+- Ensures that each student demonstrates mastery of all phases of the
+data science workflow  
+
+### Project Grading
+
+- Total project grade out of 20 points  
+  + Project Proposal = 5 points  
+  + Exploratory Data Analysis / Proof of Concept = 5 points  
+  + Final Presentation = 5 points  
+  + Final User Report = 5 points  
+
+To eliminate subjectivity from grading:  
+- Follow instructions  
+- Meet deadlines  
+- Address all rubric items  
+- Produce a cohesive, reproducible workflow  
+
+Areas of subjectivity include verbal and written communication,
+graphics grammar, product design, and text mechanics.
+
+::: callout-tip
+### Tip
+Follow each rubric item carefully and proofread your materials before
+submission.
+:::
+
+### Project Expectations
+
+You are responsible for managing your own timeline, ensuring that each
+deliverable is completed on time, and seeking feedback from the
+instructor when necessary. You may informally discuss ideas with
+peers, but all coding, analysis, and writing must be your own work.
+
+
+#### Part 1: Proposal
+
+- Select and use one publicly available data sources
+- Submit **two initial questions** you intend to answer  
+  + Innovative thought
+  + Non-trivial
+  + Data can be used to answer your questions  
+- Schedule a **15-minute meeting with me Nov. 14** to present
+your proposal
+  + Describe chosen data sources
+  + Outline variables and types
+  + Present initial research questions and variables of interest
+  + Keep it concise
+
+::: callout-tip
+### Milestone
+**Proposal meeting by Nov. 14.** Bring a short document and be prepared
+to explain your data and questions.
+:::
+
+#### Part 2: Exploratory Data Analysis
+
+- Choose **two of your initial questions** to explore in depth 
+- Provide an overview of the data, describe “things to explore,” and
+interpret results  
+- Display a **map** with at least one UI control in your dashboard  
+- Display at least **three different types of plots** (geoms) responding
+to one or more UI controls  
+- Written summary (edited, proofread HTML document)  
+  + At least one page  
+  + Describe your questions and data  
+  + Depict and discuss plots and relationships  
+  + Provide conclusions drawn from the analysis  
+
+#### Part 3: Presentation and Report
+
+- Present your **interactive R Shiny dashboard**  
+- Presentation length: **15 minutes**  
+- Explain the data used, show compelling visuals, discuss methods, and
+summarize your accompanying report  
+
+### Advice
+
+- Choose data that are interesting and rich enough for meaningful
+analysis  
+- Formulate questions that can lead to clear, data-driven answers  
+- Plan your work schedule early and stick to it  
+- Edit, proofread, and polish all deliverables carefully  
+- Reach out to Dr. Byers early if challenges arise  
+
+::: callout-tip
+### Tip
+Reserve the last week for polishing your Shiny app and final report.
+:::
+
+
+### Finding (non-trivial) Data
+
+- [Kaggle Public Datasets](https://www.kaggle.com/datasets)  
+- [UN Humanitarian Data Exchange](https://data.humdata.org)  
+- [NYC Open Data](https://opendata.cityofnewyork.us)  
+- [Google Dataset Search](https://datasetsearch.research.google.com)  
+- Ask library staff  
+- UConn data sources  
+
 
 ## Schedule and Readings
 
