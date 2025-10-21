@@ -123,21 +123,6 @@ graded submissions, and professional email etiquette.
 
 ## Final Project Logistics
 
-<!-- Many data science teams are composed of professionals from varied -->
-<!-- backgrounds. These individuals work together to identify and answer -->
-<!-- interesting business and research questions using data. Participating -->
-<!-- in this group project will give you insight into working on a data -->
-<!-- science team, and working through the Tidy Data Workflow to transform -->
-<!-- a set of questions into a well-designed product that communicates -->
-<!-- clear findings. -->
-
-
-<!-- For your final project, you will be divided into groups of four. Your charge is to identify a data set and complete a data analysis that answers one or more questions. Your project should generally follow the process of the Tidy Data Workflow. As this charge can be interpreted broadly, more information is outlined below. -->
-
-<!-- This project is designed as a capstone experience, bringing together most of what you have learned this semester. You will work as a team, as most data scientists do, to analyze a historical or contemporary case study. The goal is to illuminate the issue through visualization of data, and encourage exploration by providing a user interface in an R Shiny application. -->
-
-## Final Project Logistics
-
 Many data science professionals work independently while collaborating
 across teams. This final project will give you experience completing a
 full data analysis cycle on your own, following the **Tidy Data
