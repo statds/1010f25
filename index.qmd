@@ -153,7 +153,7 @@ information is outlined below.
 This project is designed as a capstone experience, bringing together
 most of what you have learned this semester. You will complete all
 aspects of the project yourself—planning, analysis, visualization, and
-communication—to simulate the end-to-end workflow of a professional
+communication---to simulate the end-to-end workflow of a professional
 data scientist. The goal is to illuminate the issue through
 visualization of data and encourage exploration by providing a user
 interface in an **R Shiny** application.
@@ -181,27 +181,27 @@ insights, and present those insights clearly and convincingly
 
 ### Rationale for the Individual Project
 
-- Simulates independent data science work from start to finish  
-- Encourages personal accountability and self-management  
+- Practices independent data science work from start to finish.
+- Encourages personal accountability and self-management.
 - Provides flexibility to pursue topics reflecting individual interests
-and strengths  
-- Gives practice communicating insights in multiple formats  
+and strengths.
+- Gives practice communicating insights in multiple formats.
 - Ensures that each student demonstrates mastery of all phases of the
-data science workflow  
+data science workflow.
 
 ### Project Grading
 
-- Total project grade out of 20 points  
-  + Project Proposal = 5 points  
-  + Exploratory Data Analysis / Proof of Concept = 5 points  
-  + Final Presentation = 5 points  
-  + Final User Report = 5 points  
+- Total project grade out of 40 points.
+  + Project Proposal = 5 points.
+  + Exploratory Data Analysis / Proof of Concept = 5 points.
+  + Final Presentation = 20 points.
+  + Final User Report = 10 points.
 
 To eliminate subjectivity from grading:  
-- Follow instructions  
-- Meet deadlines  
-- Address all rubric items  
-- Produce a cohesive, reproducible workflow  
+- Follow instructions.
+- Meet deadlines.
+- Address all rubric items.
+- Produce a cohesive, reproducible workflow.
 
 Areas of subjectivity include verbal and written communication,
 graphics grammar, product design, and text mechanics.
@@ -222,17 +222,22 @@ peers, but all coding, analysis, and writing must be your own work.
 
 #### Part 1: Proposal
 
-- Select and use one publicly available data sources
-- Submit **two initial questions** you intend to answer  
+- Select and use one publicly available data sources.
+- Submit **two initial questions** you intend to answer.
   + Innovative thought
   + Non-trivial
-  + Data can be used to answer your questions  
+  + Data can be used to answer your questions
 - Schedule a **15-minute meeting with me Nov. 14** to present
-your proposal
+your proposal.
   + Describe chosen data sources
   + Outline variables and types
   + Present initial research questions and variables of interest
   + Keep it concise
+
+Here is a
+[template](https://github.com/statds/1010f25/blob/main/template/proposal.qmd)
+for your project proposal.
+
 
 ::: callout-tip
 ### Milestone
@@ -254,12 +259,17 @@ to one or more UI controls
   + Depict and discuss plots and relationships  
   + Provide conclusions drawn from the analysis  
 
+
 #### Part 3: Presentation and Report
 
-- Present your **interactive R Shiny dashboard**  
-- Presentation length: **15 minutes**  
+- Present your **interactive R Shiny dashboard**.
+- Presentation length: **15 minutes**. 
 - Explain the data used, show compelling visuals, discuss methods, and
-summarize your accompanying report  
+summarize your accompanying report.
+
+Here is a
+[template](https://github.com/statds/ids-f24/blob/main/templates/presentation.qmd)
+for presentation slides with Quarto.
 
 ### Advice
 
@@ -268,7 +278,7 @@ analysis
 - Formulate questions that can lead to clear, data-driven answers  
 - Plan your work schedule early and stick to it  
 - Edit, proofread, and polish all deliverables carefully  
-- Reach out to Dr. Byers early if challenges arise  
+- Reach out to me early if challenges arise  
 
 ::: callout-tip
 ### Tip
@@ -282,9 +292,11 @@ Reserve the last week for polishing your Shiny app and final report.
 - [UN Humanitarian Data Exchange](https://data.humdata.org)  
 - [NYC Open Data](https://opendata.cityofnewyork.us)  
 - [CT Open Data](https://data.ct.gov)
+- [Hartford Open Data](https://data.hartford.gov)
+- [CSAS 2026 Data Challenge](https://github.com/CSAS-Data-Challenge/2026)
 - [Google Dataset Search](https://datasetsearch.research.google.com)  
-- [UConn library research data services](https://library.uconn.edu/services/research-data/)
-- [UConn energy data](https://energystats.fo.uconn.edu)
+- [UConn Library Research Data Services](https://library.uconn.edu/services/research-data/)
+- [UConn Energy Data](https://energystats.fo.uconn.edu)
 
 
 ## Schedule and Readings
