@@ -1,0 +1,217 @@
+# Shiny Apps
+
+
+## Introduction
+
+Shiny is an **R package for building interactive web applications**
+without requiring any web development experience.  
+It is ideal for dashboards, teaching tools, and interactive reporting.
+
+Learning Resources:
+
+- [RStudio official tutorial](https://shiny.posit.co/r/getstarted)
+- [*Mastering Shiny* by Hadley Wickham](https://mastering-shiny.org/)
+- [Shiny Gallery](https://shiny.posit.co/r/gallery/)
+
+::: callout-tip
+**Quick Start**
+
+To try Shiny, open R and run:
+
+```r
+shiny::runExample("01_hello")
+```
+
+This launches a simple interactive histogram app.
+:::
+
+---
+
+## Structure of a Shiny App
+
+A Shiny app links **UI (User Interface)** and **Server (Computation)**  
+through reactive communication.
+
+```r
+# app.R: single-file app
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Hello Shiny"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("obs", "Observations:", 1, 100, 50)
+    ),
+    mainPanel(
+      plotOutput("distPlot")
+    )
+  )
+)
+
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+::: callout-note
+**How it works**
+
+- The **UI** defines layout and input/output elements.  
+- The **Server** defines computations and reactivity.  
+- The `shinyApp(ui, server)` call connects them.
+:::
+
+::: callout-tip
+**Two-file alternative**
+
+You may also structure an app with two files in the same folder:
+
+- `ui.R`: defines `ui`
+- `server.R`: defines `server`
+
+This helps with larger apps and collaboration.
+:::
+
+---
+
+## Inputs and Outputs
+
+Inputs are widgets through which users interact.  
+Outputs display dynamically updated results.
+
+| Function | Type | Example |
+|-----------|------|----------|
+| `textInput()` | Input | Text boxes |
+| `sliderInput()` | Input | Sliders for numeric values |
+| `selectInput()` | Input | Drop-down menus |
+| `renderPlot()` | Output | Displays plots |
+| `renderTable()` | Output | Displays data tables |
+| `renderText()` | Output | Displays text summaries |
+
+```r
+input$slider  # numeric
+input$check   # logical
+```
+
+::: callout-tip
+**Widget Gallery**
+
+See the full input/output list at  
+<https://gallery.shinyapps.io/081-widgets-gallery/>.
+:::
+
+---
+
+## Reactivity
+
+Reactivity is the core concept of Shiny:  
+outputs automatically update when inputs change.
+
+### Reactive Expressions
+
+```r
+rv <- reactive({ rnorm(input$obs) })
+output$plot <- renderPlot(hist(rv()))
+```
+
+### isolate()
+
+Breaks the reactive chain — useful when you want  
+a calculation to occur only on a trigger (e.g., a button).
+
+```r
+output$summary <- renderText({
+  paste0(
+    "input$text is '", input$text,
+    "', and input$n is ", isolate(input$n)
+  )
+})
+```
+
+### observeEvent()
+
+Observers perform side-effect actions (e.g., pop-ups, saving files).
+
+```r
+observeEvent(input$go, {
+  showModal(modalDialog("You clicked Go!"))
+})
+```
+
+::: callout-note
+**Tip:**  
+Use `reactive()` for *values*, `observe()` for *actions*.
+:::
+
+---
+
+## Deployment
+
+Deploying a Shiny app means making it available to others.
+
+### Traditional Deployment
+
+- [shinyapps.io](https://www.shinyapps.io)
+- Posit Connect (enterprise hosting)
+- Private server (e.g., university or company)
+
+![](images/shiny/deploy.png)
+
+### Shinylive Deployment
+
+Shinylive runs entirely in the browser (no R server needed).
+
+```r
+install.packages("shinylive")
+shinylive::export("app", "site")
+```
+
+Then deploy the `site` folder like a static website.
+
+::: callout-tip
+**Limitations of Shinylive**
+
+- Not all R packages are supported.  
+- Initial loading may be slow for large apps.
+:::
+
+---
+
+## Best Practices
+
+- Write automated tests with  
+  [shinytest2](https://rstudio.github.io/shinytest2/)
+- Build apps as packages for easier dependency management.
+- Use [modules](https://mastering-shiny.org/scaling-modules.html)
+  to reuse UI and server components.
+- Learn a little HTML/CSS/JS for customization.
+- Start with a sketch—plan your app’s **user experience** before coding.
+
+---
+
+## Hands-on Exercise
+
+::: callout-tip
+**Exercise: Build Your First App**
+
+1. Create a new file called `app.R`  
+2. Define `ui` and `server` as shown above  
+3. Add `shinyApp(ui, server)` at the end  
+4. Run the app and change the slider to see live updates  
+:::
+
+<!-- --- -->
+
+<!-- ## Further Resources -->
+
+<!-- - RStudio tutorial: [shiny.rstudio.com/tutorial](https://shiny.rstudio.com/tutorial/) -->
+<!-- - Mastering Shiny: [mastering-shiny.org](https://mastering-shiny.org/) -->
+<!-- - Shiny UI Editor: [rstudio.github.io/shinyuieditor](https://rstudio.github.io/shinyuieditor/) -->
+<!-- - Shiny for Python: [shiny.posit.co/py](https://shiny.posit.co/py/) -->
+<!-- - shinythemes: [rstudio.github.io/shinythemes](https://rstudio.github.io/shinythemes/) -->
+<!-- - shinylive examples: [shinylive.io/r/examples/](https://shinylive.io/r/examples/) -->
+<!-- - Example apps: [github.com/rstudio/shiny-examples/](https://github.com/rstudio/shiny-examples/) -->
