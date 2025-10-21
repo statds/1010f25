@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Exercises – Data Science and Society with R</title>
+<title>11&nbsp; Exercises – Data Science and Society with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./09-geospat.html" rel="prev">
+<link href="./10-shiny.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -102,7 +102,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -193,8 +193,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./10-shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Shiny Apps</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -216,7 +222,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ex" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exercises</span></span></h1>
+<h1 class="title"><span id="sec-ex" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercises</span></span></h1>
 </div>
 
 
@@ -249,11 +255,11 @@ div.csl-indent {
 <li>Identify your top five favorite commands in the Unix/Linux shell. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
 <li>Identify your top five favorite Git commands. For each command, explain what it does. If there is an option/flag you found particularly useful, describe it.</li>
 </ol></li>
-<li><p><strong>Do women promote different policies than men?</strong> <span class="citation" data-cites="chattopadhyay2004women">Chattopadhyay &amp; Duflo (<a href="references.html#ref-chattopadhyay2004women" role="doc-biblioref">2004</a>)</span> studied whether female policymakers make different choices than male policymakers by exploiting a unique natural experiment in India. India’s 1993 constitutional amendment required that one-third of village council head positions (pradhans) be randomly reserved for women, creating a setting where the assignment of female leaders was exogenous. In the data here, villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in <a href="#tbl-india" class="quarto-xref">Table&nbsp;<span>10.1</span></a>, the dataset contains four variables.</p>
+<li><p><strong>Do women promote different policies than men?</strong> <span class="citation" data-cites="chattopadhyay2004women">Chattopadhyay &amp; Duflo (<a href="references.html#ref-chattopadhyay2004women" role="doc-biblioref">2004</a>)</span> studied whether female policymakers make different choices than male policymakers by exploiting a unique natural experiment in India. India’s 1993 constitutional amendment required that one-third of village council head positions (pradhans) be randomly reserved for women, creating a setting where the assignment of female leaders was exogenous. In the data here, villages were randomly assigned to have a female council head. The dataset is in the source of the class notes “data/india.csv”. As shown in <a href="#tbl-india" class="quarto-xref">Table&nbsp;<span>11.1</span></a>, the dataset contains four variables.</p>
 <div id="tbl-india" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.1: Variables in <code>india.csv</code>
+Table&nbsp;11.1: Variables in <code>india.csv</code>
 </figcaption>
 <div aria-describedby="tbl-india-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -869,8 +875,8 @@ Chetty, R., Hendren, N., Kline, P., &amp; Saez, E. (2014). Where is the land of 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./09-geospat.html" class="pagination-link" aria-label="Geospatial Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Geospatial Data</span></span>
+      <a href="./10-shiny.html" class="pagination-link" aria-label="Shiny Apps">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Shiny Apps</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
