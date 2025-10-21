@@ -1,0 +1,78 @@
+---
+title: "Final Project Proposal"
+subtitle: "STAT/DSDA 1010; Data Science and Society Using R"
+author: "Your Name"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+# Project Overview
+
+Briefly describe the goal of your project in **2–3 sentences**.  
+What topic or question do you want to explore using data?
+
+::: callout-tip
+### Tip
+A good project starts with curiosity. Ask: *What do I want to learn or
+show with data?*
+:::
+
+
+# Research Questions
+
+List **two specific questions** that your data analysis will answer.
+
+Example:
+1. How do housing prices vary across neighborhoods in NYC?
+2. What factors are most related to customer satisfaction scores?
+
+::: callout-tip
+### Tip
+Good questions are measurable, clear, and require data to answer.
+Avoid yes/no questions when possible.
+:::
+
+
+# Data Source
+
+Describe the publicly available data you plan to use.
+
+For each source, include:
+- **Name and URL**  
+- **What it contains** (variables, number of rows/columns if known)  
+- **Why it is useful** for your project  
+
+
+# Planned Methods
+
+Describe, in a few sentences, how you will analyze and visualize the
+data. You don’t need advanced methods---just explain your plan clearly.
+
+Examples:
+- Create summary statistics and visualizations to explore trends.  
+- Build an interactive dashboard using **R Shiny**.  
+- Combine two data sets by a common key (e.g., date or location).  
+
+---
+
+# Expected Outcomes
+
+What do you expect to learn or show from this project?  
+List one or two possible insights, patterns, or conclusions.
+
+::: callout-tip
+### Tip
+It’s okay if your results change later. This section shows that you
+have a reasonable plan and motivation.
+:::
+
+
+# References (if any)
+
+List any web pages, data sources, or references you consulted.
+
+Example:
+- NYC Open Data Portal: <https://opendata.cityofnewyork.us>
+- Kaggle Datasets: <https://www.kaggle.com/datasets>
