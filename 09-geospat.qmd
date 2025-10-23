@@ -6,7 +6,8 @@ library(tidyverse)
 knitr::opts_chunk$set(eval = TRUE, echo = TRUE)
 ```
 
-## Plan for Today
+
+Outline:
 
 - Exploring geolocated data in R
 - Examining the `sp` and `sf` packages
@@ -15,7 +16,8 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE)
 - Examine plotting data with the `sp` and `sf` packages
 
 
-## What is Geographic Data?
+
+## Introduction 
 
 - Geographic data corresponds to data that have been linked to a geographic coordinate system
 
@@ -58,23 +60,18 @@ leaflet() %>%
 
 
 
-## How Does R Handle Geography?
+There are many ways to handle geographic data in R, with dozens of
+packages in the area. The ones that we will focus on in this course
+are:
 
-- There are many ways to handle geographic data in R, with dozens of packages in the area
++ `sp`
++ `sf` (very functional with the `tidyverse`)
++ `raster`
+  
+Honorable mentions:
 
-- The ones that we will focus on in this course are:
-
-  + `sp`
-  
-  + `sf` (very functional with the `tidyverse`)
-  
-  + `raster`
-  
-- Honorable mentions
-
-  + `maptools`
-  
-  + `rgdal`
++ `maptools`
++ `rgdal`
   
 
 
@@ -88,15 +85,20 @@ their coordinate reference systems (CRS) and attribute data. These
 structures form the foundation for spatial analysis, visualization, and
 conversion between coordinate systems.  
 
+
 Although newer packages like **`sf`** now offer simpler data-frame-based
 representations, `sp` remains widely used and is essential for
 understanding many legacy R spatial workflows.
 
-- The first general package to provide classes and methods for spatial data types that was developed for R is called `sp`
+- The first general package to provide classes and methods for spatial
+  data types that was developed for R is called `sp`.
+- The package provides classes and methods to create points, lines,
+  polygons, and grids and to operate on them.
+  
 
-- The package provides classes and methods to create points, lines, polygons, and grids and to operate on them
+### Building a `sp` Object
 
-- Let's build a `sp` object:
+Let's build a `sp` object:
 
 ```{r}
 #install.packages("sp")
@@ -112,7 +114,8 @@ ln2
 str(ln1)
 ```
 
-- Note that the `@coords` slot holds the coordinates 
+
+Note that the `@coords` slot holds the coordinates 
 
 
 ```{r}
@@ -123,7 +126,8 @@ lns2 <- Lines(list(ln2), ID = c("hwy2"))
 str(lns1)
 ```
 
-- The `Line` objects are now in a list and we have an additional ID slot, which uniquely identifies each `Line` object 
+The `Line` objects are now in a list and we have an additional ID
+slot, which uniquely identifies each `Line` object .
 
 ```{r}
 # create a geospatial object with SpatialLines
@@ -132,6 +136,8 @@ sp_lns <- SpatialLines(list(lns1, lns2))
 str(sp_lns)
 ```
 
+
+A data frame can be created with a column of `SpatialLines`.
 ```{r}
 ## create a SpatialLinesDataframe
 dfr <- data.frame(id = c("hwy1", "hwy2"), # note how we use the same IDs from above!
@@ -173,13 +179,14 @@ spplot(sp_lns_dfr, "cars_per_hour")
 
 ## The `sf` Package
 
-- `sf` implements a formal standard called “Simple Features” that specifies a storage and access model of spatial geometries (point, line, polygon)
-
-- A feature geometry is called simple when it consists of points connected by straight line pieces, and does not intersect itself
-
-  + This standard has been adopted widely
-  
-- Data are structured and conceptualized very differently from the `sp` approach
+- `sf` implements a formal standard called “Simple Features” that
+  specifies a storage and access model of spatial geometries (point,
+  line, polygon). 
+- A feature geometry is called simple when it consists of points
+  connected by straight line pieces, and does not intersect itself.
+  + This standard has been adopted widely.
+- Data are structured and conceptualized very differently from the
+  `sp` approach.
 
 
 
@@ -199,7 +206,7 @@ lnstr_sfg2
 class(lnstr_sfg1)
 ```
 
-We would then combine this into a simple feature collection
+We would then combine this into a simple feature collection.
 
 ```{r}
 #combine the highways into a simple feature
@@ -218,7 +225,8 @@ ggplot(lnstr_sf) +
   geom_sf(aes(color = cars_per_hour))
 ```
 
-- Useful methods in `sf`
+
+Useful methods in `sf`:
 
 ```{r}
 methods(class = "sf")
@@ -241,19 +249,14 @@ Common raster formats include GeoTIFF and `.grd`. In R, raster data are
 handled by packages such as **`raster`** and **`terra`**.
 
 
-- Raster files, as you might know, have a much more compact data structure than vectors
-
+- Raster files, as you might know, have a much more compact data
+  structure than vectors.
 - A raster is defined by: 
-
-  + a CRS
-  
-  + coordinates of its origin
-  
-  + a distance or cell size in each direction
-  
-  + a dimension or numbers of cells in each direction
-  
-  + an array of cell values
+   + a CRS
+   + coordinates of its origin
+   + a distance or cell size in each direction
+   + a dimension or numbers of cells in each direction
+   + an array of cell values
   
 ```{r}
 ## install.packages("raster")
@@ -266,7 +269,9 @@ HARV
 plot(HARV)
 ```
 
-- This raster is generated as part of the NEON Harvard Forest field [site](https://www.neonscience.org/field-sites/harv)  
+This raster is generated as part of the NEON Harvard Forest field
+[site](https://www.neonscience.org/field-sites/harv) .
+  
 
 ```{r}
 ## useful commands
@@ -279,9 +284,10 @@ methods(class = class(HARV))
 
 
 
-## Types of Maps
+## Maps
 
-- We are going to create a few different types of maps, which will require different R packages
+- We are going to create a few different types of maps, which will
+  require different R packages.
 
   + Static Maps
   
@@ -306,8 +312,8 @@ methods(class = class(HARV))
 
 ### Plotting Simple Features (`sf`)
 
-- As we have already briefly seen, the `sf` package extends the base plot command, so it can be used on `sf` objects
-
+- As we have already briefly seen, the `sf` package extends the base
+  plot command, so it can be used on `sf` objects.
 - We are going to create a choropleth map with `sf`
 
 ```{r}
@@ -320,11 +326,11 @@ glimpse(philly_crimes_sf)
 plot(philly_crimes_sf)
 ```
 
-- Notice that the plot function will try and provide a map of every variable in the data set
+Notice that the plot function will try and provide a map of every
+variable in the data set.
 
 
-
-To plot a single attribute, we need to provide an object of class `sf`, like so
+To plot a single attribute, we need to provide an object of class `sf`.
 
 ```{r}
 plot(philly_crimes_sf$homic_rate) # this is a numeric vector!
@@ -332,7 +338,8 @@ plot(philly_crimes_sf$homic_rate) # this is a numeric vector!
 plot(philly_crimes_sf["homic_rate"])
 ```
 
-- Based on the plot above, it would seem that we have a lot of "empty" geographic units or unevenly distributed
+Based on the plot above, it would seem that we have a lot of "empty"
+geographic units or unevenly distributed
 
 ```{r}
 #| eval: TRUE
@@ -344,7 +351,8 @@ ggplot(philly_crimes_sf) +
   geom_histogram(mapping = aes(x = homic_rate))
 ```
 
-Let's break the plot up into quantiles to better distinguish the census tracts with low values
+Let's break the plot up into quantiles to better distinguish the
+census tracts with low values.
 
 ```{r}
 #| eval: TRUE
@@ -361,9 +369,9 @@ plot(philly_crimes_sf["homic_rate"],
 
 ### Mapping with `ggplot()`
 
-- `ggplot` is a widely used and powerful plotting library for R as we have utilized over the course of the semester 
-  
-  + It is not specifically geared towards mapping, but one can generate great maps
+Package `ggplot` is a widely used and powerful plotting library for R as we
+have utilized over the course of the semester. It is not specifically
+geared towards mapping, but one can generate great maps.
   
 ```{r}
 #| eval: TRUE
@@ -376,9 +384,11 @@ ggplot(philly_crimes_sf) +
 ```
 
 
-## Mapping with `ggplot()`
+Homicide rate is a continuous variable and is plotted by ggplot as
+such. If we wanted to plot our map as a ‘true’ choropleth map we need
+to convert our continuous variable into a categorical one, according
+to whichever brackets we want to use.
 
-- Homicide rate is a continuous variable and is plotted by ggplot as such. If we wanted to plot our map as a ‘true’ choropleth map we need to convert our continuous variable into a categorical one, according to whichever brackets we want to use
 
 ```{r}
 #| eval: TRUE
@@ -386,9 +396,13 @@ ggplot(philly_crimes_sf) +
 #| out-width: 100%
 #| out-height: 100%
 
-breaks_qt <- classInt::classIntervals(c(min(philly_crimes_sf$homic_rate) - .00001, philly_crimes_sf$homic_rate), n = 7, style = "quantile")
+breaks_qt <- classInt::classIntervals(
+                           c(min(philly_crimes_sf$homic_rate) - .00001,
+                             philly_crimes_sf$homic_rate),
+                           n = 7, style = "quantile")
 
-philly_crimes_sf <- mutate(philly_crimes_sf, homic_rate_cat = cut(homic_rate, breaks_qt$brks)) 
+philly_crimes_sf <- mutate(philly_crimes_sf,
+                           homic_rate_cat = cut(homic_rate, breaks_qt$brks)) 
 
 ggplot(philly_crimes_sf) + 
     geom_sf(aes(fill=homic_rate_cat)) +
@@ -398,15 +412,19 @@ ggplot(philly_crimes_sf) +
 
 ### Mapping with `tmap()`
 
-- `tmap` is specifically designed to make creation of thematic maps more convenient
+- `tmap` is specifically designed to make creation of thematic maps
+  more convenient.
 
   + Uses `ggplot` syntax
   
 - Useful things to know:
 
-  + `tm_shape()` where we provide the `sf` object (we could also provide an `SpatialPolygonsDataframe`)
-  
-  + `tm_polygons()` where we set the attribute variable to map, the break style, and a title
+  + `tm_shape()` where we provide the `sf` object (we could also
+    provide an `SpatialPolygonsDataframe`).
+	
+  + `tm_polygons()` where we set the attribute variable to map, the
+    break style, and a title.
+
   
   
 ```{r}
@@ -417,13 +435,20 @@ ggplot(philly_crimes_sf) +
 
 library(tmap)
 
-tm_shape(philly_crimes_sf) +
-  tm_polygons("homic_rate", 
-              style="quantile", 
-              title="Philadelphia \nhomicide density \nper sqKm")
+m <- tm_shape(philly_crimes_sf) +
+    tm_polygons(
+        "homic_rate",
+        fill.scale = tm_scale_intervals(style = "quantile", n = 4),
+        fill.legend = tm_legend("Philadelphia \nhomicide density \nper sqKm")
+    )
+
+m
 ```
 
-- `tmap` has a very nice feature that allows us to give basic interactivity to the map. We can switch from “plot” mode into “view” mode and call the last plot, like so:
+Package `tmap` has a nice feature that allows us to give basic
+interactivity to the map. We can switch from `plot` mode into `view`
+mode and call the plot.
+  
 
 ```{r}
 #| eval: TRUE
@@ -432,17 +457,34 @@ tm_shape(philly_crimes_sf) +
 #| out-height: 100%
 
 tmap_mode("view")
-tmap_last()
+
+m
 ```
+
+**Animation** is a feature we need to find a dataset to demonstrate,
+possibly through the NYC crash data.
+
+<!-- For the Quarto output, we can call `tmap_leaflet()`. -->
+<!-- ``` -->
+<!-- #| echo: TRUE -->
+<!-- #| eval: TRUE -->
+<!-- #| out-width: 100% -->
+<!-- #| out-height: 100% -->
+
+<!-- library("htmlwidget") -->
+<!-- tmap_leaflet(m) #  forces inline interactive leaflet map -->
+<!-- ``` -->
 
 
 ### Mapping with `leaflet()`
 
-- `leaflet` provides bindings to the ‘Leaflet’ JavaScript library, “the leading open-source JavaScript library for mobile-friendly interactive maps”
+Package `leaflet` provides bindings to the `Leaflet` JavaScript
+library, "the leading open-source JavaScript library for
+mobile-friendly interactive maps."
+We have already seen a simple use of leaflet in the `tmap` example.
 
-- We have already seen a simple use of leaflet in the `tmap` example
 
-- Let’s build up the map step by step
+Let’s build up the map step by step
 
 ```{r}
 #| eval: TRUE
@@ -453,7 +495,7 @@ tmap_last()
 
 library(leaflet) 
 
-#reproject
+# reproject
 philly_WGS84 <- st_transform(philly_crimes_sf, 4326)
 
 leaflet(philly_WGS84) %>%
@@ -473,12 +515,14 @@ pal_fun <- colorQuantile("YlOrRd", NULL, n = 5)
 
 p_popup <- paste0("<strong>Homicide Density: </strong>", philly_WGS84$homic_rate)
 
-leaflet(philly_WGS84) %>%
-  addPolygons(
-    stroke = FALSE, # remove polygon borders
-    fillColor = ~pal_fun(homic_rate), # set fill color with function from above and value
-    fillOpacity = 0.8, smoothFactor = 0.5, # make it nicer
-    popup = p_popup)  # add popup
+m <- leaflet(philly_WGS84) %>%
+    addPolygons(
+        stroke = FALSE, # remove polygon borders
+        fillColor = ~pal_fun(homic_rate), # set fill color with function from above and value
+        fillOpacity = 0.8, smoothFactor = 0.5, # make it nicer
+        popup = p_popup)  # add popup
+
+m
 ```
 
 We can add a basemap, which defaults to OSM, with `addTiles()`
@@ -489,14 +533,8 @@ We can add a basemap, which defaults to OSM, with `addTiles()`
 #| out-width: 100%
 #| out-height: 100%
 
-
-leaflet(philly_WGS84) %>%
-  addPolygons(
-    stroke = FALSE, 
-    fillColor = ~pal_fun(homic_rate),
-    fillOpacity = 0.8, smoothFactor = 0.5,
-    popup = p_popup) %>%
-  addTiles()
+m <- addTiles(m)
+m
 ```
 
 Lastly, we add a legend with `addLegend()`
@@ -507,18 +545,13 @@ Lastly, we add a legend with `addLegend()`
 #| out-width: 100%
 #| out-height: 100%
 
+m <-  addLegend(m,
+                "bottomright",  # location
+                pal=pal_fun,    # palette function
+                values=~homic_rate,  # value to be passed to palette function
+                title = 'Philadelphia homicide density per sqkm') # legend title
 
-leaflet(philly_WGS84) %>%
-  addPolygons(
-    stroke = FALSE, 
-    fillColor = ~pal_fun(homic_rate),
-    fillOpacity = 0.8, smoothFactor = 0.5,
-    popup = p_popup) %>%
-  addTiles() %>%
-  addLegend("bottomright",  # location
-            pal=pal_fun,    # palette function
-            values=~homic_rate,  # value to be passed to palette function
-            title = 'Philadelphia homicide density per sqkm') # legend title
+m
 ```
 
 <!-- ## For Next Class -->
