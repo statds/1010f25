@@ -412,20 +412,23 @@ ggplot(philly_crimes_sf) +
 
 ### Mapping with `tmap()`
 
-- `tmap` is specifically designed to make creation of thematic maps
-  more convenient.
+Package `tmap` is based on the idea of a 'grammar of graphics' similar
+to `ggplot`  This involves a separation between the input data and the
+aesthetics (how data are visualized): each input dataset can be
+‘mapped’ in a range of different ways including location on the map
+(defined by data’s geometry), color, and other visual variables. The
+package is specifically designed to make creation of thematic maps
+more convenient with `ggplot` syntax.
 
-  + Uses `ggplot` syntax
-  
-- Useful things to know:
 
-  + `tm_shape()` where we provide the `sf` object (we could also
-    provide an `SpatialPolygonsDataframe`).
++ `tm_shape()` defines the data, raster, and vector objects.
 	
-  + `tm_polygons()` where we set the attribute variable to map, the
-    break style, and a title.
++ `tm_polygons()` sets the attribute variable to map, the break style,
+  and a title.
 
++ `tm_fill()` & `tm_borders()` control the layers.
   
+
   
 ```{r}
 #| eval: TRUE
@@ -461,8 +464,104 @@ tmap_mode("view")
 m
 ```
 
+**Layers** can be controlled by `tm_fill()` & `tm_borders()`.
+
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+#| out-width: 100%
+#| out-height: 100%
+#
+#install.packages("spData")
+library(spData)
+library(tmap)
+
+# Add fill layer to nz shape
+tm_shape(nz) +
+  tm_fill() 
+
+# Add border layer to nz shape
+tm_shape(nz) +
+  tm_borders() 
+
+# Add fill and border layers to nz shape
+tm_shape(nz) +
+  tm_fill() +
+  tm_borders() 
+```
+
+ A useful feature of `tmap` is its ability to store objects representing maps
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+#| out-width: 100%
+#| out-height: 100%
+
+map_nz = tm_shape(nz) + tm_polygons()
+
+class(map_nz)
+```
+
+-   This allows you to plot your maps later and/or add additional layers
+
+```{r}
+#| eval: TRUE
+
+
+map_nz1 <- map_nz + 
+    tm_polygons("Population", style = "quantile", 
+                palette = "viridis", 
+                title = "Population (by region)") +
+    tm_layout(frame = FALSE)
+
+map_nz1
+```
+
+
+There are no limits to the number of layers or shapes that can be
+added to `tmap` objects.  Additionally, `tmap` allows multiple map
+objects to be arranged in a single plot with `tmap_arrange()`
+
+
+```{r}
+#| eval: FALSE
+
+map_nz2 <- tm_shape(nz) +
+  tm_polygons("Median_income", style = "pretty", palette = "brewer.blues",
+              title = "Median income")
+
+# combined
+tmap_arrange(map_nz1, map_nz2) #, map_nz3)
+```
+
+
+
 **Animation** is a feature we need to find a dataset to demonstrate,
 possibly through the NYC crash data.
+
+```
+urb_1970_2030 <- urban_agglomerations |>
+  filter(year == 1970| year == 1990 | year == 2010 | year == 2030) 
+
+
+tm_shape(world) +
+  tm_polygons() +
+  tm_shape(urb_1970_2030) +
+  tm_symbols(col = "black", border.col = "white", size = "population_millions") +
+  tm_facets(by = "year", nrow = 2, free.coords = FALSE)
+
+
+urb_anim = tm_shape(world) + tm_polygons() + 
+  tm_shape(urban_agglomerations) + tm_dots(size = "population_millions") +
+  tm_facets(along = "year", free.coords = FALSE)
+
+
+library(gifski)
+
+tmap_animation(urb_anim, filename = "urb_anim.gif", delay = 25)
+```
 
 <!-- For the Quarto output, we can call `tmap_leaflet()`. -->
 <!-- ``` -->
@@ -554,6 +653,9 @@ m <-  addLegend(m,
 m
 ```
 
+
+
+## 
 <!-- ## For Next Class -->
 
 <!-- -   Review what you learned today -->
