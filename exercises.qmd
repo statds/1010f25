@@ -380,4 +380,32 @@
       i.  What are the most frequent vehicle categories in vehicle 1
       and vehicle 2? Comment on the results.
 
+1. **Covid Cases Map** 
+   Johns Hopkins University Center for Systems
+   Science and Engineering (JHU CSSE) COVID-19 Data Repository
+   provides daily global reports of confirmed, death, and recovery
+   counts for each country and subnational region, along with
+   geographic coordinates and derived indicators such as incident rate
+   and case fatality ratio. The dataset is publicly available on
+   [GitHub](https://github.com/CSSEGISandData/COVID-19), where
+   detailed field definitions and documentation can be found in the
+   accompanying README file.
+   a. Using the `download.file()` function in R, write code to
+   download the daily report for April 14, 2021, save it as a local
+   CSV file named `COVID19_04-14-2021.csv`, and load it into R for
+   inspection. Display the first few rows of the data frame.Download
+   the data.
+   a. The shapes of counties in North Carolina are stored in
+   `data/nc_counties.RData` in the class notes repo. Use it to make a
+   map of the cumulative number of confirmed cases, per capita, in
+   each county in North Carolina.
+   a. Download the daily report for April 13, 2021, read it into R,
+   and filter to the North Carolina.  Create a variable that
+   represents the number of confirmed cases that occurred from April
+   13 and April 14. Lastly, compute the confirmed per capita cases and
+   visualize it in a map.
+   a. The shapes of states in the US are stored in
+   `data/us_geom.RData` in the classnotes repo.  Make a map of the
+   cumulative number of confirmed cases per capita, in each state in
+   the United States
 
