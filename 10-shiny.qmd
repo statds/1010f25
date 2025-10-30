@@ -107,7 +107,7 @@ See the full input/output list at
 ---
 
 ## Reactivity
-
+o
 Reactivity is the core concept of Shiny:  
 outputs automatically update when inputs change.
 
@@ -147,7 +147,232 @@ observeEvent(input$go, {
 Use `reactive()` for *values*, `observe()` for *actions*.
 :::
 
----
+
+
+## Examples
+
+
+### Example 1: Normal Distribution Explorer
+
+This is the simplest Shiny app. It lets users change the mean and
+standard deviation of a normal distribution and immediately see the
+updated histogram.
+
+The UI side:
+
+```{r}
+#| label: ui-normal
+#| eval: false
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Normal Distribution Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("mean", "Mean (μ):", min = -5, max = 5, value = 0, step = 0.1),
+      sliderInput("sd", "Standard deviation (σ):", min = 0.1, max = 5, value = 1, step = 0.1)
+    ),
+    mainPanel(
+      plotOutput("hist")
+    )
+  )
+)
+```
+
+The Server side:
+
+```{r}
+#| label: server-normal
+#| eval: false
+server <- function(input, output) {
+  output$hist <- renderPlot({
+    x <- rnorm(1000, mean = input$mean, sd = input$sd)
+    hist(x, main = "Histogram of Random Normal Data",
+         xlab = "Value", col = "skyblue", border = "white")
+  })
+}
+```
+
+Run the App:
+
+```{r}
+#| eval: false
+shinyApp(ui, server)
+```
+
+
+
+### Example 2: Comparing Two Distributions
+
+This second app is adapted from the original version. It lets users
+control the parameters of **two normal distributions** and visualize
+their frequency polygons side by side.
+
+
+The UI side:
+```{r}
+#| label: ui-two-dist
+#| eval: false
+library(shiny)
+library(ggplot2)
+library(tibble)
+
+ui <- fluidPage(
+  titlePanel("Compare Two Normal Distributions"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("n1", "Sample size (Dist 1)", value = 1000, min = 100),
+      numericInput("mean1", "μ (Dist 1)", value = 0, step = 0.1),
+      numericInput("sd1", "σ (Dist 1)", value = 1, min = 0.1, step = 0.1),
+
+      numericInput("n2", "Sample size (Dist 2)", value = 1000, min = 100),
+      numericInput("mean2", "μ (Dist 2)", value = 1, step = 0.1),
+      numericInput("sd2", "σ (Dist 2)", value = 0.5, min = 0.1, step = 0.1),
+
+      sliderInput("range", "X-axis range", value = c(-5, 5), min = -10, max = 10),
+      actionButton("go", "Generate Samples")
+    ),
+    mainPanel(
+      plotOutput("plot2"),
+      verbatimTextOutput("ttest")
+    )
+  )
+)
+```
+
+
+The Server side:
+```{r}
+#| label: server-two-dist
+#| eval: false
+server <- function(input, output) {
+
+  # Reactive data: generate both samples together only when button clicked
+  samples <- reactive({
+    input$go
+    isolate({
+      tibble(
+        x = c(rnorm(input$n1, input$mean1, input$sd1),
+              rnorm(input$n2, input$mean2, input$sd2)),
+        grp = rep(c("Dist 1", "Dist 2"), c(input$n1, input$n2))
+      )
+    })
+  })
+
+  # Plot: smooth density curves
+  output$plot2 <- renderPlot({
+    req(samples())
+    ggplot(samples(), aes(x = x, color = grp, fill = grp)) +
+      geom_density(alpha = 0.25, linewidth = 1) +
+      scale_color_manual(values = c("Dist 1" = "blue", "Dist 2" = "red")) +
+      scale_fill_manual(values = c("Dist 1" = "blue", "Dist 2" = "red")) +
+      coord_cartesian(xlim = input$range) +
+      labs(title = "Two Normal Distributions",
+           x = "Value", y = "Density", color = "Distribution", fill = "Distribution") +
+      theme_minimal(base_size = 14)
+  }, res = 96)
+
+  # t-test: reuse the same simulated data
+  output$ttest <- renderPrint({
+    req(samples())
+    t.test(x ~ grp, data = samples())
+  })
+}
+```
+
+
+Run the App:
+
+```{r}
+#| eval: false
+shinyApp(ui, server)
+```
+
+
+### Example 3: Reactivity
+
+This example illustrate how reactivity:
+
++ `reactive()` defines a reactive expression — a cached computation
+  that automatically re-runs when its inputs change and can be reused
+  across outputs.
++ `isolate()` lets you access reactive inputs without triggering a
+  re-execution. Useful when you want a computation to happen only when
+  explicitly requested.
++ `observeEvent()` is used to perform an action (not return a value)
+  when an input changes — like printing to console, showing a message,
+  or updating another output.
+
+
+```{r}
+#| label: combined-reactivity
+#| eval: false
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Reactive, Isolate, and ObserveEvent Together"),
+
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("mean1", "Mean (Dist 1):", value = 0),
+      numericInput("sd1", "SD (Dist 1):", value = 1, min = 0.1),
+      numericInput("mean2", "Mean (Dist 2):", value = 1),
+      numericInput("sd2", "SD (Dist 2):", value = 1, min = 0.1),
+      actionButton("go", "Generate Samples")
+    ),
+
+    mainPanel(
+      h4("Histogram of Samples"),
+      plotOutput("hist", height = "300px", width = "100%"),
+      h4("Two-sample t-test Results"),
+      verbatimTextOutput("ttest", placeholder = TRUE)
+    )
+  )
+)
+
+server <- function(input, output) {
+
+  # reactiveVal to store generated data
+  data <- reactiveVal()
+
+  # observeEvent: generate samples only when button clicked
+  observeEvent(input$go, {
+    x1 <- rnorm(1000, mean = isolate(input$mean1), sd = isolate(input$sd1))
+    x2 <- rnorm(1000, mean = isolate(input$mean2), sd = isolate(input$sd2))
+    data(list(x1 = x1, x2 = x2))
+  })
+
+  # reactive: compute t-test using stored data
+  test <- reactive({
+    req(data())
+    with(data(), t.test(x1, x2))
+  })
+
+  # plot histogram
+  output$hist <- renderPlot({
+    req(data())
+    with(data(), {
+      hist(x1, col = rgb(0, 0, 1, 0.3), border = "white",
+           main = "Two Generated Samples", xlab = "Value",
+           xlim = range(c(x1, x2)))
+      hist(x2, col = rgb(1, 0, 0, 0.3), border = "white", add = TRUE)
+      legend("topright", legend = c("Dist 1", "Dist 2"),
+             fill = c(rgb(0, 0, 1, 0.3), rgb(1, 0, 0, 0.3)))
+    })
+  })
+
+  # show t-test output
+  output$ttest <- renderPrint({
+    req(test())
+    test()
+  })
+}
+
+shinyApp(ui, server)
+```
+
+
+
 
 ## Deployment
 
