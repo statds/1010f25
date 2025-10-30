@@ -241,12 +241,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#inputs-and-outputs" id="toc-inputs-and-outputs" class="nav-link" data-scroll-target="#inputs-and-outputs"><span class="header-section-number">10.3</span> Inputs and Outputs</a></li>
   <li><a href="#reactivity" id="toc-reactivity" class="nav-link" data-scroll-target="#reactivity"><span class="header-section-number">10.4</span> Reactivity</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">10.5</span> Examples</a></li>
-  <li><a href="#example-1-normal-distribution-explorer" id="toc-example-1-normal-distribution-explorer" class="nav-link" data-scroll-target="#example-1-normal-distribution-explorer"><span class="header-section-number">11</span> Example 1: Normal Distribution Explorer</a>
-  <ul class="collapse">
-  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment"><span class="header-section-number">11.1</span> Deployment</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">11.2</span> Best Practices</a></li>
-  <li><a href="#hands-on-exercise" id="toc-hands-on-exercise" class="nav-link" data-scroll-target="#hands-on-exercise"><span class="header-section-number">11.3</span> Hands-on Exercise</a></li>
-  </ul></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment"><span class="header-section-number">10.6</span> Deployment</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">10.7</span> Best Practices</a></li>
+  <li><a href="#hands-on-exercise" id="toc-hands-on-exercise" class="nav-link" data-scroll-target="#hands-on-exercise"><span class="header-section-number">10.8</span> Hands-on Exercise</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/statds/1010f25/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/statds/1010f25/blob/main/10-shiny.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -475,9 +472,8 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 </section>
 <section id="examples" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="examples"><span class="header-section-number">10.5</span> Examples</h2>
-</section>
-<section id="example-1-normal-distribution-explorer" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Example 1: Normal Distribution Explorer</h1>
+<section id="example-1-normal-distribution-explorer" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="example-1-normal-distribution-explorer"><span class="header-section-number">10.5.1</span> Example 1: Normal Distribution Explorer</h3>
 <p>This is the simplest Shiny app. It lets users change the mean and standard deviation of a normal distribution and immediately see the updated histogram.</p>
 <p>The UI side:</p>
 <div class="cell">
@@ -519,8 +515,9 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="example-2-comparing-two-distributions" class="level3" data-number="11.0.1">
-<h3 data-number="11.0.1" class="anchored" data-anchor-id="example-2-comparing-two-distributions"><span class="header-section-number">11.0.1</span> Example 2: Comparing Two Distributions</h3>
+</section>
+<section id="example-2-comparing-two-distributions" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="example-2-comparing-two-distributions"><span class="header-section-number">10.5.2</span> Example 2: Comparing Two Distributions</h3>
 <p>This second app is adapted from the original version. It lets users control the parameters of <strong>two normal distributions</strong> and visualize their frequency polygons side by side.</p>
 <p>The UI side:</p>
 <div class="cell">
@@ -602,8 +599,8 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 </details>
 </div>
 </section>
-<section id="example-3-reactivity" class="level3" data-number="11.0.2">
-<h3 data-number="11.0.2" class="anchored" data-anchor-id="example-3-reactivity"><span class="header-section-number">11.0.2</span> Example 3: Reactivity</h3>
+<section id="example-3-reactivity" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="example-3-reactivity"><span class="header-section-number">10.5.3</span> Example 3: Reactivity</h3>
 <p>This example illustrate how reactivity:</p>
 <ul>
 <li><code>reactive()</code> defines a reactive expression — a cached computation that automatically re-runs when its inputs change and can be reused across outputs.</li>
@@ -651,11 +648,12 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 </details>
 </div>
 </section>
-<section id="deployment" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="deployment"><span class="header-section-number">11.1</span> Deployment</h2>
+</section>
+<section id="deployment" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="deployment"><span class="header-section-number">10.6</span> Deployment</h2>
 <p>Deploying a Shiny app means making it available to others.</p>
-<section id="traditional-deployment" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="traditional-deployment"><span class="header-section-number">11.1.1</span> Traditional Deployment</h3>
+<section id="traditional-deployment" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="traditional-deployment"><span class="header-section-number">10.6.1</span> Traditional Deployment</h3>
 <ul>
 <li><a href="https://www.shinyapps.io">shinyapps.io</a></li>
 <li>Posit Connect (enterprise hosting)</li>
@@ -663,8 +661,8 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 </ul>
 <p><img src="images/shiny/deploy.png" class="img-fluid"></p>
 </section>
-<section id="shinylive-deployment" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="shinylive-deployment"><span class="header-section-number">11.1.2</span> Shinylive Deployment</h3>
+<section id="shinylive-deployment" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="shinylive-deployment"><span class="header-section-number">10.6.2</span> Shinylive Deployment</h3>
 <p>Shinylive runs entirely in the browser (no R server needed).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>shinylive<span class="sc">::</span><span class="fu">export</span>(<span class="st">"app"</span>, <span class="st">"site"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -690,8 +688,8 @@ Tip
 <hr>
 </section>
 </section>
-<section id="best-practices" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">11.2</span> Best Practices</h2>
+<section id="best-practices" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">10.7</span> Best Practices</h2>
 <ul>
 <li>Write automated tests with<br>
 <a href="https://rstudio.github.io/shinytest2/">shinytest2</a></li>
@@ -702,8 +700,8 @@ Tip
 </ul>
 <hr>
 </section>
-<section id="hands-on-exercise" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="hands-on-exercise"><span class="header-section-number">11.3</span> Hands-on Exercise</h2>
+<section id="hands-on-exercise" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="hands-on-exercise"><span class="header-section-number">10.8</span> Hands-on Exercise</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -738,7 +736,6 @@ Tip
 <!-- - Example apps: [github.com/rstudio/shiny-examples/](https://github.com/rstudio/shiny-examples/) -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
