@@ -7,16 +7,6 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE)
 ```
 
 
-Outline:
-
-- Exploring geolocated data in R
-- Examining the `sp` and `sf` packages
-- Discuss geographic data
-- Explore plotting geolocated data in R
-- Examine plotting data with the `sp` and `sf` packages
-
-
-
 ## Introduction 
 
 - Geographic data corresponds to data that have been linked to a geographic coordinate system
@@ -509,9 +499,8 @@ class(map_nz)
 ```{r}
 #| eval: TRUE
 
-
 map_nz1 <- map_nz + 
-    tm_polygons("Population", style = "quantile", 
+    tm_polygons("Population",  fill.scale = tm_scale_intervals(),
                 palette = "viridis", 
                 title = "Population (by region)") +
     tm_layout(frame = FALSE)
@@ -537,9 +526,11 @@ tmap_arrange(map_nz1, map_nz2) #, map_nz3)
 ```
 
 
+#### Animation with Package `gifski`
 
-**Animation** is a feature we need to find a dataset to demonstrate,
-possibly through the NYC crash data.
+
+Consider the United Nations urban populaton data including projections.
+Package `tmap`  makes it easy to create maps with `year` as facet.
 
 ```
 urb_1970_2030 <- urban_agglomerations |>
@@ -557,7 +548,12 @@ urb_anim = tm_shape(world) + tm_polygons() +
   tm_shape(urban_agglomerations) + tm_dots(size = "population_millions") +
   tm_facets(along = "year", free.coords = FALSE)
 
+```
 
+
+Package `gifski` takes the `urb_anim` object and create a GIF image,
+in which each year is a frame.
+```
 library(gifski)
 
 tmap_animation(urb_anim, filename = "urb_anim.gif", delay = 25)
@@ -654,8 +650,6 @@ m
 ```
 
 
-
-## 
 <!-- ## For Next Class -->
 
 <!-- -   Review what you learned today -->
