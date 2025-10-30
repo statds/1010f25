@@ -304,5 +304,7 @@ Reserve the last week for polishing your Shiny app and final report.
 1. Relational Data
     + R4DS Ch 14; Ch 16; Ch 17; Ch 19.3-19.6
 1. Geospatial Data
-    + USDR Ch 1; Ch 3.1-3.4
-    + GCR Ch1; Ch 8.1-8.2
+    + USDR Ch 1; Ch 3.1-3.6
+    + GCR Ch1; Ch 8.1-8.4
+1. Shiny
+    + MSR Ch 1-4; Ch12; Ch 5-6

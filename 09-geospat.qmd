@@ -648,19 +648,3 @@ m <-  addLegend(m,
 
 m
 ```
-
-
-<!-- ## For Next Class -->
-
-<!-- -   Review what you learned today -->
-
-<!-- -   Do new set of readings: -->
-
-<!--     -   We are going to continue or discuss of relational data -->
-<!--     -   [USDR Chapter 3.5-3.6]{style="color:#000E2F"} -->
-<!--     -   [GCR Chapter 8.3-8.6]{style="color:#000E2F"} -->
-<!--     -   [MSR Chapter 1-4]{style="color:#000E2F"} -->
-<!--     -   [MSR Chapter 12]{style="color:#000E2F"} -->
-<!--         -   Follow along the exercises with your own computer -->
-
-<!-- -   Bring your laptops to class -->
