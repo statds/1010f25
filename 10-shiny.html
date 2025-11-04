@@ -612,37 +612,64 @@ Use <code>reactive()</code> for <em>values</em>, <code>observe()</code> for <em>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Reactive, Isolate, and ObserveEvent Together"</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numericInput</span>(<span class="st">"mean"</span>, <span class="st">"Mean:"</span>, <span class="dv">0</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numericInput</span>(<span class="st">"sd"</span>, <span class="st">"SD:"</span>, <span class="dv">1</span>, <span class="at">min =</span> <span class="fl">0.1</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">actionButton</span>(<span class="st">"go"</span>, <span class="st">"Generate Sample"</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"hist"</span>),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">verbatimTextOutput</span>(<span class="st">"summary"</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reactive container to hold the current dataset</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>(<span class="cn">NULL</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># observeEvent: generate new data only when button clicked</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>go, {</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">isolate</span>(input<span class="sc">$</span>mean)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    s <span class="ot">&lt;-</span> <span class="fu">isolate</span>(input<span class="sc">$</span>sd)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>, m, s))</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outputs that react to data()</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>hist <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">data</span>())  <span class="co"># only plot if available</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(<span class="fu">data</span>(), <span class="at">main =</span> <span class="st">"Generated Data"</span>, <span class="at">col =</span> <span class="st">"lightgreen"</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">"mean1"</span>, <span class="st">"Mean (Dist 1):"</span>, <span class="at">value =</span> <span class="dv">0</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">"sd1"</span>, <span class="st">"SD (Dist 1):"</span>, <span class="at">value =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="fl">0.1</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">"mean2"</span>, <span class="st">"Mean (Dist 2):"</span>, <span class="at">value =</span> <span class="dv">1</span>),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">numericInput</span>(<span class="st">"sd2"</span>, <span class="st">"SD (Dist 2):"</span>, <span class="at">value =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="fl">0.1</span>),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">"go"</span>, <span class="st">"Generate Samples"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">h4</span>(<span class="st">"Histogram of Samples"</span>),</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">"hist"</span>, <span class="at">height =</span> <span class="st">"300px"</span>, <span class="at">width =</span> <span class="st">"100%"</span>),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">h4</span>(<span class="st">"Two-sample t-test Results"</span>),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">verbatimTextOutput</span>(<span class="st">"ttest"</span>, <span class="at">placeholder =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reactiveVal to store generated data</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">reactiveVal</span>()</span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">data</span>())</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(<span class="fu">data</span>())</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># observeEvent: generate samples only when button clicked</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>go, {</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="fu">isolate</span>(input<span class="sc">$</span>mean1), <span class="at">sd =</span> <span class="fu">isolate</span>(input<span class="sc">$</span>sd1))</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="fu">isolate</span>(input<span class="sc">$</span>mean2), <span class="at">sd =</span> <span class="fu">isolate</span>(input<span class="sc">$</span>sd2))</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data</span>(<span class="fu">list</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2))</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reactive: compute t-test using stored data</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">data</span>())</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">data</span>(), <span class="fu">t.test</span>(x1, x2))</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot histogram</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>hist <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">data</span>())</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">data</span>(), {</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">hist</span>(x1, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"Two Generated Samples"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>,</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlim =</span> <span class="fu">range</span>(<span class="fu">c</span>(x1, x2)))</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">hist</span>(x2, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>), <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Dist 1"</span>, <span class="st">"Dist 2"</span>),</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="fu">c</span>(<span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>)))</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>  <span class="co"># show t-test output</span></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>ttest <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">test</span>())</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">test</span>()</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>

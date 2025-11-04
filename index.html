@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -89,6 +124,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -544,6 +581,24 @@ Tip
 <li><a href="https://library.uconn.edu/services/research-data/">UConn Library Research Data Services</a></li>
 <li><a href="https://energystats.fo.uconn.edu">UConn Energy Data</a></li>
 </ul>
+</section>
+<section id="presentation-order" class="level3">
+<h3 class="anchored" data-anchor-id="presentation-order">Presentation Order</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Tyler Adams"</span>, <span class="st">"Marcus Arles"</span>, <span class="st">"AC Bacro"</span>, <span class="st">"Jason Beauchamp"</span>, <span class="st">"Yufei Chen"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Melisa Enesi"</span>, <span class="st">"Daniel Jahi"</span>, <span class="st">"Ethan Justin"</span>, <span class="st">"Josh Kilcoyne"</span>, <span class="st">"Archer Pierro"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Alexander Walker"</span>, <span class="st">"Karissa Wong"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7342895</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(roster, <span class="at">size =</span> <span class="fu">length</span>(roster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Alexander Walker" "Yufei Chen"       "Melisa Enesi"     "Karissa Wong"    
+ [5] "Daniel Jahi"      "AC Bacro"         "Ethan Justin"     "Jason Beauchamp" 
+ [9] "Archer Pierro"    "Tyler Adams"      "Marcus Arles"     "Josh Kilcoyne"   </code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="schedule-and-readings" class="level2">
