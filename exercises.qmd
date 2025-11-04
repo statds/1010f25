@@ -409,3 +409,25 @@
    cumulative number of confirmed cases per capita, in each state in
    the United States
 
+1. **Shiny App for NYC Crashes** 
+   Bbuild a Shiny app that mimics a simplified 
+   version of [NYC’s Vision Zero dashboard](https://vzv.nyc)
+   using a subset of NYC crash data from the week covering Labor
+   Day 2025 (`data/nyc_crashes_lbdwk_2025.csv`).
+   The app will grow in stages, starting from simple
+   filtering to adding interactivity and summary visualizations.
+   a.  Build a minimal Shiny app that filters the crash data by date and 
+   hour and displays the filtered points on a map. Use sidebar
+   inputs for date and hour range. Use `leaflet` to plot crash points
+   for the selected range. 
+   a.  Enhance the visualization to show crash severity. Map darker
+   color for more severe crashes. Make circle size proportional to the
+   number of persons injured or killed.  
+   a.  Add contextual information through popups on the map. Include
+     location, borough, and injury or fatality counts in each popup.
+   a.  Add a summary bar chart below the inputs, showing crash counts by 
+      3-hour intervals, and arrange the layout so the map appears on
+      the right and the bar chart below the inputs.
+   a.  Extend your app with additional interactive features (optional).
+      i.  Add filters for borough or severity level.  
+      i.  Include reactive text summaries (for example, total crashes).  
