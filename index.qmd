@@ -284,6 +284,15 @@ Reserve the last week for polishing your Shiny app and final report.
 - [UConn Energy Data](https://energystats.fo.uconn.edu)
 
 
+### Presentation Order
+```{r}
+roster <- c("Tyler Adams", "Marcus Arles", "AC Bacro", "Jason Beauchamp", "Yufei Chen",
+            "Melisa Enesi", "Daniel Jahi", "Ethan Justin", "Josh Kilcoyne", "Archer Pierro",
+            "Alexander Walker", "Karissa Wong")
+set.seed(7342895)
+sample(roster, size = length(roster))
+```
+
 ## Schedule and Readings
 
 
