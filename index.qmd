@@ -173,6 +173,16 @@ and strengths.
 - Gives practice communicating insights in multiple formats.
 - Ensures that each student demonstrates mastery of all phases of the
 data science workflow.
+- Leaves flexibility in the final product.
+
+### Using of AI
+AI usage is allowed. However, you need to document your iteration with
+AI and deliver your presentation yourself (which serves as a check
+whether you've made AI knowledge your own).
+
+For those who have more time, feel free to make your app as
+professional as you can. For example, make it a phone app with AI
+help.
 
 ### Project Grading
 
@@ -212,7 +222,7 @@ peers, but all coding, analysis, and writing must be your own work.
   + Innovative thought
   + Non-trivial
   + Data can be used to answer your questions
-- Schedule a **15-minute meeting with me Nov. 14** to present
+- Schedule a **20-minute meeting with me Nov. 14** to present
 your proposal.
   + Describe chosen data sources
   + Outline variables and types
@@ -226,7 +236,8 @@ for your project proposal.
 
 ::: callout-tip
 ### Milestone
-**Proposal meeting by Nov. 14.** Bring a short document and be prepared
+**Proposal meeting done by Nov. 14.** 
+Bring your proposal and be prepared
 to explain your data and questions.
 :::
 
@@ -248,7 +259,7 @@ to one or more UI controls
 #### Part 3: Presentation and Report
 
 - Present your **interactive R Shiny dashboard**.
-- Presentation length: **15 minutes**. 
+- Presentation length: **10 minutes**. 
 - Explain the data used, show compelling visuals, discuss methods, and
 summarize your accompanying report.
 
@@ -285,6 +296,10 @@ Reserve the last week for polishing your Shiny app and final report.
 
 
 ### Presentation Order
+
+The final presentations will be in the last week, six presenters in
+each lecture period.
+
 ```{r}
 roster <- c("Tyler Adams", "Marcus Arles", "AC Bacro", "Jason Beauchamp", "Yufei Chen",
             "Melisa Enesi", "Daniel Jahi", "Ethan Justin", "Josh Kilcoyne", "Archer Pierro",
