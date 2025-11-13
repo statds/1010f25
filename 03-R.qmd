@@ -360,6 +360,122 @@ than `==` for real‑number comparisons.
 - Use simple file names: letters, numbers, underscores.
 
 
+## Example: Hiring the Best Secretary
+
+A manager wants to hire one secretary from among $n$ applicants.
+According to some standard, the applicants can be strictly ranked
+from best to worst, but the order in which they are interviewed is
+completely random. For each interview the manager must immediately
+decide whether to hire this person. If the applicant is hired, the
+process stops. Otherwise the manager moves on to the next
+applicant. Any rejected applicant cannot be recalled later. What rule
+should the manager use in order to maximize the probability that the
+person hired is actually the best of the $n$ applicants?
+
+
+Consider the following strategy. Choose an integer $r < n$. The manager
+first interviews the first $r$ applicants and rejects all of them. Then,
+starting from applicant $r+1$, the manager hires the first applicant
+whose quality is better than all previous applicants. If no such
+applicant appears, the manager hires the last applicant.
+
+
+Let $\pi(r,n)$ be the probability that this strategy results in hiring
+the best applicant. It can be shown that
+
+$$
+\pi(r,n)
+= \sum_{i=r}^{n} \frac{r-1}{i-1}\cdot \frac{1}{n}.
+$$
+
+The problem is to choose $r$ to maximize $\pi(r,n)$.
+
+
+Now we estimate the probability $\pi(r,n)$ of selecting the
+best candidate in the classical secretary problem using simulation in
+R. For each candidate number $n$ and cutoff $r$, we simulate the hiring
+process repeatedly and compute the proportion of simulations in which
+the selected applicant is the best (rank $1$).
+
+
+### One simulation of the hiring process
+
+We represent the applicants' true qualities as a random permutation of
+$\{1,\dots,n\}$, where $1$ is best and $n$ is worst. With a given cutoff
+$r$, we first examine the first $r$ applicants and record the smallest
+(rank-best) value among them. Starting from applicant $r+1$, we hire the
+first applicant whose rank is smaller than all previously observed
+ranks. If none is better, we hire the last applicant.
+
+```{r}
+secretary_once <- function(n, r) {
+  # A random permutation of ranks, where 1 = best
+  order <- sample.int(n)
+
+  # Best rank seen among the first r applicants
+  best_so_far <- min(order[1:r])
+
+  # Default: hire the last applicant
+  hire_index <- n
+
+  # Look for the first applicant better than all previous ones
+  if (r < n) {
+    for (i in (r + 1):n) {
+      if (order[i] < best_so_far) {
+        hire_index <- i
+        break
+      }
+    }
+  }
+
+  hired_rank <- order[hire_index]
+  as.integer(hired_rank == 1)
+}
+```
+
+
+### Estimating $\pi(r,n)$ through replication
+
+We repeat the random hiring process many times and compute the average
+success probability.
+
+```{r}
+estimate_pi <- function(n, r, n_sim = 10000) {
+  mean(replicate(n_sim, secretary_once(n, r)))
+}
+```
+
+
+### Searching for the optimal cutoff
+
+For a fixed $n$, we evaluate $\pi(r,n)$ over $r = 1, \dots, n-1$ and
+select the $r$ that maximizes the probability of hiring the best
+applicant.
+
+```{r}
+n     <- 100
+n_sim <- 2000
+
+rs  <- 1:(n - 1)
+pis <- sapply(rs, estimate_pi, n = n, n_sim = n_sim)
+
+r_star_hat   <- rs[which.max(pis)]
+max_prob_hat <- max(pis)
+
+r_star_hat
+max_prob_hat
+```
+
+We can visualize the function $r \mapsto \pi(r,n)$:
+
+```{r}
+plot(rs, pis, type = "l",
+     xlab = "r (cutoff)",
+     ylab = "Estimated pi(r, n)",
+     main = paste("Secretary Problem Simulation, n =", n))
+abline(v = r_star_hat, lty = 2)
+lines(rs, sapply(rs, function(r) sum((r-1)/(r:100 - 1)) / 100), col = 2, lwd = 2)
+```
 
 ## Wrap‑Up Checklist
 
