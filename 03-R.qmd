@@ -364,7 +364,7 @@ than `==` for real‑number comparisons.
 
 A manager wants to hire one secretary from among $n$ applicants.
 According to some standard, the applicants can be strictly ranked
-from best to worst, but the order in which they are interviewed is
+from strongest to weakest, but the order in which they are interviewed is
 completely random. For each interview the manager must immediately
 decide whether to hire this person. If the applicant is hired, the
 process stops. Otherwise the manager moves on to the next
@@ -384,8 +384,11 @@ Let $\pi(r,n)$ be the probability that this strategy results in hiring
 the best applicant. It can be shown that
 
 $$
-\pi(r,n)
-= \sum_{i=r}^{n} \frac{r-1}{i-1}\cdot \frac{1}{n}.
+\begin{align}
+\pi(r,n) &= \sum_{i=1}^{n} |Pr(\text{Strongest among first } i-1 \text{ is in } 1,\dots,r)}
+\Pr(\text{Strongest at position } i)\\
+&= \sum_{i=r + 1}^{n} \frac{r}{i - 1}\cdot \frac{1}{n}.
+\end{align}
 $$
 
 The problem is to choose $r$ to maximize $\pi(r,n)$.
@@ -474,8 +477,11 @@ plot(rs, pis, type = "l",
      ylab = "Estimated pi(r, n)",
      main = paste("Secretary Problem Simulation, n =", n))
 abline(v = r_star_hat, lty = 2)
-lines(rs, sapply(rs, function(r) sum((r-1)/(r:100 - 1)) / 100), col = 2, lwd = 2)
+lines(rs, sapply(rs, function(r) sum((r)/((r+1):100 - 1)) / 100), col = 2, lwd = 2)
 ```
+
+
+As $n \to \infty$, $r^* / n \to 1 / e \approx 0.368$.
 
 ## Wrap‑Up Checklist
 
