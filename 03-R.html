@@ -811,12 +811,15 @@ Tip
 </section>
 <section id="example-hiring-the-best-secretary" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="example-hiring-the-best-secretary"><span class="header-section-number">3.11</span> Example: Hiring the Best Secretary</h2>
-<p>A manager wants to hire one secretary from among <span class="math inline">\(n\)</span> applicants. According to some standard, the applicants can be strictly ranked from best to worst, but the order in which they are interviewed is completely random. For each interview the manager must immediately decide whether to hire this person. If the applicant is hired, the process stops. Otherwise the manager moves on to the next applicant. Any rejected applicant cannot be recalled later. What rule should the manager use in order to maximize the probability that the person hired is actually the best of the <span class="math inline">\(n\)</span> applicants?</p>
+<p>A manager wants to hire one secretary from among <span class="math inline">\(n\)</span> applicants. According to some standard, the applicants can be strictly ranked from strongest to weakest, but the order in which they are interviewed is completely random. For each interview the manager must immediately decide whether to hire this person. If the applicant is hired, the process stops. Otherwise the manager moves on to the next applicant. Any rejected applicant cannot be recalled later. What rule should the manager use in order to maximize the probability that the person hired is actually the best of the <span class="math inline">\(n\)</span> applicants?</p>
 <p>Consider the following strategy. Choose an integer <span class="math inline">\(r &lt; n\)</span>. The manager first interviews the first <span class="math inline">\(r\)</span> applicants and rejects all of them. Then, starting from applicant <span class="math inline">\(r+1\)</span>, the manager hires the first applicant whose quality is better than all previous applicants. If no such applicant appears, the manager hires the last applicant.</p>
 <p>Let <span class="math inline">\(\pi(r,n)\)</span> be the probability that this strategy results in hiring the best applicant. It can be shown that</p>
 <p><span class="math display">\[
-\pi(r,n)
-= \sum_{i=r}^{n} \frac{r-1}{i-1}\cdot \frac{1}{n}.
+\begin{align}
+\pi(r,n) &amp;= \sum_{i=1}^{n} |Pr(\text{Strongest among first } i-1 \text{ is in } 1,\dots,r)}
+\Pr(\text{Strongest at position } i)\\
+&amp;= \sum_{i=r + 1}^{n} \frac{r}{i - 1}\cdot \frac{1}{n}.
+\end{align}
 \]</span></p>
 <p>The problem is to choose <span class="math inline">\(r\)</span> to maximize <span class="math inline">\(\pi(r,n)\)</span>.</p>
 <p>Now we estimate the probability <span class="math inline">\(\pi(r,n)\)</span> of selecting the best candidate in the classical secretary problem using simulation in R. For each candidate number <span class="math inline">\(n\)</span> and cutoff <span class="math inline">\(r\)</span>, we simulate the hiring process repeatedly and compute the proportion of simulations in which the selected applicant is the best (rank <span class="math inline">\(1\)</span>).</p>
@@ -901,7 +904,7 @@ Tip
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Estimated pi(r, n)"</span>,</span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Secretary Problem Simulation, n ="</span>, n))</span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> r_star_hat, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rs, <span class="fu">sapply</span>(rs, <span class="cf">function</span>(r) <span class="fu">sum</span>((r<span class="dv">-1</span>)<span class="sc">/</span>(r<span class="sc">:</span><span class="dv">100</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="dv">100</span>), <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rs, <span class="fu">sapply</span>(rs, <span class="cf">function</span>(r) <span class="fu">sum</span>((r)<span class="sc">/</span>((r<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="dv">100</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> <span class="dv">100</span>), <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -911,6 +914,7 @@ Tip
 </div>
 </div>
 </div>
+<p>As <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(r^* / n \to 1 / e \approx 0.368\)</span>.</p>
 </section>
 </section>
 <section id="wrapup-checklist" class="level2" data-number="3.12">
