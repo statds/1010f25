@@ -815,11 +815,13 @@ Tip
 <p>Consider the following strategy. Choose an integer <span class="math inline">\(r &lt; n\)</span>. The manager first interviews the first <span class="math inline">\(r\)</span> applicants and rejects all of them. Then, starting from applicant <span class="math inline">\(r+1\)</span>, the manager hires the first applicant whose quality is better than all previous applicants. If no such applicant appears, the manager hires the last applicant.</p>
 <p>Let <span class="math inline">\(\pi(r,n)\)</span> be the probability that this strategy results in hiring the best applicant. It can be shown that</p>
 <p><span class="math display">\[
-\begin{align}
-\pi(r,n) &amp;= \sum_{i=1}^{n} |Pr(\text{Strongest among first } i-1 \text{ is in } 1,\dots,r)}
-\Pr(\text{Strongest at position } i)\\
-&amp;= \sum_{i=r + 1}^{n} \frac{r}{i - 1}\cdot \frac{1}{n}.
-\end{align}
+\begin{aligned}
+\pi(r,n)
+  &amp;= \sum_{i=1}^{n}
+     \Pr(\text{strongest in first } i-1 \text{ is in } 1,\dots,r)\,
+     \Pr(\text{strongest at position } i) \\
+  &amp;= \sum_{i=r+1}^{n} \frac{r}{i-1}\cdot \frac{1}{n}.
+\end{aligned}
 \]</span></p>
 <p>The problem is to choose <span class="math inline">\(r\)</span> to maximize <span class="math inline">\(\pi(r,n)\)</span>.</p>
 <p>Now we estimate the probability <span class="math inline">\(\pi(r,n)\)</span> of selecting the best candidate in the classical secretary problem using simulation in R. For each candidate number <span class="math inline">\(n\)</span> and cutoff <span class="math inline">\(r\)</span>, we simulate the hiring process repeatedly and compute the proportion of simulations in which the selected applicant is the best (rank <span class="math inline">\(1\)</span>).</p>
